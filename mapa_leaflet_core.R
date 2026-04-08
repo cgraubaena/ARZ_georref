@@ -9,6 +9,7 @@ library(tidyr)
 library(viridisLite)
 library(stringr)
 library(htmltools)
+library(jsonlite)
 
 # 1) Tabla índice PBA
 df_pba <- read_csv("PBA indice.csv", show_col_types = FALSE)
@@ -185,7 +186,12 @@ propiedades_caba_raw <- read_csv("Tabla única v4.csv", skip = 2, show_col_types
 # Normalizar nombres de columnas (quitar BOM, espacios) para que coincidan con el código
 names(propiedades_caba_raw) <- str_trim(str_remove(names(propiedades_caba_raw), "^\\ufeff"))
 propiedades_caba_raw <- propiedades_caba_raw %>%
-  filter(Localidad == "CABA") %>%
+  filter(Localidad == "CABA")
+
+# Misma referencia en ambos mapas: total de filas CABA en la tabla única (antes del filtro por coordenadas)
+n_propiedades_caba_ref <- nrow(propiedades_caba_raw)
+
+propiedades_caba_raw <- propiedades_caba_raw %>%
   mutate(
     fuente_priorizada = map_chr(`Fuentes disponibles`, function(fuentes_str) {
       # Orden de prioridad para colorear: 1 Templos, 2 Entes dependientes, 3 Alquileres, 4 Índice (GCBA/propiedad), 5 Planilla Destinos (texto "Eduardo"), 6 Relevamiento
@@ -379,14 +385,13 @@ categorias_para_leyenda_uso <- character(0)
 labels_leyenda_uso <- character(0)
 colores_uso_completos <- character(0)
 
-if (nrow(propiedades_caba) > 0) {
+if (n_propiedades_caba_ref > 0) {
   # Orden de prioridad (igual que en el case_when): nombres exactos que pueden aparecer en los datos
   orden_fuentes <- c("Templos", "Entes dependientes", "Alquileres", "Índice GCBA", "Planilla Destinos", "Relevamiento", "Sin fuente")
   
   # Dominio fijo: siempre usar todos los niveles para que colorFactor nunca devuelva NA
   # Así "Templos" siempre tiene el mismo color aunque haya variantes en los datos
   colores_fuentes_completos <- colores_fuentes
-  fuentes_disponibles <- orden_fuentes
   
   # Función que asigna color por nombre de categoría
   pal_fuentes <- function(x) {
@@ -400,26 +405,34 @@ if (nrow(propiedades_caba) > 0) {
   
   # color_fill ya viene calculado en propiedades_caba (chunk anterior); no sobrescribir
   
-  # Para la leyenda: solo mostrar fuentes que realmente aparecen en los datos
-  fuentes_disponibles_raw <- unique(propiedades_caba$fuente_priorizada)
-  fuentes_para_leyenda <- orden_fuentes[orden_fuentes %in% fuentes_disponibles_raw]
-  if (length(fuentes_para_leyenda) == 0) fuentes_para_leyenda <- "Sin fuente"
-  fuentes_disponibles <- fuentes_para_leyenda
-  labels_leyenda_fuente <- map_chr(fuentes_disponibles, function(f) {
-    n <- sum(propiedades_caba$fuente_priorizada == f, na.rm = TRUE)
-    paste0(f, " (", n, ")")
-  })
-  
-  cats_en_datos <- unique(propiedades_caba$categoria_uso_priorizada)
-  categorias_para_leyenda_uso <- orden_categoria_uso[orden_categoria_uso %in% cats_en_datos]
-  colores_uso_completos <- colores_uso_fijos[categorias_para_leyenda_uso]
-  conteos_uso <- map_int(categorias_para_leyenda_uso, function(cat) {
-    sum(propiedades_caba$categoria_uso_priorizada == cat, na.rm = TRUE)
-  })
-  ancho_conteo_uso <- max(nchar(as.character(conteos_uso)))
-  labels_leyenda_uso <- map2_chr(categorias_para_leyenda_uso, conteos_uso, function(cat, n) {
-    paste0(sprintf(paste0("%0", ancho_conteo_uso, "d"), n), " - ", cat)
-  })
+  # Leyendas según puntos georreferenciados (puede haber filas en tabla sin coordenadas válidas)
+  if (nrow(propiedades_caba) > 0) {
+    fuentes_disponibles_raw <- unique(propiedades_caba$fuente_priorizada)
+    fuentes_para_leyenda <- orden_fuentes[orden_fuentes %in% fuentes_disponibles_raw]
+    if (length(fuentes_para_leyenda) == 0) fuentes_para_leyenda <- "Sin fuente"
+    fuentes_disponibles <- fuentes_para_leyenda
+    labels_leyenda_fuente <- map_chr(fuentes_disponibles, function(f) {
+      n <- sum(propiedades_caba$fuente_priorizada == f, na.rm = TRUE)
+      paste0(f, " (", n, ")")
+    })
+    
+    cats_en_datos <- unique(propiedades_caba$categoria_uso_priorizada)
+    categorias_para_leyenda_uso <- orden_categoria_uso[orden_categoria_uso %in% cats_en_datos]
+    colores_uso_completos <- colores_uso_fijos[categorias_para_leyenda_uso]
+    conteos_uso <- map_int(categorias_para_leyenda_uso, function(cat) {
+      sum(propiedades_caba$categoria_uso_priorizada == cat, na.rm = TRUE)
+    })
+    ancho_conteo_uso <- max(nchar(as.character(conteos_uso)))
+    labels_leyenda_uso <- map2_chr(categorias_para_leyenda_uso, conteos_uso, function(cat, n) {
+      paste0(sprintf(paste0("%0", ancho_conteo_uso, "d"), n), " - ", cat)
+    })
+  } else {
+    fuentes_disponibles <- character(0)
+    labels_leyenda_fuente <- character(0)
+    categorias_para_leyenda_uso <- character(0)
+    labels_leyenda_uso <- character(0)
+    colores_uso_completos <- character(0)
+  }
   
   # leer shapefile de CABA desde la carpeta caba
   # intentar primero con export1.shp, si no existe probar con export2.shp
@@ -458,7 +471,7 @@ if (nrow(propiedades_caba) > 0) {
       # crear el objeto sf con el polígono unificado
       caba_polygon <- st_sf(
         nombre_partido = "CABA", 
-        n_parcelas = nrow(propiedades_caba), 
+        n_parcelas = n_propiedades_caba_ref, 
         geometry = caba_unificado
       )
     } else {
@@ -469,7 +482,7 @@ if (nrow(propiedades_caba) > 0) {
       ), crs = 4326)
       
       caba_polygon <- st_as_sfc(caba_bbox) %>%
-        st_sf(nombre_partido = "CABA", n_parcelas = nrow(propiedades_caba), .)
+        st_sf(nombre_partido = "CABA", n_parcelas = n_propiedades_caba_ref, .)
     }
   } else {
     # fallback: crear polígono simple de CABA (bounding box aproximado)
@@ -479,7 +492,7 @@ if (nrow(propiedades_caba) > 0) {
     ), crs = 4326)
     
     caba_polygon <- st_as_sfc(caba_bbox) %>%
-      st_sf(nombre_partido = "CABA", n_parcelas = nrow(propiedades_caba), .)
+      st_sf(nombre_partido = "CABA", n_parcelas = n_propiedades_caba_ref, .)
   }
 } else {
   # crear paleta vacía y polígono vacío si no hay propiedades
@@ -527,16 +540,19 @@ m_uso <- crear_base()
 
 agregar_capas_mapa <- function(mapa_inicial, modo) {
   stopifnot(modo %in% c("fuente", "uso"))
-  # Mapa "uso": una capa por categoría (nombres "Uso · …") para filtrar con el control de capas (sin crosstalk).
+  # Mapa "uso": una capa por categoría (nombre legible, sin prefijo) para el control de capas (sin crosstalk).
   grupos_capas_prop_caba <- if (modo == "fuente") {
     "Propiedades CABA"
   } else if (nrow(propiedades_caba) > 0) {
-    paste0(
-      "Uso · ",
-      orden_categoria_uso[orden_categoria_uso %in% unique(propiedades_caba$categoria_uso_priorizada)]
-    )
+    orden_categoria_uso[orden_categoria_uso %in% unique(propiedades_caba$categoria_uso_priorizada)]
   } else {
     character(0)
+  }
+
+  categorias_uso_json <- if (modo == "uso" && length(grupos_capas_prop_caba) > 0) {
+    jsonlite::toJSON(grupos_capas_prop_caba, auto_unbox = FALSE)
+  } else {
+    "[]"
   }
 
   mapa_inicial %>%
@@ -570,7 +586,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
   # agregar polígono de CABA - también deshabilitar interacción
   {
     mapa_temp <- .
-    if (nrow(propiedades_caba) > 0 && nrow(caba_polygon) > 0) {
+    if (n_propiedades_caba_ref > 0 && nrow(caba_polygon) > 0) {
       mapa_temp <- mapa_temp %>%
         addPolygons(
           data = caba_polygon,
@@ -580,7 +596,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
           fillOpacity = 0.6,
           label = paste0(
             "CABA<br>",
-            "Propiedades: ", nrow(propiedades_caba)
+            "Propiedades: ", n_propiedades_caba_ref
           ),
           highlightOptions = highlightOptions(
             weight = 3,
@@ -668,7 +684,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
           group = "Clusters agregados"
         )
     }
-    if (nrow(propiedades_caba) > 0 && nrow(caba_polygon) > 0) {
+    if (n_propiedades_caba_ref > 0 && nrow(caba_polygon) > 0) {
       centroide_caba_agg <- caba_polygon %>% st_centroid() %>% st_coordinates() %>% as.data.frame() %>% rename(lng = X, lat = Y)
       if (nrow(centroide_caba_agg) > 0) {
         mapa_temp <- mapa_temp %>%
@@ -676,11 +692,11 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
             lng = centroide_caba_agg$lng[1], lat = centroide_caba_agg$lat[1],
             radius = 28, stroke = TRUE, color = "#FFFFFF", weight = 3,
             fillOpacity = 0.95, fillColor = "#FFB347",
-            label = as.character(nrow(propiedades_caba)),
+            label = as.character(n_propiedades_caba_ref),
             labelOptions = labelOptions(noHide = TRUE, direction = "center", textOnly = TRUE,
               style = list("color" = "white", "font-weight" = "bold", "font-size" = "18px",
                 "text-align" = "center", "text-shadow" = "1px 1px 2px rgba(0,0,0,0.8)")),
-            popup = paste0("<b>CABA</b><br>Propiedades: ", nrow(propiedades_caba)),
+            popup = paste0("<b>CABA</b><br>Propiedades: ", n_propiedades_caba_ref),
             group = "Clusters agregados"
           )
       }
@@ -725,7 +741,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
         )
     }
     
-    if (nrow(propiedades_caba) > 0 && nrow(caba_polygon) > 0) {
+    if (n_propiedades_caba_ref > 0 && nrow(caba_polygon) > 0) {
       centroide_caba <- caba_polygon %>%
         st_centroid() %>%
         st_coordinates() %>%
@@ -733,7 +749,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
         rename(lng = X, lat = Y)
       
       if (nrow(centroide_caba) > 0) {
-        total_propiedades_caba <- nrow(propiedades_caba)
+        total_propiedades_caba <- n_propiedades_caba_ref
         color_caba <- "#FFB347"
         
         mapa_temp <- mapa_temp %>%
@@ -826,7 +842,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
         for (cat in cats_uso) {
           sub_df <- propiedades_caba %>% filter(categoria_uso_priorizada == cat)
           if (nrow(sub_df) == 0) next
-          nm_capa <- paste0("Uso · ", cat)
+          nm_capa <- as.character(cat)
           mapa_temp <- mapa_temp %>%
             addCircleMarkers(
               data = sub_df,
@@ -893,16 +909,18 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
     },
     options = layersControlOptions(collapsed = TRUE)
   ) %>%
-  # Mapa por uso: categorías de uso en un control aparte + acciones Ver todas / Ocultar todas
+  # Mapa por uso: panel de categorías (título + botones) y control de capas siempre desplegable a la derecha
   {
     mapa_temp <- .
     if (modo == "uso" && nrow(propiedades_caba) > 0 && length(grupos_capas_prop_caba) > 0) {
       mapa_temp <- mapa_temp %>%
         addControl(
           html = htmltools::div(
-            style = "background:#fff;padding:6px 8px;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,0.3);font-size:12px;margin-bottom:6px;",
-            htmltools::tags$div(style = "font-weight:bold;margin-bottom:4px;", "Categorías de uso (CABA)"),
+            class = "leaflet-cat-uso-header",
+            style = "background:#fff;padding:8px 10px;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,0.35);font-size:12px;min-width:200px;",
+            htmltools::tags$div(style = "font-weight:bold;font-size:13px;margin-bottom:6px;border-bottom:1px solid #ddd;padding-bottom:4px;", "Categorías de uso"),
             htmltools::tags$div(
+              style = "margin-bottom:6px;",
               htmltools::tags$button(
                 id = "btn-uso-todas",
                 type = "button",
@@ -912,18 +930,24 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
               htmltools::tags$button(
                 id = "btn-uso-ninguna",
                 type = "button",
-                style = "font-size:11px;cursor:pointer;",
+                style = "font-size:11px;margin-right:4px;cursor:pointer;",
                 "Ocultar todas"
+              ),
+              htmltools::tags$button(
+                id = "btn-cat-panel-toggle",
+                type = "button",
+                style = "font-size:11px;cursor:pointer;",
+                "Ocultar lista"
               )
             )
           ),
-          position = "topleft",
+          position = "topright",
           className = "leaflet-uso-acciones"
         ) %>%
         addLayersControl(
           overlayGroups = grupos_capas_prop_caba,
-          options = layersControlOptions(collapsed = TRUE),
-          position = "topleft"
+          options = layersControlOptions(collapsed = FALSE),
+          position = "topright"
         )
     }
     mapa_temp
@@ -968,7 +992,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
             "bottomright",
             colors = colores_leyenda,
             labels = labels_leyenda_uso,
-            title  = "Categoría de uso (CABA)",
+            title  = "Categorías de uso (CABA)",
             opacity = 0.7
           )
       }
@@ -984,6 +1008,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
     function(el, x) {
       var map = this;
       var modoUso = ", if (modo == "uso") "true" else "false", ";
+      var categoriasUso = ", categorias_uso_json, ";
 
       (function() {
         var params = new URLSearchParams(window.location.search);
@@ -1004,7 +1029,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
       map.eachLayer(function(layer) {
         if (layer instanceof L.CircleMarker && layer.options) {
           var g = layer.options.group;
-          if (g === 'Propiedades CABA' || (g && g.indexOf('Uso ·') === 0)) propiedadesMarkers.push(layer);
+          if (g === 'Propiedades CABA' || (modoUso && g && categoriasUso.indexOf(g) !== -1)) propiedadesMarkers.push(layer);
           if (g === 'Clusters por partido') clustersPartido.push(layer);
           if (g === 'Clusters agregados') clustersAgregados.push(layer);
         }
@@ -1017,8 +1042,8 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
           );
           checkboxes.forEach(function(input) {
             var label = input.closest('label');
-            var texto = label ? (label.textContent || '') : '';
-            if (texto.indexOf('Uso ·') !== -1 && input.checked !== visible) {
+            var texto = label ? (label.textContent || '').trim() : '';
+            if (categoriasUso.indexOf(texto) !== -1 && input.checked !== visible) {
               input.click();
             }
           });
@@ -1026,6 +1051,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
         setTimeout(function() {
           var tod = document.getElementById('btn-uso-todas');
           var ning = document.getElementById('btn-uso-ninguna');
+          var btnPanel = document.getElementById('btn-cat-panel-toggle');
           if (tod) {
             L.DomEvent.on(tod, 'click', function(e) {
               L.DomEvent.stopPropagation(e);
@@ -1040,8 +1066,23 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
               marcarUsoTodos(false);
             });
           }
-          var panel = document.querySelector('.leaflet-uso-acciones');
-          if (panel) L.DomEvent.disableClickPropagation(panel);
+          if (btnPanel) {
+            var listaVisible = true;
+            L.DomEvent.on(btnPanel, 'click', function(e) {
+              L.DomEvent.stopPropagation(e);
+              L.DomEvent.preventDefault(e);
+              var tr = document.querySelector('.leaflet-top.leaflet-right');
+              if (!tr) return;
+              var ctrls = tr.querySelectorAll(':scope > .leaflet-control');
+              var capasCtrl = ctrls.length > 1 ? ctrls[1] : null;
+              if (!capasCtrl) return;
+              listaVisible = !listaVisible;
+              capasCtrl.style.display = listaVisible ? '' : 'none';
+              btnPanel.textContent = listaVisible ? 'Ocultar lista' : 'Mostrar lista';
+            });
+          }
+          var trTop = document.querySelector('.leaflet-top.leaflet-right');
+          if (trTop) L.DomEvent.disableClickPropagation(trTop);
         }, 200);
       }
 

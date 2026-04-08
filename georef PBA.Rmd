@@ -1,0 +1,866 @@
+---
+title: "Georreferenciación Índice PBA"
+author: "Celina Grau baena"
+date: "2026-01-09"
+output: 
+  html_document:
+    code_folding: hide
+    warning: false
+    message: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r}
+library(sf)
+library(dplyr)
+library(leaflet)
+library(readr)
+library(purrr)
+library(tidyr)
+library(viridisLite)
+library(stringr)
+library(htmltools)
+
+```
+
+
+# 1) Tabla índice PBA
+```{r}
+df_pba <- read_csv("PBA indice.csv", show_col_types = FALSE)
+
+```
+
+
+# 2) Normalizar claves y construir PDA como en ARBA
+
+En tu índice:
+- `partido_pdo` identifica el partido (número de 3 dígitos)
+- `partida` es un número de hasta 6 dígitos
+
+En los shapefiles de parcelas, el campo `PDA` viene como:
+`PPPXXXXXX` = partido (3 dígitos con ceros a la izquierda) + partida (6 dígitos con ceros).
+
+Construyo ese mismo `PDA` en el índice para poder unir contra los shapefiles:
+
+```{r}
+df_pba <- df_pba %>%
+  mutate(
+    partido_pdo = as.character(partido_pdo),
+    partida     = as.character(partida),
+    PDA = paste0(
+      sprintf("%03d", as.integer(partido_pdo)),
+      sprintf("%06d", as.integer(partida))
+    )
+  )
+
+```
+
+
+# 3) Leer y unir todas las parcelas de los partidos presentes en el índice
+
+Cada carpeta de parcelas sigue el patrón `NNN_parcela` (por ejemplo: `004_parcela`),
+y dentro está el archivo `110101.shp`. A partir de `partido_pdo` armo el nombre de
+carpeta y leo el shapefile correspondiente.
+
+```{r}
+# partidos presentes en el índice
+partidos_unicos <- df_pba %>%
+  distinct(partido_pdo) %>%
+  pull(partido_pdo)
+
+# función para leer el shapefile de parcelas de un partido
+leer_parcela_partido <- function(pdo) {
+  carpeta  <- sprintf("%03d_parcela", as.integer(pdo))
+  ruta_shp <- file.path(carpeta, "110101.shp")
+  
+  if (!file.exists(ruta_shp)) {
+    warning("No se encontró shapefile para partido ", pdo, " en ", ruta_shp)
+    return(NULL)
+  }
+  
+  shp <- st_read(ruta_shp, quiet = TRUE)
+  
+  # agrego el código de partido y convierto PDA a texto
+  shp %>%
+    mutate(
+      partido_pdo = as.character(as.integer(pdo)),
+      PDA         = as.character(PDA)
+    )
+}
+
+# leer y unir todas las parcelas
+parc_todos <- map(partidos_unicos, leer_parcela_partido) %>%
+  compact() %>%
+  do.call(rbind, .)
+
+parc_todos
+```
+
+# 4) Filtrar solo las parcelas que están en el índice PBA (via PDA)
+
+Ahora cruzo directamente por `PDA`, que es la clave construida
+como `PPPXXXXXX` en ambas tablas.
+
+```{r}
+parc_mias <- parc_todos %>%
+  inner_join(
+    df_pba %>% select(PBA_ID, PDA, partido_pdo, nombre_partido, C, S, MZ, PA),
+    by = "PDA"
+  ) %>%
+  # IMPORTANTE: usar partido_pdo del ÍNDICE (partido_pdo.y), no del shapefile
+  # porque el índice es la fuente de verdad sobre a qué partido pertenece cada parcela
+  mutate(partido_pdo = partido_pdo.y) %>%
+  select(-partido_pdo.x, -partido_pdo.y)
+
+parc_mias
+```
+
+# 5) Leer departamentos y calcular conteo de parcelas por partido
+
+En el shapefile de departamentos, el nombre de partido está en `NAM`.
+Voy a unir por nombre (`nombre_partido` ↔ `NAM`) normalizando ambos
+para evitar problemas con puntos, espacios, mayúsculas, etc.
+
+```{r}
+deptos <- st_read("000_departamentos/070121.shp", quiet = TRUE)
+
+# función para normalizar nombres (quitar puntos, espacios extra, etc.)
+normalizar_nombre <- function(x) {
+  x %>%
+    toupper() %>%
+    stringr::str_replace_all("\\.", "") %>%
+    stringr::str_replace_all("\\s+", " ") %>%
+    stringr::str_trim()
+}
+
+# mapeo manual para casos donde la normalización no funciona
+# (nombre en índice → nombre en shapefile)
+mapeo_nombres <- tibble(
+  nombre_indice = c("Esteban Etcheberría", "Gral. Pueyrredón", "Gral Rodriguez", "José C.Paz"),
+  nombre_shape = c("Esteban Echeverría", "General Pueyrredón", "General Rodríguez", "José C. Paz")
+)
+
+# conteo de parcelas por partido según el índice
+conteo_partidos <- parc_mias %>%
+  st_drop_geometry() %>%
+  mutate(
+    nombre_normalizado = normalizar_nombre(nombre_partido),
+    partido_pdo_indice = as.character(partido_pdo)
+  ) %>%
+  count(partido_pdo_indice, nombre_partido, nombre_normalizado, name = "n_parcelas") %>%
+  rename(partido_pdo = partido_pdo_indice)
+
+# preparar conteo con mapeo manual
+conteo_con_mapeo <- conteo_partidos %>%
+  left_join(mapeo_nombres, by = c("nombre_partido" = "nombre_indice")) %>%
+  mutate(
+    nombre_shape_mapeo = if_else(!is.na(nombre_shape), nombre_shape, NA_character_)
+  )
+
+# unir al shape de departamentos: intentar por nombre normalizado,
+# luego por mapeo manual, y finalmente por código de partido
+deptos_plot <- deptos %>%
+  mutate(
+    nombre_partido_shape = NAM,
+    nombre_normalizado = normalizar_nombre(NAM),
+    partido_pdo_shape = as.character(as.integer(CCA))
+  ) %>%
+  # intentar join por nombre normalizado
+  left_join(
+    conteo_partidos %>% select(nombre_normalizado, nombre_partido, n_parcelas),
+    by = "nombre_normalizado"
+  ) %>%
+  # si no matcheó, intentar por mapeo manual
+  left_join(
+    conteo_con_mapeo %>%
+      filter(!is.na(nombre_shape_mapeo)) %>%
+      select(nombre_shape_mapeo, nombre_partido_mapeo = nombre_partido, n_parcelas_mapeo = n_parcelas),
+    by = c("nombre_partido_shape" = "nombre_shape_mapeo")
+  ) %>%
+  # si aún no matcheó, usar el código de partido (esto es importante para distinguir partidos)
+  left_join(
+    conteo_partidos %>% 
+      select(partido_pdo, nombre_partido_codigo = nombre_partido, n_parcelas_codigo = n_parcelas),
+    by = c("partido_pdo_shape" = "partido_pdo")
+  ) %>%
+  mutate(
+    # priorizar: nombre normalizado > mapeo manual > código
+    nombre_partido = case_when(
+      !is.na(nombre_partido) ~ nombre_partido,
+      !is.na(nombre_partido_mapeo) ~ nombre_partido_mapeo,
+      !is.na(nombre_partido_codigo) ~ nombre_partido_codigo,
+      TRUE ~ nombre_partido_shape
+    ),
+    n_parcelas = case_when(
+      !is.na(n_parcelas) ~ n_parcelas,
+      !is.na(n_parcelas_mapeo) ~ n_parcelas_mapeo,
+      !is.na(n_parcelas_codigo) ~ n_parcelas_codigo,
+      TRUE ~ 0L
+    )
+  ) %>%
+  select(-nombre_normalizado, -partido_pdo_shape, 
+         -nombre_partido_mapeo, -nombre_partido_codigo,
+         -n_parcelas_mapeo, -n_parcelas_codigo) %>%
+  replace_na(list(n_parcelas = 0))
+
+deptos_plot
+```
+# 6) Leer propiedades de CABA
+
+```{r}
+# leer tabla de propiedades de CABA
+# Encabezados en fila 3; columnas: Propiedad_ID, Descripción, Dirección oficial, Ubicación, Localidad, Lat, Long, etc.
+propiedades_caba_raw <- read_csv("Tabla única v4.csv", skip = 2, show_col_types = FALSE) %>%
+  filter(Localidad == "CABA") %>%
+  # función para priorizar fuentes según el orden especificado
+  mutate(
+    fuente_priorizada = map_chr(`Fuentes disponibles`, function(fuentes_str) {
+      # orden de prioridad: 1. Templos, 2. Alquileres, 3. Índice GCBA, 4. Eduardo
+      prioridades <- c("Templos", "Alquileres", "Índice GCBA", "Eduardo")
+      
+      if (is.na(fuentes_str) || fuentes_str == "") {
+        return("Sin fuente")
+      }
+      
+      # dividir las fuentes por comas
+      fuentes <- str_split(fuentes_str, ",") %>%
+        unlist() %>%
+        str_trim()
+      
+      # buscar la primera fuente que coincida con las prioridades
+      for (prioridad in prioridades) {
+        if (any(str_detect(fuentes, regex(prioridad, ignore_case = TRUE)))) {
+          return(prioridad)
+        }
+      }
+      
+      # si no coincide con ninguna prioridad, devolver la primera fuente o "Otra"
+      if (length(fuentes) > 0) {
+        return(fuentes[1])
+      }
+      return("Sin fuente")
+    })
+  )
+
+# limpiar coordenadas: quitar puntos que no son el separador decimal
+# formato problemático: -34.589.396 -> -34.589396
+# también hay casos como -5.841.806 que deberían ser -58.41806
+propiedades_caba <- propiedades_caba_raw %>%
+  mutate(
+    Lat_str = as.character(Lat),
+    Long_str = as.character(Long),
+    # Limpiar: reemplazar todos los puntos excepto el primero (que es el decimal)
+    # Usar una función que mantenga solo el primer punto
+    Lat_clean = if_else(
+      str_detect(Lat_str, "\\."),
+      paste0(
+        str_extract(Lat_str, "^-?\\d+"),  # parte entera con signo
+        ".",
+        str_replace_all(str_extract(Lat_str, "(?<=\\.).+"), "\\.", "")  # parte decimal sin puntos extra
+      ),
+      Lat_str
+    ),
+    Long_clean = if_else(
+      str_detect(Long_str, "\\."),
+      paste0(
+        str_extract(Long_str, "^-?\\d+"),  # parte entera con signo
+        ".",
+        str_replace_all(str_extract(Long_str, "(?<=\\.).+"), "\\.", "")  # parte decimal sin puntos extra
+      ),
+      Long_str
+    ),
+    Lat = as.numeric(Lat_clean),
+    Long = as.numeric(Long_clean)
+  ) %>%
+  # diagnosticar antes de filtrar
+  mutate(
+    tiene_lat = !is.na(Lat),
+    tiene_long = !is.na(Long),
+    lat_valida = Lat > -35 & Lat < -34,
+    long_valida = Long > -59 & Long < -58
+  )
+
+# filtrar solo las que tienen coordenadas válidas para CABA
+propiedades_caba <- propiedades_caba %>%
+  filter(tiene_lat & tiene_long & lat_valida & long_valida) %>%
+  select(-Lat_str, -Long_str, -Lat_clean, -Long_clean, 
+         -tiene_lat, -tiene_long, -lat_valida, -long_valida)
+```
+
+# 7) Mapa: partidos coloreados (viridis) + parcelas + propiedades CABA
+
+Solo se colorean los partidos que tienen al menos una parcela en el índice.
+Cada partido tiene un color (paleta tipo *viridis*) y las parcelas del partido
+usan exactamente el mismo color. Además, el mapa se centra en la Provincia de
+Buenos Aires y muestra las propiedades de CABA como puntos.
+
+```{r}
+# transformar a WGS84 (lat/lon) para Leaflet
+deptos_plot_ll <- st_transform(deptos_plot, 4326)
+parc_mias_ll   <- st_transform(parc_mias,   4326)
+
+# centroides de parcelas para clustering al hacer zoom out
+parc_centroides <- st_centroid(parc_mias_ll)
+
+# partidos con al menos una parcela
+deptos_con_parcelas <- deptos_plot_ll %>%
+  filter(n_parcelas > 0)
+
+# usar nombre_partido del índice (no normalizado) para la paleta
+partidos_sin_caba <- sort(unique(parc_mias_ll$nombre_partido))
+
+# agregar CABA a la lista de partidos para la paleta, pero primero
+partidos_con_parcelas <- c("CABA", partidos_sin_caba)
+
+# paleta tipo viridis (buen contraste), un color por partido
+# CABA tendrá un color destacado (naranja pastel), el resto usa viridis
+# Crear vector de colores viridis para los partidos (sin CABA)
+colores_viridis <- viridis(length(partidos_sin_caba), option = "D")
+
+# Crear vector completo con nombres explícitos para asegurar mapeo correcto
+# CABA en naranja pastel, resto en viridis
+colores_partidos_nombrados <- setNames(
+  c("#FFB347", colores_viridis),
+  partidos_con_parcelas
+)
+
+# Crear función de paleta personalizada para asegurar mapeo correcto
+# Esto evita problemas con colorFactor cuando hay nombres similares
+pal_partidos_leaflet <- function(x) {
+  resultado <- character(length(x))
+  for (i in seq_along(x)) {
+    if (x[i] == "CABA") {
+      resultado[i] <- "#FFB347"
+    } else {
+      idx <- which(partidos_sin_caba == x[i])
+      if (length(idx) > 0) {
+        resultado[i] <- colores_viridis[idx]
+      } else {
+        resultado[i] <- "#808080"  # gris por defecto
+      }
+    }
+  }
+  return(resultado)
+}
+
+# También crear el objeto colorFactor para la leyenda
+pal_partidos_leaflet_factor <- colorFactor(
+  palette = colores_partidos_nombrados,
+  domain  = partidos_con_parcelas
+)
+
+# paleta para fuentes disponibles de propiedades CABA (solo si hay propiedades)
+if (nrow(propiedades_caba) > 0) {
+  fuentes_disponibles <- sort(unique(propiedades_caba$fuente_priorizada))
+  pal_fuentes <- colorFactor(
+    palette = "Set3",  # paleta con muchos colores distintos
+    domain  = fuentes_disponibles
+  )
+  
+  # leer shapefile de CABA desde la carpeta caba
+  # intentar primero con export1.shp, si no existe probar con export2.shp
+  ruta_caba_shp <- file.path("caba", "export1.shp")
+  if (!file.exists(ruta_caba_shp)) {
+    ruta_caba_shp <- file.path("caba", "export2.shp")
+  }
+  
+  if (file.exists(ruta_caba_shp)) {
+    caba_raw <- st_read(ruta_caba_shp, quiet = TRUE)
+    
+    # verificar el CRS y transformar si es necesario
+    if (is.na(st_crs(caba_raw))) {
+      # si no tiene CRS, asumir que es el mismo que los departamentos
+      st_crs(caba_raw) <- st_crs(deptos)
+    }
+    
+    caba_raw <- st_transform(caba_raw, 4326)
+    
+    # filtrar solo polígonos (POLYGON o MULTIPOLYGON) y eliminar geometrías vacías
+    tipos_geom <- as.character(st_geometry_type(caba_raw))
+    es_polygon <- tipos_geom %in% c("POLYGON", "MULTIPOLYGON")
+    no_vacio <- !st_is_empty(caba_raw)
+    
+    caba_filtrado <- caba_raw[es_polygon & no_vacio, ]
+    
+    if (nrow(caba_filtrado) > 0) {
+      # si hay múltiples features, unificar en un solo polígono
+      if (nrow(caba_filtrado) > 1) {
+        caba_geom <- st_geometry(caba_filtrado)
+        caba_unificado <- st_union(caba_geom)
+      } else {
+        caba_unificado <- st_geometry(caba_filtrado)
+      }
+      
+      # crear el objeto sf con el polígono unificado
+      caba_polygon <- st_sf(
+        nombre_partido = "CABA", 
+        n_parcelas = nrow(propiedades_caba), 
+        geometry = caba_unificado
+      )
+    } else {
+      # si no hay polígonos válidos, usar bounding box
+      caba_bbox <- st_bbox(c(
+        xmin = -58.5317, ymin = -34.7050,
+        xmax = -58.3352, ymax = -34.5269
+      ), crs = 4326)
+      
+      caba_polygon <- st_as_sfc(caba_bbox) %>%
+        st_sf(nombre_partido = "CABA", n_parcelas = nrow(propiedades_caba), .)
+    }
+  } else {
+    # fallback: crear polígono simple de CABA (bounding box aproximado)
+    caba_bbox <- st_bbox(c(
+      xmin = -58.5317, ymin = -34.7050,
+      xmax = -58.3352, ymax = -34.5269
+    ), crs = 4326)
+    
+    caba_polygon <- st_as_sfc(caba_bbox) %>%
+      st_sf(nombre_partido = "CABA", n_parcelas = nrow(propiedades_caba), .)
+  }
+} else {
+  # crear paleta vacía y polígono vacío si no hay propiedades
+  pal_fuentes <- colorFactor(palette = "Set3", domain = character(0))
+  caba_polygon <- st_sf(nombre_partido = "CABA", n_parcelas = 0, geometry = st_sfc(crs = 4326))
+}
+
+# bounding box para centrar el mapa en PBA
+bb <- st_bbox(deptos_plot_ll)
+
+# crear el mapa base primero
+m <- leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron)
+
+# ajustar vista solo si hay datos válidos y el bounding box es razonable
+if (length(bb) == 4 && 
+    all(!is.na(bb)) && 
+    bb["xmin"] < bb["xmax"] && 
+    bb["ymin"] < bb["ymax"] &&
+    bb["xmin"] > -180 && bb["xmax"] < 180 &&
+    bb["ymin"] > -90 && bb["ymax"] < 90) {
+  m <- m %>% fitBounds(
+    lng1 = as.numeric(bb["xmin"]), 
+    lat1 = as.numeric(bb["ymin"]),
+    lng2 = as.numeric(bb["xmax"]), 
+    lat2 = as.numeric(bb["ymax"])
+  )
+} else {
+  # si el fitBounds falla, usar setView con coordenadas aproximadas de PBA
+  m <- m %>% setView(lng = -60, lat = -36, zoom = 7)
+}
+
+m %>%
+  
+  # partidos: mismo color por partido, gris claro si n_parcelas == 0
+  # Deshabilitar interacción para que no bloqueen clics en parcelas y propiedades
+  addPolygons(
+    data = deptos_plot_ll,
+    fillColor   = ~ifelse(
+      n_parcelas > 0,
+      pal_partidos_leaflet(nombre_partido),
+      "#DDDDDD"
+    ),
+    color       = "#666666",
+    weight      = 1,
+    fillOpacity = 0.6,
+    label = ~paste0(
+      if_else(!is.na(NAM), NAM, ""),
+      "<br>Parcelas índice: ", n_parcelas
+    ),
+    highlightOptions = highlightOptions(
+      weight = 2,
+      color  = "#000000",
+      bringToFront = TRUE
+    ),
+    # Deshabilitar interacción para que no bloqueen clics
+    options = pathOptions(interactive = FALSE),
+    group = "Partidos"
+  ) %>%
+  
+  # agregar polígono de CABA - también deshabilitar interacción
+  {
+    mapa_temp <- .
+    if (nrow(propiedades_caba) > 0 && nrow(caba_polygon) > 0) {
+      mapa_temp <- mapa_temp %>%
+        addPolygons(
+          data = caba_polygon,
+          fillColor   = "#FFB347",  # naranja pastel
+          color       = "#666666",
+          weight      = 2,  # borde más grueso para destacarlo
+          fillOpacity = 0.6,
+          label = paste0(
+            "CABA<br>",
+            "Propiedades: ", nrow(propiedades_caba)
+          ),
+          highlightOptions = highlightOptions(
+            weight = 3,
+            color  = "#000000",
+            bringToFront = TRUE
+          ),
+          # Deshabilitar interacción para que no bloquee clics
+          options = pathOptions(interactive = FALSE),
+          group = "Partidos"
+        )
+    }
+    mapa_temp
+  } %>%
+  
+  # parcelas del índice en overlay
+  # Esta capa va después para quedar encima y ser clickeable
+  addPolygons(
+    data        = parc_mias_ll,
+    color       = "#000000",  # borde negro para mejor contraste
+    fillColor   = "#FF0000",  # todas las parcelas en rojo
+    weight      = 2.5,  # borde más grueso para mejor visibilidad
+    fillOpacity = 0.9,  # muy opaco para que resalte sobre el partido
+    label = ~paste0(
+      "PBA_ID: ", PBA_ID,
+      "<br>Partido: ", nombre_partido,
+      "<br>Partida: ", PDA,
+      "<br>C/S/MZ/PA: ", C, "-", S, "-", MZ, "-", PA
+    ),
+    popup = ~paste0(
+      "<b>Parcela</b><br>",
+      "<b>Partido:</b> ", nombre_partido, " (", partido_pdo, ")<br>",
+      "<b>Manzana:</b> ", MZ, "<br>",
+      "<b>Parcela:</b> ", PA, "<br>",
+      "<b>Circunscripción:</b> ", C, "<br>",
+      "<b>Sección:</b> ", S, "<br>",
+      "<b>Partida:</b> ", PDA, "<br>",
+      "<b>PBA_ID:</b> ", PBA_ID
+    ),
+    highlightOptions = highlightOptions(
+      weight = 4,
+      color  = "#FFFF00",  # borde amarillo al hacer hover
+      fillOpacity = 1,
+      bringToFront = TRUE
+    ),
+    group = "Parcelas (polígonos)"
+  ) %>%
+  
+  # Un solo cluster por partido ubicado en el centroide, mostrando el total de parcelas
+  # También agregar contador para CABA
+  {
+    mapa_temp <- .
+    
+    # calcular centroide de cada partido
+    centroides_partidos <- deptos_plot_ll %>%
+      filter(n_parcelas > 0) %>%
+      st_centroid() %>%
+      st_coordinates() %>%
+      as.data.frame() %>%
+      mutate(
+        nombre_partido = deptos_plot_ll %>% filter(n_parcelas > 0) %>% pull(nombre_partido),
+        n_parcelas = deptos_plot_ll %>% filter(n_parcelas > 0) %>% pull(n_parcelas)
+      ) %>%
+      rename(lng = X, lat = Y)
+    
+    # agregar un solo marker por partido en su centroide
+    for (i in 1:nrow(centroides_partidos)) {
+      partido <- centroides_partidos$nombre_partido[i]
+      centro_lng <- centroides_partidos$lng[i]
+      centro_lat <- centroides_partidos$lat[i]
+      total_parcelas <- centroides_partidos$n_parcelas[i]
+      color_partido <- pal_partidos_leaflet(partido)
+      
+      # crear un marker circular con el color del partido
+      # El número de parcelas estará visible dentro del círculo usando un label
+      mapa_temp <- mapa_temp %>%
+        addCircleMarkers(
+          lng = centro_lng,
+          lat = centro_lat,
+          radius = 25,  # radio fijo para todos
+          stroke = TRUE,
+          color = "#FFFFFF",  # borde blanco
+          weight = 3,
+          fillOpacity = 0.95,
+          fillColor = color_partido,  # color del partido
+          label = as.character(total_parcelas),  # solo el número
+          labelOptions = labelOptions(
+            noHide = TRUE,  # siempre visible
+            direction = "center",  # centrado
+            textOnly = TRUE,  # solo texto, sin fondo
+            style = list(
+              "color" = "white",
+              "font-weight" = "bold",
+              "font-size" = "16px",
+              "text-align" = "center",
+              "text-shadow" = "1px 1px 2px rgba(0,0,0,0.8)"
+            )
+          ),
+          popup = paste0(
+            "<b>", partido, "</b><br>",
+            "Total parcelas: ", total_parcelas
+          ),
+          group = "Clusters por partido"
+        )
+    }
+    
+    # agregar contador para CABA (similar al de parcelas)
+    if (nrow(propiedades_caba) > 0 && nrow(caba_polygon) > 0) {
+      # calcular centroide de CABA
+      centroide_caba <- caba_polygon %>%
+        st_centroid() %>%
+        st_coordinates() %>%
+        as.data.frame() %>%
+        rename(lng = X, lat = Y)
+      
+      if (nrow(centroide_caba) > 0) {
+        total_propiedades_caba <- nrow(propiedades_caba)
+        color_caba <- "#FFB347"  # naranja pastel
+        
+        mapa_temp <- mapa_temp %>%
+          addCircleMarkers(
+            lng = centroide_caba$lng[1],
+            lat = centroide_caba$lat[1],
+            radius = 25,  # mismo radio que los otros
+            stroke = TRUE,
+            color = "#FFFFFF",  # borde blanco
+            weight = 3,
+            fillOpacity = 0.95,
+            fillColor = color_caba,  # color rojo destacado de CABA
+            label = as.character(total_propiedades_caba),  # número de propiedades
+            labelOptions = labelOptions(
+              noHide = TRUE,  # siempre visible
+              direction = "center",  # centrado
+              textOnly = TRUE,  # solo texto, sin fondo
+              style = list(
+                "color" = "white",
+                "font-weight" = "bold",
+                "font-size" = "16px",
+                "text-align" = "center",
+                "text-shadow" = "1px 1px 2px rgba(0,0,0,0.8)"
+              )
+            ),
+            popup = paste0(
+              "<b>CABA</b><br>",
+              "Total propiedades: ", total_propiedades_caba
+            ),
+            # Solo mostrar el contador cuando el zoom es bajo (zoom out)
+            # Se oculta cuando zoom >= 11 (cuando aparecen las propiedades individuales)
+            options = markerOptions(
+              maxZoom = 10
+            ),
+            group = "Clusters por partido"
+          )
+      }
+    }
+    
+    mapa_temp
+  } %>%
+  
+  # Agregar propiedades de CABA como puntos (coloreadas por fuente disponible)
+  # Se ocultan automáticamente al hacer zoom out cuando se muestran los contadores
+  {
+    mapa_temp <- .
+    if (nrow(propiedades_caba) > 0) {
+      mapa_temp <- mapa_temp %>%
+        addCircleMarkers(
+          data = propiedades_caba,
+          lng = ~Long,
+          lat = ~Lat,
+          radius = 5,
+          stroke = TRUE,
+          color = "#000000",
+          weight = 1,
+          fillOpacity = 0.8,
+          fillColor = ~pal_fuentes(fuente_priorizada),  # color según fuente priorizada
+          label = ~paste0(
+            "<b>", if_else(
+              is.na(Descripción) | Descripción == "" | str_detect(Descripción, "(?i)averiguar"),
+              Propiedad_ID,
+              Descripción
+            ), "</b><br>",
+            if_else(!is.na(`Dirección oficial`), paste0("Dirección: ", `Dirección oficial`, "<br>"), ""),
+            if_else(!is.na(`Direcciones secundarias`) & `Direcciones secundarias` != "", 
+                    paste0("Direcciones secundarias: ", `Direcciones secundarias`, "<br>"), ""),
+            if_else(!is.na(`Categoría de uso`), paste0("Categoría: ", `Categoría de uso`, "<br>"), ""),
+            if_else(!is.na(`Fuentes disponibles`), paste0("Fuentes: ", `Fuentes disponibles`, "<br>"), ""),
+            "ID: ", Propiedad_ID
+          ),
+          popup = ~paste0(
+            "<b>", if_else(
+              is.na(Descripción) | Descripción == "" | str_detect(Descripción, "(?i)averiguar"),
+              Propiedad_ID,
+              Descripción
+            ), "</b><br>",
+            "<hr>",
+            if_else(!is.na(`Dirección oficial`), paste0("<b>Dirección oficial:</b> ", `Dirección oficial`, "<br>"), ""),
+            if_else(!is.na(`Direcciones secundarias`) & `Direcciones secundarias` != "", 
+                    paste0("<b>Direcciones secundarias:</b> ", `Direcciones secundarias`, "<br>"), ""),
+            if_else(!is.na(`Categoría de uso`), paste0("<b>Categoría de uso:</b> ", `Categoría de uso`, "<br>"), ""),
+            if_else(!is.na(`Fuentes disponibles`), paste0("<b>Fuentes disponibles:</b> ", `Fuentes disponibles`, "<br>"), ""),
+            "<b>ID:</b> ", Propiedad_ID
+          ),
+          # Se controlará la visibilidad con JavaScript basado en zoom
+          # Asegurar que sean clickeables (por defecto los markers son interactivos)
+          group = "Propiedades CABA"
+        )
+    }
+    mapa_temp
+  } %>%
+  
+  addLayersControl(
+    overlayGroups = c("Partidos",
+                      "Parcelas (polígonos)",
+                      "Clusters por partido",
+                      "Propiedades CABA"),
+    options = layersControlOptions(collapsed = TRUE)
+  ) %>%
+  
+  # Leyenda de partidos: asegurar que CABA aparezca primero y en rojo
+  {
+    mapa_temp <- .
+    # Crear leyenda manualmente para controlar el orden
+    # CABA primero, luego el resto ordenado alfabéticamente
+    valores_leyenda <- c("CABA", sort(partidos_sin_caba))
+    colores_leyenda <- colores_partidos_nombrados[valores_leyenda]
+    
+    mapa_temp <- mapa_temp %>%
+      addLegend(
+        "bottomright",
+        colors = colores_leyenda,
+        labels = valores_leyenda,
+        title  = "Partidos",
+        opacity = 0.7
+      )
+    mapa_temp
+  } %>%
+  
+  # leyenda para fuentes disponibles de propiedades CABA (solo si hay propiedades)
+  {
+    mapa_temp <- .
+    if (nrow(propiedades_caba) > 0) {
+      mapa_temp <- mapa_temp %>%
+        addLegend(
+          "bottomleft",
+          pal    = pal_fuentes,
+          values = propiedades_caba$fuente_priorizada,
+          title  = "Fuentes disponibles (CABA)",
+          opacity = 0.7
+        )
+    }
+    mapa_temp
+  } %>%
+  
+  # Agregar JavaScript para controlar visibilidad de propiedades CABA basada en zoom
+  htmlwidgets::onRender("
+    function(el, x) {
+      var map = this;
+      var propiedadesMarkers = [];
+      
+      // Recopilar todos los marcadores de propiedades CABA
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.CircleMarker && layer.options && layer.options.group === 'Propiedades CABA') {
+          propiedadesMarkers.push(layer);
+        }
+      });
+      
+      // Función para actualizar visibilidad basada en zoom
+      function updatePropiedadesVisibility() {
+        var zoom = map.getZoom();
+        propiedadesMarkers.forEach(function(marker) {
+          if (zoom < 11) {
+            if (map.hasLayer(marker)) {
+              map.removeLayer(marker);
+            }
+          } else {
+            if (!map.hasLayer(marker)) {
+              map.addLayer(marker);
+            }
+          }
+        });
+      }
+      
+      // Actualizar al cambiar zoom
+      map.on('zoomend', updatePropiedadesVisibility);
+      // Actualizar inicialmente después de un pequeño delay
+      setTimeout(updatePropiedadesVisibility, 200);
+    }
+  ")
+```
+
+
+# Cómo compartir este mapa
+
+Para compartir este mapa:
+
+1. **Archivo HTML directo**: Después de knittear, buscá el archivo `georef PBA.html` en la carpeta del proyecto. Podés compartirlo directamente por email, Drive, Dropbox, etc. El receptor solo necesita abrirlo en cualquier navegador.
+
+2. **Subir a internet (para tener una URL pública)**:
+   - **Netlify Drop** (recomendado, muy simple): 
+     1. Andá a https://app.netlify.com/drop
+     2. Arrastrá el archivo `georef PBA.html`
+     3. Te dará una URL pública que podés compartir (ej: `https://random-name-123.netlify.app`)
+   
+   - **GitHub Pages** (si usás GitHub):
+     1. Creá un repositorio en GitHub
+     2. Subí el archivo HTML
+     3. Activá GitHub Pages en la configuración del repositorio
+     4. Tu mapa estará disponible en `https://tu-usuario.github.io/nombre-repo/georef PBA.html`
+
+3. **Nota**: El archivo HTML es autocontenido (incluye todo el código necesario), así que funcionará en cualquier computadora sin necesidad de instalar nada adicional.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

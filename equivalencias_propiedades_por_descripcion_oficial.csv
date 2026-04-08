@@ -1,0 +1,77 @@
+grupo_equiv,id_propiedad_A,id_origen_A,direccion_origen_A,id_propiedad_B,id_origen_B,direccion_origen_B,tipo,comentario,activa
+1,PROP_0026,ENTES_99,ALBARIÑO 256,PROP_0643,Eduardo_276,GARCIA DE COSSIO 5550,automático,"descripción oficial similar (similitud=1, distancia=99m)",sí
+2,PROP_0030,ENTES_103,ZAMUDIO 5551,PROP_0646,Eduardo_281,COCHRANE 2371,automático,"descripción oficial similar (similitud=1, distancia=61m)",sí
+3,PROP_0047,ENTES_118,ESCALADA AV. 2350,PROP_0655,Eduardo_305,ESCALADA AV. y ZUVIRIA,automático,"descripción oficial similar (similitud=1, distancia=81m)",sí
+4,PROP_0048,TEMPLOS_142,MIRALLA 3838,PROP_0763,ENTES_119,MIRALLA 3833,automático,"descripción oficial similar (similitud=1, distancia=31m)",sí
+5,PROP_0076,ENTES_145,"SASTRE, MARCOS 6115",PROP_0708,Eduardo_482,BRUSELAS 1022,automático,"descripción oficial similar (similitud=1, distancia=39m)",sí
+6,PROP_0089,ENTES_148,GRECIA 4328,PROP_0826,Relev_21,GRECIA 4370,automático,"descripción oficial similar (similitud=1, distancia=17m)",sí
+7,PROP_0113,TEMPLOS_201,RUIZ HUIDOBRO 3521,PROP_0701,Eduardo_46,MELIAN AV. y RUIZ HUIDOBRO,automático,"descripción oficial similar (similitud=1, distancia=58m)",sí
+8,PROP_0115,Alquileres_53,CONDARCO 545,PROP_0398,SMP_126,AVELLANEDA AV. 2667,automático,"descripción oficial similar (similitud=1, distancia=68m)",sí
+9,PROP_0124,ENTES_163,ELCANO AV. 3253,PROP_0410,Eduardo_557,ELCANO AV. 3265,automático,"descripción oficial similar (similitud=1, distancia=9m)",sí
+10,PROP_0135,ENTES_171,ESTERO BELLACO 6943,PROP_0474,Eduardo_383,ESTERO BELLACO 6939,automático,"descripción oficial similar (similitud=1, distancia=8m)",sí
+11,PROP_0139,ENTES_173,"BORGES, JORGE LUIS 1855",PROP_0678,Eduardo_388,NICARAGUA 4835,automático,"descripción oficial similar (similitud=1, distancia=77m)",sí
+12,PROP_0149,ENTES_180,NUEVA YORK 4717,PROP_0682,Eduardo_397,"CARRIL, SALVADOR MARIA DEL AV. 4746",automático,"descripción oficial similar (similitud=1, distancia=85m)",sí
+13,PROP_0174,TEMPLOS_260,PLAZA 1160,PROP_0741,Eduardo_555,CHARLONE 1850,automático,"descripción oficial similar (similitud=1, distancia=40m)",sí
+14,PROP_0175,ENTES_194,MIRAFLORES 2080,PROP_0466,SMP_230,MIRAFLORES 2092,automático,"descripción oficial similar (similitud=1, distancia=15m)",sí
+15,PROP_0177,ENTES_196,ARTIGAS MANUEL DE 6150,PROP_0707,Eduardo_481,ARTIGAS MANUEL DE 6132,automático,"descripción oficial similar (similitud=1, distancia=0m)",sí
+16,PROP_0381,Eduardo_338,PALMAR 6637,PROP_0397,Eduardo_337,PALMAR 6645,automático,"descripción oficial similar (similitud=1, distancia=11m)",sí
+16,PROP_0381,Eduardo_338,PALMAR 6637,PROP_0454,Eduardo_339,PALMAR 6651,automático,"descripción oficial similar (similitud=1, distancia=19m)",sí
+16,PROP_0397,Eduardo_337,PALMAR 6645,PROP_0454,Eduardo_339,PALMAR 6651,automático,"descripción oficial similar (similitud=1, distancia=9m)",sí
+16,PROP_0454,Eduardo_339,PALMAR 6651,PROP_0457,SMP_214,"BOSCH, VENTURA 6686",automático,"descripción oficial similar (similitud=1, distancia=97m)",sí
+17,PROP_0382,Eduardo_518,PIZARRO 7457,PROP_0572,Eduardo_380,PIZARRO 7465,automático,"descripción oficial similar (similitud=1, distancia=8m)",sí
+18,PROP_0384,Eduardo_124,TINOGASTA 3134,PROP_0513,Eduardo_112,TINOGASTA 3150,automático,"descripción oficial similar (similitud=1, distancia=30m)",sí
+19,PROP_0404,Eduardo_570,"DE LA TORRE, LISANDRO 336",PROP_0557,Eduardo_574,"DE LA TORRE, LISANDRO 366",automático,"descripción oficial similar (similitud=1, distancia=8m)",sí
+20,PROP_0408,Eduardo_222,IBARROLA 6628,PROP_0416,Eduardo_218,IBARROLA 6634,automático,"descripción oficial similar (similitud=1, distancia=7m)",sí
+20,PROP_0408,Eduardo_222,IBARROLA 6628,PROP_0515,Eduardo_224,"LEGUIZAMON, MARTINIANO 233",automático,"descripción oficial similar (similitud=1, distancia=70m)",sí
+20,PROP_0416,Eduardo_218,IBARROLA 6634,PROP_0515,Eduardo_224,"LEGUIZAMON, MARTINIANO 233",automático,"descripción oficial similar (similitud=1, distancia=76m)",sí
+20,PROP_0428,Eduardo_220,"BOSCH, VENTURA 6651",PROP_0435,Eduardo_227,"BOSCH, VENTURA 6661",automático,"descripción oficial similar (similitud=1, distancia=17m)",sí
+20,PROP_0428,Eduardo_220,"BOSCH, VENTURA 6651",PROP_0453,Eduardo_221,"BOSCH, VENTURA 6647",automático,"descripción oficial similar (similitud=1, distancia=9m)",sí
+20,PROP_0428,Eduardo_220,"BOSCH, VENTURA 6651",PROP_0460,Eduardo_219,"BOSCH, VENTURA 6638",automático,"descripción oficial similar (similitud=1, distancia=12m)",sí
+20,PROP_0428,Eduardo_220,"BOSCH, VENTURA 6651",PROP_0477,Eduardo_226,"BOSCH, VENTURA 6680",automático,"descripción oficial similar (similitud=1, distancia=34m)",sí
+20,PROP_0428,Eduardo_220,"BOSCH, VENTURA 6651",PROP_0515,Eduardo_224,"LEGUIZAMON, MARTINIANO 233",automático,"descripción oficial similar (similitud=1, distancia=90m)",sí
+20,PROP_0428,Eduardo_220,"BOSCH, VENTURA 6651",PROP_0558,Eduardo_225,"DE LA TORRE, LISANDRO 326",automático,"descripción oficial similar (similitud=1, distancia=80m)",sí
+20,PROP_0435,Eduardo_227,"BOSCH, VENTURA 6661",PROP_0453,Eduardo_221,"BOSCH, VENTURA 6647",automático,"descripción oficial similar (similitud=1, distancia=26m)",sí
+20,PROP_0435,Eduardo_227,"BOSCH, VENTURA 6661",PROP_0460,Eduardo_219,"BOSCH, VENTURA 6638",automático,"descripción oficial similar (similitud=1, distancia=28m)",sí
+20,PROP_0435,Eduardo_227,"BOSCH, VENTURA 6661",PROP_0477,Eduardo_226,"BOSCH, VENTURA 6680",automático,"descripción oficial similar (similitud=1, distancia=18m)",sí
+20,PROP_0435,Eduardo_227,"BOSCH, VENTURA 6661",PROP_0558,Eduardo_225,"DE LA TORRE, LISANDRO 326",automático,"descripción oficial similar (similitud=1, distancia=66m)",sí
+20,PROP_0453,Eduardo_221,"BOSCH, VENTURA 6647",PROP_0460,Eduardo_219,"BOSCH, VENTURA 6638",automático,"descripción oficial similar (similitud=1, distancia=8m)",sí
+20,PROP_0453,Eduardo_221,"BOSCH, VENTURA 6647",PROP_0477,Eduardo_226,"BOSCH, VENTURA 6680",automático,"descripción oficial similar (similitud=1, distancia=43m)",sí
+20,PROP_0453,Eduardo_221,"BOSCH, VENTURA 6647",PROP_0515,Eduardo_224,"LEGUIZAMON, MARTINIANO 233",automático,"descripción oficial similar (similitud=1, distancia=85m)",sí
+20,PROP_0453,Eduardo_221,"BOSCH, VENTURA 6647",PROP_0558,Eduardo_225,"DE LA TORRE, LISANDRO 326",automático,"descripción oficial similar (similitud=1, distancia=87m)",sí
+20,PROP_0460,Eduardo_219,"BOSCH, VENTURA 6638",PROP_0477,Eduardo_226,"BOSCH, VENTURA 6680",automático,"descripción oficial similar (similitud=1, distancia=43m)",sí
+20,PROP_0460,Eduardo_219,"BOSCH, VENTURA 6638",PROP_0515,Eduardo_224,"LEGUIZAMON, MARTINIANO 233",automático,"descripción oficial similar (similitud=1, distancia=91m)",sí
+20,PROP_0460,Eduardo_219,"BOSCH, VENTURA 6638",PROP_0531,Eduardo_216,PALMAR 6631,automático,"descripción oficial similar (similitud=1, distancia=93m)",sí
+20,PROP_0460,Eduardo_219,"BOSCH, VENTURA 6638",PROP_0558,Eduardo_225,"DE LA TORRE, LISANDRO 326",automático,"descripción oficial similar (similitud=1, distancia=84m)",sí
+20,PROP_0477,Eduardo_226,"BOSCH, VENTURA 6680",PROP_0558,Eduardo_225,"DE LA TORRE, LISANDRO 326",automático,"descripción oficial similar (similitud=1, distancia=48m)",sí
+21,PROP_0433,Eduardo_433,ZUVIRIA 2680,PROP_0481,Eduardo_267,CULPINA 1410,automático,"descripción oficial similar (similitud=1, distancia=37m)",sí
+21,PROP_0433,Eduardo_433,ZUVIRIA 2680,PROP_0690,Eduardo_430,ZUVIRIA y CULPINA,automático,"descripción oficial similar (similitud=1, distancia=37m)",sí
+21,PROP_0433,Eduardo_433,ZUVIRIA 2680,PROP_0691,Eduardo_431,ZUVIRIA y VARELA AV.,automático,"descripción oficial similar (similitud=1, distancia=81m)",sí
+21,PROP_0481,Eduardo_267,CULPINA 1410,PROP_0690,Eduardo_430,ZUVIRIA y CULPINA,automático,"descripción oficial similar (similitud=1, distancia=26m)",sí
+22,PROP_0446,Eduardo_115,DEHEZA 2528,PROP_0473,Eduardo_116,DEHEZA 2550,automático,"descripción oficial similar (similitud=1, distancia=34m)",sí
+23,PROP_0459,Eduardo_402,"RIVAS, GRAL. 2369",PROP_0561,Eduardo_403,ZAMUDIO 3043,automático,"descripción oficial similar (similitud=1, distancia=74m)",sí
+23,PROP_0459,Eduardo_402,"RIVAS, GRAL. 2369",PROP_0684,Eduardo_400,"RIVAS, GRAL. 2363",automático,"descripción oficial similar (similitud=1, distancia=7m)",sí
+23,PROP_0561,Eduardo_403,ZAMUDIO 3043,PROP_0684,Eduardo_400,"RIVAS, GRAL. 2363",automático,"descripción oficial similar (similitud=1, distancia=79m)",sí
+24,PROP_0469,Eduardo_522,"ARTIGAS, JOSE GERVASIO, GRAL. 3563",PROP_0493,Eduardo_521,"ARTIGAS, JOSE GERVASIO, GRAL. 3575",automático,"descripción oficial similar (similitud=1, distancia=0m)",sí
+24,PROP_0469,Eduardo_522,"ARTIGAS, JOSE GERVASIO, GRAL. 3563",PROP_0525,Eduardo_520,"ARTIGAS, JOSE GERVASIO, GRAL. 3553",automático,"descripción oficial similar (similitud=1, distancia=13m)",sí
+24,PROP_0469,Eduardo_522,"ARTIGAS, JOSE GERVASIO, GRAL. 3563",PROP_0565,Eduardo_395,NAVARRO 2475,automático,"descripción oficial similar (similitud=1, distancia=61m)",sí
+24,PROP_0493,Eduardo_521,"ARTIGAS, JOSE GERVASIO, GRAL. 3575",PROP_0525,Eduardo_520,"ARTIGAS, JOSE GERVASIO, GRAL. 3553",automático,"descripción oficial similar (similitud=1, distancia=13m)",sí
+24,PROP_0493,Eduardo_521,"ARTIGAS, JOSE GERVASIO, GRAL. 3575",PROP_0565,Eduardo_395,NAVARRO 2475,automático,"descripción oficial similar (similitud=1, distancia=61m)",sí
+24,PROP_0525,Eduardo_520,"ARTIGAS, JOSE GERVASIO, GRAL. 3553",PROP_0565,Eduardo_395,NAVARRO 2475,automático,"descripción oficial similar (similitud=1, distancia=71m)",sí
+25,PROP_0471,Eduardo_122,ARREGUI 5034,PROP_0563,Eduardo_123,ARREGUI 5038,automático,"descripción oficial similar (similitud=1, distancia=9m)",sí
+26,PROP_0480,Eduardo_378,MOLINA 1740,PROP_0520,SMP_347,"SCHMIDL, ULRICO Y MOLINA",automático,"descripción oficial similar (similitud=1, distancia=53m)",sí
+27,PROP_0483,Eduardo_256,"FALCON, RAMON L.,CNEL. 4164",PROP_0636,Eduardo_255,"FALCON, RAMON L.,CNEL. 4150",automático,"descripción oficial similar (similitud=1, distancia=16m)",sí
+28,PROP_0533,SMP_41,"BORGES, JORGE LUIS 1851",PROP_0534,ENTES_11,"BORGES, JORGE LUIS 1883",automático,"descripción oficial similar (similitud=1, distancia=22m)",sí
+29,PROP_0540,Eduardo_6,BARZANA 2025,PROP_0578,ENTES_16,BARZANA 2040,automático,"descripción oficial similar (similitud=1, distancia=8m)",sí
+30,PROP_0634,Eduardo_253,FRANKLIN 2173,PROP_0642,Eduardo_274,GAVILAN 1137,automático,"descripción oficial similar (similitud=1, distancia=39m)",sí
+31,PROP_0080,ENTES_135,ECHEVERRIA 1395,PROP_0664,Eduardo_335,ECHEVERRIA 1361,automático,"descripción oficial similar (similitud=0.99, distancia=14m)",sí
+31,PROP_0080,ENTES_135,ECHEVERRIA 1395,PROP_0665,Eduardo_336,MIGUELETES 2039,automático,"descripción oficial similar (similitud=0.99, distancia=66m)",sí
+31,PROP_0664,Eduardo_335,ECHEVERRIA 1361,PROP_0665,Eduardo_336,MIGUELETES 2039,automático,"descripción oficial similar (similitud=1, distancia=73m)",sí
+32,PROP_0687,Eduardo_416,"VARELA, JOSE PEDRO 5251",PROP_0872,Relev_368,"VARELA, JOSE PEDRO y LOPE DE VEGA AV.",automático,"descripción oficial similar (similitud=1, distancia=72m)",sí
+33,PROP_0698,Eduardo_450,"ALBARRACIN DE SARMIENTO, PAULA y LLAVALLOL",PROP_0796,Relev_102,"ALBARRACIN DE SARMIENTO, PAULA 3434",automático,"descripción oficial similar (similitud=1, distancia=46m)",sí
+34,PROP_0719,Eduardo_503,ENTRE RIOS AV. 284,PROP_0740,Eduardo_544,MORENO 1793,automático,"descripción oficial similar (similitud=1, distancia=18m)",sí
+35,PROP_0797,Relev_108,SALTA 2284,PROP_0917,Relev_96,"OLMOS, AMBROSIO y SALTA",automático,"descripción oficial similar (similitud=1, distancia=38m)",sí
+36,PROP_0392,SMP_119,OLAZABAL AV. 3849,PROP_0569,ENTES_43,OLAZABAL AV. 3871,automático,"descripción oficial similar (similitud=0.983, distancia=13m)",sí
+37,PROP_0137,ENTES_172,ESTOMBA 466,PROP_0543,Eduardo_386,"JEREZ, PEDRO DE 473",automático,"descripción oficial similar (similitud=0.98, distancia=48m)",sí
+38,PROP_0552,Eduardo_158,BAUNESS 2647,PROP_0556,Eduardo_159,BAUNESS 2631,automático,"descripción oficial similar (similitud=0.958, distancia=13m)",sí
+39,PROP_0052,ENTES_122,SAN ANTONIO 555,PROP_0656,Eduardo_309,SAN ANTONIO 551,automático,"descripción oficial similar (similitud=0.957, distancia=5m)",sí
+40,PROP_0155,ENTES_183,SAN MARTIN AV. 4460,PROP_0553,Eduardo_523,SAN MARTIN AV. 4444,automático,"descripción oficial similar (similitud=0.942, distancia=14m)",sí

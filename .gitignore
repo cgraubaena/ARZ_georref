@@ -2,7 +2,12 @@
 .Rproj.user/
 .Rhistory
 .RData
+.RDataTmp*
 .Ruserdata
 
 # Knitr / intermedios
 *_cache/
+
+# GitHub límite 100 MB por archivo: no subir instaladores ni capas catastrales enormes
+*.exe
+parcelas-CABA/

@@ -1,0 +1,874 @@
+Propiedad_ID,Descripción,Dirección oficial,Ubicación,Localidad,Lat,Long,Direcciones secundarias,Fuentes disponibles,Categoría de uso
+PROP_0001,Basílica ESPIRITU SANTO,PARAGUAY 3901,📍maps,CABA,-34.589.396,-5.841.806,"MANSILLA, LUCIO NORBERTO, GENERAL 3851 | MANSILLA, LUCIO NORBERTO, GENERAL 3847 | MANSILLA, LUCIO NORBERTO, GENERAL 3855","Templos, Eduardo","Parroquia y anexos, Cedidos a terceros"
+PROP_0002,Basílica SAN FRANCISCO,"ALSINA, ADOLFO 380",📍maps,CABA,-34.610.158,-58.371.766,,Templos,Parroquia y anexos
+PROP_0003,Iglesia SAN BONIFACIO Y SAN VICENTE PALLOTTI,CUBA 2981,📍maps,CABA,-34.552.921,-58.462.396,,Templos,Parroquia y anexos
+PROP_0004,Iglesia SAN FRANCISCO de SALES,BELGRANO 3863,📍maps,CABA,-34.615.774,-58.420.963,,Templos,Parroquia y anexos
+PROP_0005,Iglesia SAN JOSE,GURRUCHAGA 1010,📍maps,CABA,-34.593.441,-5.843.573,,Templos,Parroquia y anexos
+PROP_0006,Iglesia SAN JOSE,HUMBERTO 1° 1340,📍maps,CABA,-3.462.114,-58.385.129,,Templos,Parroquia y anexos
+PROP_0007,Iglesia SAN JUAN BAUTISTA,"ALSINA, ADOLFO 824",📍maps,CABA,-34.610.595,-58.378.023,,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0008,Iglesia SAN JUAN BAUTISTA de la SALLE,RIOBAMBA 650,📍maps,CABA,-34.601.473,-58.394.213,,Templos,Parroquia y anexos
+PROP_0009,Iglesia SAN MARCELINO CHAMPAGNAT,MONTEVIDEO 1050,📍maps,CABA,-34.596.612,-58.389.908,,Templos,Parroquia y anexos
+PROP_0010,Iglesia SAN PABLO APOSTOL,NAZCA 4249,📍maps,CABA,-34.589.597,-58.499.127,,Templos,Parroquia y anexos
+PROP_0011,Iglesia SANTA CATALINA de SIENA,SAN MARTIN 705,📍maps,CABA,-3.459.967,-5.837.406,,Templos,Parroquia y anexos
+PROP_0012,Basílica SAN JOSE DE FLORES,RIVADAVIA AV. 6950,📍maps,CABA,-3.462.913,-58.463.338,"PESCADORES 67 | FALCON, RAMON L.,CNEL. 2453","Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0013,Iglesia SANTA FELICITAS,ISABEL LA CATOLICA 520,📍maps,CABA,-34.637.214,-58.373.599,ISABEL LA CATOLICA y PINZON,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0014,Iglesia SANTA FRANCISCA ROMANA,SAN MARTIN AV. 5555,📍maps,CABA,-3.459.691,-58.495.275,,Templos,Parroquia y anexos
+PROP_0015,Iglesia SANTA MARIA MAZARELLO,"GARAY, JUAN DE AV. 4353",📍maps,CABA,-3.463.222,-58.424.893,,Templos,Parroquia y anexos
+PROP_0016,Iglesia SANTA TERESA de JESUS,POTOSI 4049,📍maps,CABA,-34.607.219,-58.423.912,,Templos,Parroquia y anexos
+PROP_0017,Iglesia SANTA TERESA de JESUS,TUCUMAN 3029,📍maps,CABA,-34.601,-58.408.119,,Templos,Parroquia y anexos
+PROP_0018,Iglesia SANTA TERESA del NIÑO JESUS,EZEIZA 3054,📍maps,CABA,-34.577.797,-58.512.527,,Templos,Parroquia y anexos
+PROP_0019,Iglesia SANTO CRISTO,VILLANUEVA 933,📍maps,CABA,-34.568.516,-58.438.833,VILLANUEVA 905 | VILLANUEVA 955,"Templos, Eduardo",Parroquia y anexos
+PROP_0020,Iglesia SANTOS MARTIRES COREANOS,THORNE 1261,📍maps,CABA,-34.637.802,-58.446.878,THORNE 1279 | THORNE 1281 | THORNE 1277 | THORNE 1269,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0021,Iglesia SEÑOR de la BUENA ESPERANZA,"VALLESE, FELIPE 2539",📍maps,CABA,-3.462.164,-58.468.057,,Templos,Parroquia y anexos
+PROP_0022,Parroquia ASUNCION DE LA SANTISIMA VIRGEN,GAONA AV. 2798,📍maps,CABA,-34.616.306,-58.465.508,GAONA AV. 2194 | GAONA AV. 2198,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0023,Basílica SAN NICOLAS DE BARI,SANTA FE AV. 1352,📍maps,CABA,-34.595.791,-58.386.535,SANTA FE AV. 1354 | SANTA FE AV. 1370,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0024,Parroquia BUEN PASTOR,"ARANGUREN, JUAN F., DR. 691",📍maps,CABA,-34.614.335,-58.442.114,"ARANGUREN, JUAN F., DR. 693 | ARANGUREN, JUAN F., DR. 701","Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0025,Parroquia CORAZON DE JESUS,"PAZ, GRAL. AV. 5370",📍maps,CABA,-34.575.482,-58.511.539,"PAZ, GRAL. AV. 5306 | PAZ, GRAL. AV. 5310 | PAZ, GRAL. AV. 5316","Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0026,Parroquia CORPUS DOMINI,ALBARIÑO 256,📍maps,CABA,-34.641.029,-58.508.466,,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0027,Parroquia CRISTO MAESTRO,MERCEDES 1630,📍maps,CABA,-34.619.719,-58.494.724,MERCEDES 1632,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0028,Parroquia CRISTO OBRERO,SN - VILLA 31,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0029,Parroquia CRISTO OBRERO Y SAN BLAS,LAFUENTE 3242,📍maps,CABA,-34.663.096,-58.438.262,,"Relevamiento, Templos, Eduardo","Parroquia y anexos, Escuela, Cedidos a terceros"
+PROP_0030,Parroquia CRISTO REY,ZAMUDIO 5551,📍maps,CABA,-34.575.958,-58.502.644,LARSEN 2378 | LARSEN 2380 | LARSEN 2384 | LARSEN 2386 | ZAMUDIO 5501 | ZAMUDIO 5541,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0031,Parroquia DULCISIMO NOMBRE DE JESUS,VALDENEGRO 3611,📍maps,CABA,-34.559.203,-58.491.895,VALDENEGRO 3621,"Templos, Eduardo",Parroquia y anexos
+PROP_0032,Parroquia ENCARNACION DEL SEÑOR,"RODRIGUEZ, MANUEL A., GENERAL 2444",📍maps,CABA,-34.598.191,-58.458.923,"RODRIGUEZ, MANUEL A., GENERAL 2442","Templos, Eduardo",Parroquia y anexos
+PROP_0033,Parroquia ESPIRITU SANTO,PACHECO 2059,📍maps,CABA,-34.576.126,-58.481.124,PACHECO 2069,"Índice GCBA, Relevamiento, Templos, Eduardo","Parroquia y anexos, Escuela"
+PROP_0034,Basílica SANTA ROSA DE LIMA,BELGRANO AV. 2216,📍maps,CABA,-346.143,-58.397.743,BELGRANO AV. 2208 | BELGRANO AV. 2220 | PASCO 409 | PASCO 431 | REPUBLICA BOLIVARIANA DE VENEZUELA 2201 | PASCO 446 | PASCO 448,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0035,Parroquia IGLESIA CATEDRAL METROPOLITANA,SAN MARTIN 11,📍maps,CABA,-34.607.727,-58.373.553,,Templos,Parroquia y anexos
+PROP_0036,Parroquia INMACULADA CONCEPCION (B),VUELTA DE OBLIGADO 2042,📍maps,CABA,-34.561.952,-58.455.304,"OBLIGADO RAFAEL, AV.COSTANERA 2030","Templos, Eduardo",Parroquia y anexos
+PROP_0037,Parroquia INMACULADA CONCEPCION (C),INDEPENDENCIA AV. 910,📍maps,CABA,-34.617.653,-58.379.107,,"Templos, Eduardo",Parroquia y anexos
+PROP_0038,Parroquia INMACULADA CONCEPCION (D),"CUBAS, JOSE 3599",📍maps,CABA,-34.594.272,-58.509.419,,Templos,Parroquia y anexos
+PROP_0039,Parroquia INMACULADA VIRGEN DE FATIMA,"CANTILO, JOSE LUIS 5656",📍maps,CABA,-34.615.871,-58.530.183,,"Índice GCBA, Relevamiento, Templos, Eduardo","Parroquia y anexos, REVISAR"
+PROP_0040,Parroquia INMACULADO CORAZON DE MARIA,CONSTITUCION 1077,📍maps,CABA,-34.624.589,-58.381.139,,"Templos, Eduardo",Parroquia y anexos
+PROP_0041,Parroquia JESUS DE LA BUENA ESPERANZA,"CABEZON, JOSE LEON 3350",📍maps,CABA,-3.458.652,-58.510.945,"CABEZON, JOSE LEON 3358 | CABEZON, JOSE LEON 3348","Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0042,Parroquia JESUS DE NAZARET,LA PLATA AV. 2258,📍maps,CABA,-34.640.909,-58.423.203,LA PLATA AV. 2260 | LA PLATA AV. 2264,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0043,Parroquia JESUS MISERICORDIOSO,"RIVERA, PEDRO I., DR. 4591",📍maps,CABA,-34.569.112,-5.848.246,,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0044,Parroquia JESUS SALVADOR,SOLDADO DE LA FRONTERA AV. 5184,📍maps,CABA,-34.684.909,-58.463.784,,"Templos, Eduardo",Parroquia y anexos
+PROP_0045,Basílica SANTISIMO ROSARIO,DEFENSA 422,📍maps,CABA,-34.613.072,-58.371.855,,Templos,Parroquia y anexos
+PROP_0046,Parroquia MADRE ADMIRABLE,ARROYO 931,📍maps,CABA,-34.591.461,-58.380.636,ARROYO 909 | ARROYO 941 | ARROYO 917,"Índice GCBA, Templos, Eduardo","Escuela, Parroquia y anexos"
+PROP_0047,Parroquia MADRE DE DIOS,ESCALADA AV. 2350,📍maps,CABA,-34.659.614,-58.476.459,ESCALADA AV. 2362,"Templos, Eduardo",Parroquia y anexos
+PROP_0048,Parroquia MARIA MADRE DE LA ESPERANZA,MIRALLA 3838,📍maps,CABA,-34.673.238,-58.468.844,,Templos,Parroquia y anexos
+PROP_0049,Parroquia MARIA MADRE DE LA IGLESIA,"GOYENA, PEDRO AV. 1628",📍maps,CABA,-3.462.833,-5.845.095,"GOYENA, PEDRO AV. 1626","Templos, Eduardo",Parroquia y anexos
+PROP_0050,Parroquia MARIA MADRE DEL REDENTOR,MEXICO 2745,📍maps,CABA,-34.617.194,-58.404.766,MEXICO 2751 | MEXICO 2755 | MEXICO 2749,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0051,Parroquia MARIA REINA,CERETTI 2622,📍maps,CABA,-34.576.255,-58.494.667,,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0052,Parroquia NATIVIDAD DE MARIA SANTISIMA,SAN ANTONIO 555,📍maps,CABA,-34.648.731,-58.378.403,,Templos,Parroquia y anexos
+PROP_0053,Parroquia NAVIDAD DEL SEÑOR,"ARENAL, CONCEPCION 3545",📍maps,CABA,-3.458.431,-5.844.676,CHARLONE 145 | CHARLONE 147,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0054,Parroquia NIÑO JESUS,MURGUIONDO 4055,📍maps,CABA,-34.675.784,-58.477.272,,"Relevamiento, Templos, Eduardo","Parroquia y anexos, Escuela"
+PROP_0055,Parroquia NTRA. SRA. DE BALVANERA,"MITRE, BARTOLOME 2411",📍maps,CABA,-3.460.853,-58.400.792,"MITRE, BARTOLOME 2431","Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0056,Basílica SANTISIMO SACRAMENTO,SAN MARTIN 1039,📍maps,CABA,-34.595.482,-58.374.329,SAN MARTIN 1029 | SAN MARTIN 1049 | SAN MARTIN 1083,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0057,Parroquia NTRA. SRA. DE BELEN,BURELA 3243,📍maps,CABA,-3.457.028,-58.497.814,,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0058,Basílica NTRA. SRA. DE BUENOS AIRES,GAONA AV. 1730,📍maps,CABA,-34.610.938,-58.452.559,,Templos,Parroquia y anexos
+PROP_0059,Parroquia NTRA. SRA. DE CAACUPE,RIVADAVIA AV. 4879,📍maps,CABA,-34.616.862,-58.433.428,,"Templos, Eduardo",Parroquia y anexos
+PROP_0060,Parroquia NTRA. SRA. DE CZESTOCHOWA,ENTRE RIOS AV. 1951,📍maps,CABA,-34.631.033,-58.390.835,ENTRE RIOS AV. 1941 | COMBATE DE LOS POZOS 1942 | COMBATE DE LOS POZOS 1952,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0061,Parroquia NTRA. SRA. DE FATIMA (B),ROOSEVELT FRANKLIN D. 2066,📍maps,CABA,-34.555.567,-58.457.528,,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0062,Parroquia NTRA. SRA. DE FATIMA (F),"ACOSTA, MARIANO 2979",📍maps,CABA,-3.466.063,-58.448.803,,"Templos, Eduardo",Parroquia y anexos
+PROP_0063,Parroquia NTRA. SRA. DE ITATI,DIAZ VELEZ AV. 4019,📍maps,CABA,-34.608.519,-58.423.362,,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0064,Parroquia NTRA. SRA. DE LA ANUNCIACION,ALTOLAGUIRRE 2041,📍maps,CABA,-34.580.636,-58.487.897,ALTOLAGUIRRE 2043,"Índice GCBA, Templos, Eduardo",Escuela
+PROP_0065,Parroquia NTRA. SRA. DE LA CANDELARIA,BAHIA BLANCA 363,📍maps,CABA,-34.629.723,-58.482.001,,"Relevamiento, Templos, Eduardo","Parroquia y anexos, Escuela"
+PROP_0066,Capilla BEATO JUAN XXIII (Pquia Santa Francisca Cabrini),TANDIL 2551,📍maps,CABA,-34.635.086,-58.462.382,,"Índice GCBA, Relevamiento, Templos, Eduardo, Alquileres",Parroquia y anexos
+PROP_0067,Parroquia NTRA. SRA. DE LA CONSOLACION,"SCALABRINI ORTIZ, RAUL AV. 1073",📍maps,CABA,-34.594.661,-58.430.454,,Templos,Parroquia y anexos
+PROP_0068,Parroquia NTRA. SRA. DE LA DIVINA PROVIDENCIA,TRAFUL 3535,📍maps,CABA,-34.650.602,-5.841.063,,Templos,Parroquia y anexos
+PROP_0069,Parroquia NTRA. SRA. DE LA ESPERANZA,"PAINE, AIME 1680",📍maps,CABA,-34.616.717,-58.360.934,"PAINE, AIME 1698","Templos, Eduardo",Parroquia y anexos
+PROP_0070,Parroquia NTRA. SRA. DE LA MEDALLA MILAGROSA,CURAPALIGUE AV. 1185,📍maps,CABA,-34.636.489,-58.446.031,,Templos,Parroquia y anexos
+PROP_0071,Basílica NTRA. SRA. DE LA MERCED,RECONQUISTA 207,📍maps,CABA,-34.605.044,-58.372.322,RECONQUISTA 209,"Templos, Eduardo",Parroquia y anexos
+PROP_0072,Parroquia NTRA. SRA. DE LA MISERICORDIA,LARRAZABAL 2394,📍maps,CABA,-34.661.464,-5.849.111,"LARRAZABAL 2372 | LARRAZABAL 2390 | LAFERRERE, GREGORIO DE 5865","Relevamiento, Templos, Eduardo","Parroquia y anexos, Escuela"
+PROP_0073,Parroquia NTRA. SRA. DE LA PAZ,PERGAMINO 63,📍maps,CABA,-34.632.759,-58.474.338,PERGAMINO 37 | PERGAMINO 45 | PERGAMINO 47 | PERGAMINO 53 | PERGAMINO 69,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0074,Basílica NTRA. SRA. DE LA PIEDAD,"MITRE, BARTOLOME 1524",📍maps,CABA,-34.607.762,-58.388.071,"MITRE, BARTOLOME 1534","Templos, Eduardo",Parroquia y anexos
+PROP_0075,Parroquia NTRA. SRA. DE LA RABIDA,BELGRANO AV. 1502,📍maps,CABA,-34.613.633,-58.387.776,"SAENZ PEÑA, LUIS, PRES. 427 | SAENZ PEÑA, LUIS, PRES. 441","Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0076,Parroquia NTRA. SRA. DE LA SALUD,"SASTRE, MARCOS 6115",📍maps,CABA,-34.625.616,-58.523.996,"SASTRE, MARCOS y BRUSELAS","Templos, Eduardo",Parroquia y anexos
+PROP_0077,Capilla JESÚS VIVE (Pquia Caacupé),ZAVALETA y SANTO DOMINGO,📍maps,CABA,-34.654.384,-58.399.987,,Templos,Parroquia y anexos
+PROP_0078,Parroquia NTRA. SRA. DE LA VISITACION,PAEZ 2871,📍maps,CABA,-34.621.921,-58.472.739,PAEZ 2864 | PAEZ 2866 | PAEZ 2881,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0079,Parroquia NTRA. SRA. DE LAS GRACIAS,CONDOR 2150,📍maps,CABA,-34.657.565,-58.429.123,,Templos,Parroquia y anexos
+PROP_0080,Parroquia NTRA. SRA. DE LAS MERCEDES,ECHEVERRIA 1395,📍maps,CABA,-34.556.787,-58.445.551,ECHEVERRIA 1349 | ECHEVERRIA 1365,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0081,Parroquia NTRA. SRA. DE LAS NIEVES,"BOSCH, VENTURA 6662",📍maps,CABA,-3.464.261,-58.520.126,"BOSCH, VENTURA 6665 | BOSCH, VENTURA 6667 | BOSCH, VENTURA 6658","Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0082,Parroquia NTRA. SRA. DE LAS VICTORIAS,PARAGUAY 1204,📍maps,CABA,-34.598.121,-58.384.323,PARAGUAY 1216,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0083,Parroquia NTRA. SRA. DE LORETO,JUNCAL 3115,📍maps,CABA,-34.585.997,-58.408.365,"DIAZ, CNEL. AV. y JUNCAL | DIAZ, CNEL. AV. 2222 | DIAZ, CNEL. AV. 2210 | DIAZ, CNEL. AV. 2276 | LAS HERAS GENERAL AV. 3115 | LAS HERAS GENERAL AV. 3125 | LAS HERAS GENERAL AV. 3117","Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0084,Parroquia NTRA. SRA. DE LOS DOLORES,DIAZ VELEZ AV. 4850,📍maps,CABA,-34.608.842,-58.435.558,,Templos,Parroquia y anexos
+PROP_0085,Parroquia NTRA. SRA. DE LOS REMEDIOS,"BILBAO, FRANCISCO 4310",📍maps,CABA,-34.649.963,-58.479.349,,Templos,Parroquia y anexos
+PROP_0086,Parroquia NTRA. SRA. DE LOURDES,"FREIRE, RAMON, CAP. GRAL. 2490",📍maps,CABA,-34.563.212,-58.467.384,"FREIRE, RAMON, CAP. GRAL. 2602","Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0087,Parroquia NTRA. SRA. DE LUJAN DE LOS PATRIOTAS,"CASTRO, EMILIO AV. 7156",📍maps,CABA,-34.653.466,-58.518.503,"CASTRO, EMILIO AV. 7180","Templos, Eduardo","Parroquia y anexos, Escuela"
+PROP_0088,Capilla LA INMACULADA (Pquia Madre de Dios),SN - BARRIO CILDAÑES,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0089,Parroquia NTRA. SRA. DE LUJAN DEL BUEN VIAJE,GRECIA 4328,📍maps,CABA,-34.541.069,-58.467.381,,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0090,Parroquia NTRA. SRA. DE LUJAN PORTEÑO,"BILBAO, FRANCISCO AV. 3474",📍maps,CABA,-34.641.765,-58.469.762,"BILBAO, FRANCISCO AV. 3476","Índice GCBA, Relevamiento, Templos, Eduardo","Parroquia y anexos, Escuela"
+PROP_0091,Parroquia NTRA. SRA. DE LUJAN-Castrense,CABILDO AV. 425,📍maps,CABA,-3.457.188,-58.440.923,CABILDO AV. 421,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0092,Parroquia NTRA. SRA. DE MONTSERRAT,BELGRANO AV. 1154,📍maps,CABA,-34.613.272,-58.382.619,BELGRANO AV. 1151,"Templos, Eduardo, Alquileres",Parroquia y anexos
+PROP_0093,Parroquia NTRA. SRA. DEL BUEN CONSEJO,CARDOSO 242,📍maps,CABA,-34.633.738,-58.492.781,CARDOSO 238 | BACACAY 4747 | BACACAY Y BERMUDEZ | BACACAY 4727 | BACACAY 4723 | BACACAY 4750 | TAPALQUE 5163 | CARDOSO 240,"Índice GCBA, Relevamiento, Templos, Eduardo",Escuela
+PROP_0094,Parroquia NTRA. SRA. DEL CARMELO,"ALVEAR, MARCELO T. DE 2465",📍maps,CABA,-34.595.945,-58.402.443,,Templos,Parroquia y anexos
+PROP_0095,Parroquia NTRA. SRA. DEL CARMEN (C),MONTEVIDEO 858,📍maps,CABA,-34.598.886,-58.389.748,"CORDOBA AV. 1669 | CORDOBA AV. 1699 | RODRIGUEZ PEÑA 811 | RODRIGUEZ PEÑA 835 | CAPDEVILA, ARTURO 1678 | CAPDEVILA, ARTURO 1696 | MONTEVIDEO 842 | MONTEVIDEO 850 | MONTEVIDEO 820 | CORDOBA AV. 1601 | MONTEVIDEO 806 | MONTEVIDEO 814 | CORDOBA AV. 1613 | CORDOBA AV. 1619 | MONTEVIDEO 870 | MONTEVIDEO 874 | CORDOBA AV. 1651 | CORDOBA AV. 1657 | CORDOBA AV. 1641 | CORDOBA AV. 1649 | CORDOBA AV. 1623 | CORDOBA AV. 1629 | CORDOBA AV. 1631 | CORDOBA AV. 1637 | PARAGUAY 1660 | PARAGUAY 1676 | RODRIGUEZ PEÑA 887 | PARAGUAY 1656 | PARAGUAY 1658 | PARAGUAY 1652 | PARAGUAY 1654 | PARAGUAY 1644 | MONTEVIDEO 890 | MONTEVIDEO 900 | PARAGUAY 1604 | RODRIGUEZ PEÑA 841 | RODRIGUEZ PEÑA 871 | RODRIGUEZ PEÑA 879 | RODRIGUEZ PEÑA 881 | PARAGUAY 1634 | PARAGUAY 1638 | PARAGUAY 1630 | PARAGUAY 1632 | PARAGUAY 1620 | PARAGUAY 1612 | PARAGUAY 1618 | CORDOBA AV. 1723 | CORDOBA AV. 1725 | RODRIGUEZ PEÑA 830 | RODRIGUEZ PEÑA 832 | RODRIGUEZ PEÑA 840 | MONTEVIDEO 872 | PARAGUAY 1602 | PARAGUAY 1608 | PARAGUAY 1666 | PARAGUAY 1672 | PARAGUAY 1686 | PARAGUAY 1688 | PARAGUAY 1690 | PARAGUAY 1692 | PARAGUAY 1694 | PARAGUAY 1696 | RODRIGUEZ PEÑA 802 | CORDOBA AV. 1615 | CORDOBA AV. 1673 | CORDOBA AV. 1679 | CORDOBA AV. 1683 | CORDOBA AV. 1687 | CORDOBA AV. 1691 | CORDOBA AV. 1693 | CORDOBA AV. 1633 | CORDOBA AV. 1635 | CORDOBA AV. 1639","Índice GCBA, Templos, Eduardo, Alquileres","Comerciales, en Juicio"
+PROP_0096,Parroquia NTRA. SRA. DEL CARMEN (D),TRIUNVIRATO AV. 4940,📍maps,CABA,-34.572.825,-58.488.416,,"Templos, Eduardo",Parroquia y anexos
+PROP_0097,Parroquia NTRA. SRA. DEL CARMEN (F),"PERON, EVA AV. 6387",📍maps,CABA,-34.667.123,-58.492.833,,Templos,Parroquia y anexos
+PROP_0098,Parroquia NTRA. SRA. DEL CARMEN (MG),SN,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0099,Capilla MARÍA AUXILIADORA (Pquia Santa María Madre del Pueblo),VARELA AV. 2706,📍maps,CABA,-34.654.635,-58.439.443,Villarino s/n,"Templos, Eduardo",Parroquia y anexos
+PROP_0100,Parroquia NTRA. SRA. DEL CONSUELO,"ALVAREZ, DONATO, TTE. GRAL. AV. 2050",📍maps,CABA,-34.603.845,-58.464.531,"ALVAREZ, DONATO, TTE. GRAL. AV. 2042 | ALVAREZ, DONATO, TTE. GRAL. AV. 2044","Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0101,Parroquia NTRA. SRA. DEL PERPETUO SOCORRO,IRIGOYEN 1185,📍maps,CABA,-34.629.502,-58.515.015,"SCALABRINI ORTIZ, RAUL AV. 1356 | SCALABRINI ORTIZ, RAUL AV. 1358","Índice GCBA, Relevamiento, Templos, Eduardo","Parroquia y anexos, Cedidos a terceros"
+PROP_0102,Basílica NTRA. SRA. DEL PILAR,JUNIN 1898,📍maps,CABA,-34.586.915,-58.391.776,JUNIN 1900 | JUNIN 1904 | JUNIN 1993 | JUNIN 1999,"Templos, Eduardo","Parroquia y anexos, Escuela"
+PROP_0103,Parroquia NTRA. SRA. DEL ROSARIO,BONPLAND 1987,📍maps,CABA,-34.581.151,-58.434.747,BONPLAND 1999 | NICARAGUA 5668 | NICARAGUA 5688 | BONPLAND 1975 | BONPLAND 1985,"Índice GCBA, Relevamiento, Templos, Eduardo","Parroquia y anexos, Escuela"
+PROP_0104,Parroquia NTRA. SRA. DEL ROSARIO DE NUEVA POMPEYA,ESQUIU 974,📍maps,CABA,-34.651.973,-58.417.109,ESQUIU y SAENZ AV.,"Relevamiento, Templos, Eduardo","Escuela, No AZB"
+PROP_0105,Parroquia NTRA. SRA. DEL ROSARIO DEL MILAGRO,"MONTIEL y ALVAREZ, CRISOSTOMO",📍maps,CABA,-34.677.286,-58.492.317,MONTIEL 3875 | MONTIEL 3881,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0106,Basílica NTRA. SRA. DEL SOCORRO,JUNCAL 888,📍maps,CABA,-34.592.905,-5.837.989,JUNCAL 876,"Templos, Eduardo",Parroquia y anexos
+PROP_0107,Parroquia NTRA. SRA. DEL VALLE,CORDOBA AV. 3329,📍maps,CABA,-34.597.846,-58.413.688,,Templos,Parroquia y anexos
+PROP_0108,Parroquia NTRA. SRA. MADRE DE LOS EMIGRANTES,NECOCHEA 312,📍maps,CABA,-34.628.143,-58.364.338,NECOCHEA 300,"Templos, Eduardo",Cedidos a terceros
+PROP_0109,Parroquia PATROCINIO DE LA VIRGEN,USPALLATA 3480,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0110,Basílica MARIA AUXILIADORA Y SAN CARLOS,"YRIGOYEN, HIPOLITO AV. 4000",📍maps,CABA,-34.614.814,-58.422.923,MUÑIZ 355 | MUÑIZ 379 | MUÑIZ 369,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0111,Capilla MARÍA AUXILIADORA (Pquia Natividad de María Santísima),SAN ANTONIO 976,📍maps,CABA,-34.653.315,-58.376.591,,Templos,Parroquia y anexos
+PROP_0112,Parroquia PATROCINIO DE SAN JOSE,AYACUCHO 1072,📍maps,CABA,-34.596.333,-58.396.156,AYACUCHO 1064,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0113,Parroquia PRESENTACION DEL SEÑOR,RUIZ HUIDOBRO 3521,📍maps,CABA,-34.549.292,-58.483.508,"PEREZ, ROQUE 4364","Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0114,Parroquia PURISIMO CORAZON DE MARIA,"LOPEZ, CARLOS ANTONIO 2781",📍maps,CABA,-34.584.414,-58.501.468,,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0115,Parroquia REINA DE LOS APOSTOLES,CONDARCO 545,📍maps,CABA,-34.625.002,-58.469.046,CONDARCO 581 | AVELLANEDA AV. 2679 | CONDARCO 551 | CONDARCO 554,"Índice GCBA, Relevamiento, Templos, Eduardo, Alquileres",Parroquia y anexos
+PROP_0116,Parroquia RESURRECCION DEL SEÑOR,DORREGO AV. 892,📍maps,CABA,-34.590.935,-58.446.887,DORREGO AV. 894,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0117,Parroquia SACRATISIMO CORAZON DE JESUS,MOLIERE 856,📍maps,CABA,-3.463.105,-58.506.765,MOLIERE 866,"Relevamiento, Templos, Eduardo","Parroquia y anexos, Escuela"
+PROP_0118,Parroquia SAGRADA EUCARISTIA,SANTA FE AV. 4310,📍maps,CABA,-34.580.343,-58.423.094,CHARCAS 4685 | CHARCAS 4689,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0119,Parroquia SAGRADA FAMILIA,"BALBIN, RICARDO, DR. AV. 4127",📍maps,CABA,-34.554.949,-58.489.661,,"Templos, Eduardo",Parroquia y anexos
+PROP_0120,Basílica SAGRADO CORAZON,VELEZ SARSFIELD AV. 1351,📍maps,CABA,-34.650.658,-58.389.157,,Templos,Parroquia y anexos
+PROP_0121,Parroquia SAN AGUSTIN,LAS HERAS GENERAL AV. 2560,📍maps,CABA,-34.585.504,-58.399.539,,"Templos, Eduardo",Parroquia y anexos
+PROP_0122,Capilla NTRA. SRA. DE CAACUPÉ (Pquia Cristo Obrero),SN - VILLA 31,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0123,Parroquia SAN ALFONSO MARIA DE LIGORIO,BARZANA 1525,📍maps,CABA,-3.458.539,-58.482.826,BARZANA 1515 | BARZANA 1539,"Relevamiento, Templos, Eduardo","Parroquia y anexos, REVISAR"
+PROP_0124,Parroquia SAN AMBROSIO,ELCANO AV. 3253,📍maps,CABA,-3.457.371,-58.459.755,ELCANO AV. 3257,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0125,Basílica SAN ANTONIO DE PADUA,LINCOLN AV. 3751,📍maps,CABA,-34.599.966,-58.507.055,LINCOLN AV. 3701 | LINCOLN AV. 3799,"Templos, Eduardo",Parroquia y anexos
+PROP_0126,Parroquia SAN ANTONIO DE PADUA (P.PATRICIOS),CASEROS AV. 2780,📍maps,CABA,-34.636.543,-5.840.193,CASEROS AV. 2789 | CASEROS AV. 2793 | CASEROS AV. 2791,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0127,Parroquia SAN ANTONIO MARIA ZACCARIA,"MONTES DE OCA, MANUEL AV. 1810",📍maps,CABA,-34.648.279,-58.372.659,"MONTES DE OCA, MANUEL AV. 1820 | MONTES DE OCA, MANUEL AV. 1826","Templos, Eduardo",Parroquia y anexos
+PROP_0128,Parroquia SAN BARTOLOME APOSTOL,CHICLANA AV. 3659,📍maps,CABA,-34.636.947,-58.415.466,METAN 3656 | CHICLANA AV. 3647,"Índice GCBA, Relevamiento, Templos, Eduardo","Parroquia y anexos, Escuela"
+PROP_0129,Parroquia SAN BERNARDO,GURRUCHAGA 167,📍maps,CABA,-34.600.238,-58.445.259,SANTA FE AV. 3751 | SANTA FE AV. 3755,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0130,Parroquia SAN CAYETANO (B),VIDAL 1745,📍maps,CABA,-3.456.739,-58.457.543,,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0131,Capilla NTRA. SRA. DE COPACABANA (Pquia NTRA. SRA. de las Gracias Pertenece a las Hnas. Dominicas de la Anunciata),ITAQUI y CHARRUA,📍maps,CABA,-34.653.526,-58.432.237,,Templos,Parroquia y anexos
+PROP_0132,Parroquia SAN CAYETANO (L),CUZCO 150,📍maps,CABA,-34.637.579,-58.527.976,CUZCO 116 | CUZCO 158 | CUZCO 160 | CUZCO 176,"Templos, Eduardo",Parroquia y anexos
+PROP_0133,Parroquia SAN COSME Y SAN DAMIAN,"SCHMIDL, ULRICO 7432",📍maps,CABA,-34.657.159,-58.518.599,"SCHMIDL, ULRICO 7416 | SCHMIDL, ULRICO 7454","Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0134,Parroquia SAN CRISTOBAL,JUJUY AV. 1251,📍maps,CABA,-34.624.601,-58.402.097,CASEROS AV. 2601 | CASEROS AV. 2641 | JUJUY AV. 1229,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0135,Parroquia SAN ENRIQUE Y SANTA CUNEGUNDA,ESTERO BELLACO 6943,📍maps,CABA,-34.648.582,-58.523.263,,Templos,Parroquia y anexos
+PROP_0136,Parroquia SAN FELIPE NERI,ANDALGALA 2284,📍maps,CABA,-34.662.376,-58.506.632,,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0137,Parroquia SAN FERMIN,ESTOMBA 466,📍maps,CABA,-34.586.366,-58.466.727,"JEREZ, PEDRO DE 479 | ESTOMBA 438 | ESTOMBA 440 | ESTOMBA 446 | ESTOMBA 454 | ESTOMBA 456","Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0138,Parroquia SAN FRANCISCO DE ASIS,CORRALES 3410,📍maps,CABA,-34.665.138,-5.844.326,,Templos,Parroquia y anexos
+PROP_0139,Parroquia SAN FRANCISCO JAVIER,"BORGES, JORGE LUIS 1855",📍maps,CABA,-34.587.056,-58.427.533,"BORGES, JORGE LUIS 1861 | Serrano 1847 :","Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0140,Parroquia SAN FRANCISCO SOLANO,ZELADA 4771,📍maps,CABA,-34.641.648,-58.493.569,ZELADA 4767 | ZELADA 4761,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0141,Parroquia SAN GABRIEL ARCANGEL,RIVADAVIA AV. 9625,📍maps,CABA,-34.637.392,-58.499.898,RIVADAVIA AV. 9623,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0142,Capilla NTRA. SRA. DE ITATÍ (Pquia Santa María Madre del Pueblo),Barrio Padre Ricciardelli,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0143,Parroquia SAN IGNACIO DE LOYOLA,BOLIVAR 225,📍maps,CABA,-3.461.046,-58.373.479,,"Templos, Eduardo",Parroquia y anexos
+PROP_0144,Parroquia SAN ILDEFONSO,GUISE 1939,📍maps,CABA,-34.590.435,-58.412.544,,Templos,Parroquia y anexos
+PROP_0145,Parroquia SAN ISIDRO LABRADOR,SAN ISIDRO LABRADOR AV. 4630,📍maps,CABA,-34.542.412,-58.474.365,SAN ISIDRO LABRADOR AV. 4620 | SAN ISIDRO LABRADOR AV. 4640,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0146,Parroquia SAN JOSE BENITO COTTOLENGO,PIEDRA BUENA AV. 3848,📍maps,CABA,-34.678.214,-58.487.356,,"Templos, Eduardo",Parroquia y anexos
+PROP_0147,Parroquia SAN JOSE DE CALASANZ,LA PLATA AV. 955,📍maps,CABA,-34.626.356,-58.427.011,LA PLATA AV. 935,"Templos, Eduardo",Parroquia y anexos
+PROP_0148,Parroquia SAN JOSE DEL TALAR,NAVARRO 2452,📍maps,CABA,-34.591.104,-58.489.776,NAVARRO 2462,"Índice GCBA, Templos, Eduardo","Parroquia y anexos, Escuela"
+PROP_0149,Parroquia SAN JUAN BAUTISTA,NUEVA YORK 4717,📍maps,CABA,-3.460.556,-58.520.539,NUEVA YORK 4725 | NUEVA YORK 4715,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0150,Parroquia SAN JUAN BAUTISTA EL PRECURSOR,"YRURTIA, ROGELIO 5800",📍maps,CABA,-34.563.201,-58.502.344,,Templos,Parroquia y anexos
+PROP_0151,Parroquia SAN JUAN BOSCO,DORREGO 2106,📍maps,CABA,-34.577.974,-58.439.404,,Templos,Parroquia y anexos
+PROP_0152,Capilla NTRA. SRA. DE LA MEDALLA MILAGROSA I (Pquia Caacupé),Barrio 21-24,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0153,Parroquia SAN JUAN DIEGO CUAUHTLATOATZIN,ESCALADA AV. 2858,📍maps,CABA,-34.663.771,-58.471.245,,"Índice GCBA, Templos, Eduardo","Parroquia y anexos, Comodato GCBA"
+PROP_0154,Parroquia SAN JUAN EVANGELISTA,OLAVARRIA 486,📍maps,CABA,-34.636.626,-58.359.517,,"Templos, Eduardo",Parroquia y anexos
+PROP_0155,Parroquia SAN JUAN MARIA VIANNEY,SAN MARTIN AV. 4460,📍maps,CABA,-34.598.114,-58.482.756,SAN MARTIN AV. 4464,"Relevamiento, Templos, Eduardo","Parroquia y anexos, REVISAR"
+PROP_0156,Parroquia SAN LORENZO MARTIR,"DIAZ, AVELINO 576",📍maps,CABA,-34.635.493,-58.428.295,"DIAZ, AVELINO 566","Relevamiento, Templos, Eduardo","Parroquia y anexos, REVISAR"
+PROP_0157,Parroquia SAN LUCAS,CORDOBA AV. 2135,📍maps,CABA,-34.599.665,-58.398.057,,Templos,Parroquia y anexos
+PROP_0158,Parroquia SAN LUIS GONZAGA,BAIGORRIA 4260,📍maps,CABA,-34.611.368,-58.503.883,,"Templos, Eduardo",Parroquia y anexos
+PROP_0159,Parroquia SAN MARTIN DE PORRES,"LORETO, VIRREY 2161",📍maps,CABA,-34.565.725,-58.448.652,,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0160,Parroquia SAN MARTIN DE TOURS,SAN MARTIN DE TOURS 2949,📍maps,CABA,-34.578.011,-58.403.836,ORTIZ DE OCAMPO y DEL LIBERTADOR AV.,"Templos, Eduardo",Cedidos a terceros
+PROP_0161,Parroquia SAN MIGUEL,24 DE NOVIEMBRE 1651,📍maps,CABA,-3.463.048,-58.409.879,,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0162,Parroquia SAN MIGUEL ARCANGEL,"MITRE, BARTOLOME 896",📍maps,CABA,-34.607.173,-5.837.912,"MITRE, BARTOLOME 884 | MITRE, BARTOLOME 886 | MITRE, BARTOLOME 888 | MITRE, BARTOLOME 892","Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0163,Capilla NTRA. SRA. DE LA MEDALLA MILAGROSA II (Pquia Caacupé),SANTO DOMINGO 3940,📍maps,CABA,-34.655.178,-58.405.451,,Templos,Parroquia y anexos
+PROP_0164,Parroquia SAN PABLO APOSTOL,ALVAREZ THOMAS AV. 799,📍maps,CABA,-34.579.619,-58.453.359,ALVAREZ THOMAS AV. 795 | PALPA y ALVAREZ THOMAS AV.,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0165,Parroquia SAN PANTALEON,MONTE 6865,📍maps,CABA,-3.466.907,-58.497.548,,"Templos, Eduardo",Parroquia y anexos
+PROP_0166,Parroquia SAN PATRICIO,ESTOMBA 1942,📍maps,CABA,-34.572.024,-58.470.292,ECHEVERRIA 1940,"Templos, Eduardo",Parroquia y anexos
+PROP_0167,Parroquia SAN PEDRO (BOCA),"QUINQUELA MARTIN, BENITO 1151",📍maps,CABA,-34.642.586,-5.836.659,"ALMEIRA, HILARIO DE 5035","Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0168,Parroquia SAN PEDRO APOSTOL,BERMUDEZ 2011,📍maps,CABA,-34.619.768,-58.509.055,BERMUDEZ 2025,"Templos, Eduardo",Parroquia y anexos
+PROP_0169,Parroquia SAN PEDRO GONZALEZ TELMO,HUMBERTO 1° 340,📍maps,CABA,-346.207,-58.370.529,HUMBERTO 1° 318,"Relevamiento, Templos",Parroquia y anexos
+PROP_0170,Parroquia SAN PIO X,BASUALDO 750,📍maps,CABA,-34.645.013,-58.498.369,,"Templos, Eduardo",Parroquia y anexos
+PROP_0171,Parroquia SAN RAFAEL ARCANGEL,"VARELA, JOSE PEDRO 5272",📍maps,CABA,-34.615.118,-58.522.608,"VARELA, JOSE PEDRO 5260","Relevamiento, Templos, Eduardo","Parroquia y anexos, REVISAR"
+PROP_0172,Parroquia SAN RAMON NONATO,CERVANTES 1150,📍maps,CABA,-34.627.834,-58.501.448,CERVANTES 1146 | CERVANTES 1148,"Relevamiento, Templos, Eduardo","Parroquia y anexos, REVISAR"
+PROP_0173,Capilla NTRA. SRA. DE LAS FLORES (Pquia NTRA. SRA. de Luján Porteño.),GARZON EUGENIO GENERAL 3961,📍maps,CABA,-34.642.976,-58.476.523,,Templos,Parroquia y anexos
+PROP_0174,Parroquia SAN ROQUE,PLAZA 1160,📍maps,CABA,-34.580.834,-58.467.333,PLAZA 1154 | PLAZA 1186 | PLAZA 1200,"Templos, Eduardo",Parroquia y anexos
+PROP_0175,Parroquia SAN SATURNINO Y SAN JUDAS,MIRAFLORES 2080,📍maps,CABA,-34.644.099,-58.438.821,,"Templos, Eduardo",Parroquia y anexos
+PROP_0176,Parroquia SAN TARSICIO,DEMARIA 4430,📍maps,CABA,-34.575.382,-58.419.834,,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0177,Parroquia SAN VICENTE DE PAUL,ARTIGAS MANUEL DE 6150,📍maps,CABA,-34.651.779,-58.504.795,OLIDEN 1440,"Templos, Eduardo",Parroquia y anexos
+PROP_0178,Parroquia SANTA ADELA,"CAMPOS, LUIS M. AV. 195",📍maps,CABA,-3.457.435,-58.431.641,"DORREGO AV. y CLAY | CAMPOS, LUIS M. AV. 155","Relevamiento, Templos, Eduardo, Alquileres",Parroquia y anexos
+PROP_0179,Parroquia SANTA AMELIA,LINIERS VIRREY 428,📍maps,CABA,-34.615.975,-58.414.276,,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0180,Parroquia SANTA ANA Y SAN JOAQUIN,"LOZANO, PEDRO 3167",📍maps,CABA,-3.460.108,-58.494.899,TINOGASTA 3138,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0181,Parroquia SANTA CATALINA DE ALEJANDRIA,BRASIL 850,📍maps,CABA,-34.626.547,-58.376.648,VIAMONTE 497 | SAN MARTIN 761 | SAN MARTIN 701,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0182,Parroquia SANTA CLARA,ZUVIRIA 2631,📍maps,CABA,-34.642.774,-58.455.845,ZUVIRIA 2641,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0183,Parroquia SANTA CLARA DE ASIS,GURRUCHAGA 1012,📍maps,CABA,-34.593.416,-5.843.569,SERRANO 742,"Templos, Eduardo",Parroquia y anexos
+PROP_0184,Capilla NTRA. SRA. DE LOS DESAMPARADOS (Pquia Virgen de los Desamparados),MORETO 767,📍maps,CABA,-34.644.768,-58.486.392,,Templos,Parroquia y anexos
+PROP_0185,Parroquia SANTA CRUZ,ESTADOS UNIDOS 3150,📍maps,CABA,-34.621.484,-58.410.054,,Templos,Parroquia y anexos
+PROP_0186,Parroquia SANTA ELENA,"SEGUI, JUAN FRANCISCO 3815",📍maps,CABA,-34.577.906,-58.411.827,"SEGUI, JUAN FRANCISCO 3849","Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0187,Parroquia SANTA ELISA,SALTA 2290,📍maps,CABA,-34.633.856,-58.382.466,SALTA 2270,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0188,Parroquia SANTA FRANCISCA JAVIER CABRINI,"BILBAO, FRANCISCO 2241",📍maps,CABA,-34.633.745,-58.457.848,,"Índice GCBA, Relevamiento, Templos, Eduardo","Parroquia y anexos, REVISAR"
+PROP_0189,Parroquia SANTA INES Y CAMILO DE LELIS,AVALOS 250,📍maps,CABA,-34.593.829,-58.466.613,AVALOS 260 | AVALOS 278 | AVALOS 282,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0190,Parroquia SANTA ISABEL DE HUNGRIA,ESTRADA 823,📍maps,CABA,-34.631.976,-58.436.699,ESTRADA 1057 | ESTRADA 1065 | ESTRADA 833,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0191,Parroquia SANTA JULIA,"ALBERDI, JUAN BAUTISTA AV. 1195",📍maps,CABA,-34.623.531,-5.844.465,"ALBERDI, JUAN BAUTISTA AV. 1163 | ALBERDI, JUAN BAUTISTA AV. 1181","Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0192,Parroquia SANTA LUCIA (PALERMO),GASCON 1372,📍maps,CABA,-34.594.475,-58.422.967,GASCON 1361 | GASCON 1365,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0193,"Parroquia SANTA LUCIA, VIRGEN Y MARTIR (BARRACAS)","MONTES DE OCA, MANUEL AV. 550",📍maps,CABA,-34.634.621,-58.375.258,"MONTES DE OCA, MANUEL AV. 320","Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0194,Parroquia SANTA MAGDALENA SOFIA BARAT,"CARRIL, SALVADOR MARIA DEL AV. 2458",📍maps,CABA,-34.587.662,-58.493.169,"CARRIL, SALVADOR MARIA DEL AV. 2460","Templos, Eduardo","Parroquia y anexos, REVISAR"
+PROP_0195,Capilla NTRA. SRA. DE LUJÁN (Pquia Cristo Obrero),SN - VILLA 31 BIS,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0196,Parroquia SANTA MARGARITA MARIA ALACOQUE,PICO 4950,📍maps,CABA,-34.551.668,-58.498.125,PICO 4962,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0197,Parroquia SANTA MARIA,LA PLATA AV. 286,📍maps,CABA,-34.618.063,-58.428.494,REPUBLICA BOLIVARIANA DE VENEZUELA y LA PLATA AV.,"Templos, Eduardo","Parroquia y anexos, REVISAR"
+PROP_0198,Parroquia SANTA MARIA DE BETANIA,MEDRANO AV. 752,📍maps,CABA,-34.601.294,-58.420.772,MEDRANO AV. 760 | MEDRANO AV. 744,"Índice GCBA, Templos, Eduardo","Escuela, Parroquia y anexos"
+PROP_0199,Parroquia SANTA MARIA DE LOS ANGELES,"NAON, ROMULO 3250",📍maps,CABA,-34.559.414,-58.479.239,"NAON, ROMULO 3210","Templos, Eduardo",Parroquia y anexos
+PROP_0200,Parroquia SANTA MARIA MADRE DEL PUEBLO,"MANZANA 3,CASA 1 VILLA 1-11-14",📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0201,Parroquia SANTA MARIA TERESA GORETTI,ESCALADA AV. 1150,📍maps,CABA,-34.648.304,-58.490.842,ESCALADA AV. 1192 | ESCALADA AV. 1198,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0202,Parroquia SANTA RITA DE CASIA,CAMARONES 3443,📍maps,CABA,-34.615.858,-58.487.234,CAMARONES 3449,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0203,Parroquia SANTA TERESA DEL NIÑO JESUS,QUIROS 2941,📍maps,CABA,-34.589.863,-58.476.191,CHORROARIN AV. y DE LOS CONSTITUYENTES AV.,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0204,Parroquia SANTIAGO APOSTOL,"RICCHERI, PABLO, TTE. GRAL. 3189",📍maps,CABA,-34.548.358,-5.845.313,"RICCHERI, PABLO, TTE. GRAL. 3199","Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0205,Capilla NTRA. SRA. DE LUJÁN (Pquia NTRA. SRA. del Carmen (Lugano)),SN - LUGANO,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0206,Parroquia SANTISIMA CRUZ,"ARTIGAS, JOSE GERVASIO, GRAL. 2064",📍maps,CABA,-34.608.127,-5.847.687,"ARTIGAS, JOSE GERVASIO, GRAL. 2057 | ARTIGAS, JOSE GERVASIO, GRAL. 2056 | ARTIGAS, JOSE GERVASIO, GRAL. 2040 | ARTIGAS, JOSE GERVASIO, GRAL. 2052","Índice GCBA, Relevamiento, Templos, Eduardo",Otros
+PROP_0207,Parroquia SANTISIMA TRINIDAD,CABILDO AV. 3680,📍maps,CABA,-34.549.289,-58.468.094,"LARRALDE, CRISOLOGO AV. 2450","Templos, Eduardo",Parroquia y anexos
+PROP_0208,Parroquia SANTISIMO REDENTOR,LARREA 1252,📍maps,CABA,-3.459.254,-58.400.253,BERUTI y LARREA | LARREA 1254 | LARREA 1270 | LARREA 1276,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0209,Parroquia SANTO CRISTO,"FERNANDEZ DE LA CRUZ, F., GRAL. AV. 6820",📍maps,CABA,-3.468.987,-58.477.731,,"Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0210,Parroquia SANTOS SABINO Y BONIFACIO,PRIMERA JUNTA 4095,📍maps,CABA,-34.648.874,-58.472.115,MONTE 4149 | MONTE 4151 | PRIMERA JUNTA 4083,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0211,Parroquia SEÑOR DEL MILAGRO,MOLDES 1157,📍maps,CABA,-34.570.322,-5.845.165,MOLDES 1110 | MOLDES 1155 | MOLDES 1180,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0212,Parroquia SOLEDAD DE MARIA SANTISIMA,MOSCONI GENERAL AV. 4119,📍maps,CABA,-34.595.594,-58.517.453,MOSCONI GENERAL AV. S/N,"Templos, Eduardo",Parroquia y anexos
+PROP_0213,Parroquia TODOS LOS SANTOS Y ANIMAS,OTERO 145,📍maps,CABA,-34.593.349,-58.451.928,,"Relevamiento, Templos",Parroquia y anexos
+PROP_0214,Parroquia TRANSITO DE LA SANTISIMA VIRGEN,"PERON, JUAN DOMINGO, TTE. GENERAL 3333",📍maps,CABA,-34.607.451,-58.413.296,"PERON, JUAN DOMINGO, TTE. GENERAL 3317 | PERON, JUAN DOMINGO, TTE. GENERAL 3329 | PERON, JUAN DOMINGO, TTE. GENERAL 3334","Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0215,Capilla NTRA. SRA. DEL BUEN CONSEJO (Pquia Natividad de María Santísima),SANTA MARIA DEL BUEN AIRE 953,📍maps,CABA,-34.654.198,-58.381.022,,Templos,Parroquia y anexos
+PROP_0216,Parroquia TRANSITO DE SAN JOSE,"CASTRO, EMILIO AV. 6391",📍maps,CABA,-34.650.104,-58.511.577,Ercilia s/n,"Templos, Eduardo",Parroquia y anexos
+PROP_0217,Parroquia VIRGEN DE LOS DESAMPARADOS,"RODO, JOSE E. 4203",📍maps,CABA,-346.423,-58.483.587,"RODO, JOSE E. 4205","Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0218,Parroquia VIRGEN DE LOS MILAGROS DE CAACUPE,"CRUZ, OSVALDO 3470",📍maps,CABA,-34.656.083,-58.396.992,PEPIRI 1442,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0219,Parroquia VIRGEN DE LUJAN,"MASANTONIO, HERMINIO 2990",📍maps,CABA,-34.646.345,-58.403.496,MONTEAGUDO 830,"Templos, Eduardo",Parroquia y anexos
+PROP_0220,Parroquia VIRGEN INMACULADA,"ACOSTA, MARIANO 2451",📍maps,CABA,-34.655.207,-58.455.694,,Templos,Parroquia y anexos
+PROP_0221,Parroquia VIRGEN INMACULADA DE LOURDES,RIVADAVIA AV. 6280,📍maps,CABA,-34.626.135,-58.455.108,,"Templos, Eduardo",Parroquia y anexos
+PROP_0222,Santuario JESUS SACRAMENTADO,CORRIENTES AV. 4433,📍maps,CABA,-3.460.241,-58.427.826,PRINGLES 857 | PRINGLES 859,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0223,Capilla NTRA. SRA. DEL ROSARIO (Pquia Cristo Obrero),SN - VILLA 31 BIS,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0224,Capilla NTRA. SRA. QUE DESATA LOS NUDOS (Pquia Caacupé),SN - VILLA 21-24,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0225,Capilla NTRO. SEÑOR DEL MAILÍN (Pquia Caacupé),SN - VILLA 21-24,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0226,Capilla SAGRADO CORAZON (Pquia San Roque),SN - ASENTAMIENTO FRAGA 900,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0227,Capilla SAGRADOS CORAZONES (Pquia Jesús Salvador),"CHILAVERT, MARTINIANO, CORONEL y HUDSON",📍maps,CABA,-34.683.646,-58.472.746,,Templos,Parroquia y anexos
+PROP_0228,Capilla SAN ANTONIO (Pquia Caacupé),SN - VILLA 21-24,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0229,Capilla SAN ANTONIO DE PADUA (Pquia Santa María Madre del Pueblo),SN - VILLA 21-24,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0230,Capilla SAN BLAS (Pquia Caacupé),SN - VILLA 21-24,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0231,Capilla SAN CAYETANO (Pquia NTRA. SRA. del Rosario del Milagro),SN - VILLA PIRELLI,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0232,Capilla SAN CAYETANO (Pquia NTRA. SRA. del Carmen (Lugano)),SN - LUGANO,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0233,Capilla SAN EXPEDITO (Pquia Caacupé),SN - VILLA 21-24,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0234,Capilla SAN FRANCISCO (Pquia NTRA. SRA. del Carmen (Lugano)),SN - LUGANO,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0235,Capilla SAN JOSÉ (Pquia NTRA. SRA. de Fátima (F)),SN - LOS PILETONES,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0236,Capilla SAN JOSÉ DE LA MONTAÑA (Pquia San Antonio (D)),HABANA 3964,📍maps,CABA,-34.597.759,-58.513.186,,Templos,Parroquia y anexos
+PROP_0237,Capilla SAN JUAN (Pquia Caacupé),SN - VILLA 21-24,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0238,Capilla SAN JUAN BAUTISTA (Pquia María Madre de la Esperanza),SN - VILLA 20,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0239,Capilla SAN JUAN BAUTISTA (Pquia Santa María Madre del Pueblo),SN - SOLDATI,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0240,Capilla SAN LUIS REY (Pquia NTRA. SRA. de las Mercedes),MONROE y HUSARES,📍maps,CABA,-34.549.661,-58.445.377,,Templos,Parroquia y anexos
+PROP_0241,Capilla SANTA MARÍA DE LABARDÉN (Pquia Caacupé),"VILLAFAÑE, WENCESLAO 107",📍maps,CABA,-34.630.471,-58.357.228,,Templos,Parroquia y anexos
+PROP_0242,Capilla SANTA TERESITA (Pquia Virgen Inmaculada),SN - ASENTAMIENTO LOS PINOS,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0243,Capilla SANTA TERESITA (Pquia NTRA. SRA. de la Piedad),SARMIENTO 1272,📍maps,CABA,-3.460.519,-58.384.664,,Templos,Parroquia y anexos
+PROP_0244,Capilla SEÑOR DE MAILÍN (Pquia Caacupé),SN - VILLA 21-24,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0245,Capilla VIRGEN DE ITATÍ (Pquia Caacupé),SN - VILLA 21-24,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0246,Capilla VIRGEN DEL CARMEN (Pquia Caacupé),"VILLAFAÑE, WENCESLAO 110",📍maps,CABA,-34.630.515,-58.357.056,,Templos,Parroquia y anexos
+PROP_0247,Capilla VIRGENCITA DE LUJÁN (Pquia Virgen Inmaculada),SN - VILLA FÁTIMA,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0248,Centro Misionero CRISTO RESUCITADO (Pquia Santo Cristo Pertenece al Arzobispado de Buenos Aires Tiene Libros Sacramentales),SN - VILLA 19,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0249,Centro Misionero MADRE TERESA DE CALCUTA (Pquia San Saturnino y San Judas Barrio Bernardino Rivadavia),SN - BARRIO RIVADAVIA I,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0250,Centro Misionero NTRA. SRA. DE LUJÁN (Pquia Virgen Inmaculada de Lourdes),"SEGUI, F. J., ALTE. 251",📍maps,CABA,-34.621.902,-58.453.254,,Templos,Parroquia y anexos
+PROP_0251,Centro Misionero NTRA. SRA. DE LUJÁN (Pquia Caacupé),SN - ASENTAMIENTO MAGALDI,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0252,Centro Misionero PADRE DANIEL DE LA SIERRA (Pquia Caacupé),PEPIRI 1462,📍maps,CABA,-34.654.896,-5.840.627,PEPIRI 1472,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0253,Centro Misionero SAN CAYETANO (Pquia Caacupé),SN - VILLA 21-24,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0254,Centro Misionero SAN CAYETANO DEL NIÑO JESÚS (Pquia Niño Jesús),CORVALAN 3565,📍maps,CABA,-34.670.527,-58.469.081,,"Índice GCBA, Relevamiento, Templos, Eduardo",Parroquia y anexos
+PROP_0255,Centro Misionero SAN JOSE (Pquia Caacupé),SN - VILLA 21-24,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0256,Centro Misionero SAN JOSÉ (Pquia NTRA. SRA. de Fátima),SN - LOS PILETONES,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0257,Centro Misionero SANTA BERNARDITA (Pquia ?),ZAPIOLA 3181,📍maps,CABA,-34.556.336,-58.471.352,,"Índice GCBA, Templos, Eduardo",Parroquia y anexos
+PROP_0258,Centro Misionero SANTA MARÍA JOSEFA DEL CORAZÓN DE JESÚS SANCHO (Pquia Niño Jesús),SN - LUGANO,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0259,Centro Misionero TRENCITO DE VIDA (Pquia Caacupé),CALIFORNIA 3500,📍maps,CABA,-34.650.081,-58.396.614,,Templos,Parroquia y anexos
+PROP_0260,Centro Misionero TRES ROSAS (Pquia Caacupé),SN - VILLA 21-24,📍maps,CABA,,,,Templos,Parroquia y anexos
+PROP_0261,Iglesia CORAZON DE JESUS,GORRITI JUANA MANUELA 1201,📍maps,CABA,-34.612.187,-58.365.633,,Templos,Parroquia y anexos
+PROP_0262,Iglesia CORAZON EUCARISTICO DE JESUS,MONTEVIDEO 1370,📍maps,CABA,-34.593.507,-58.390.094,,Templos,Parroquia y anexos
+PROP_0263,Iglesia CORPUS CHRISTI,AMENABAR 450,📍maps,CABA,-34.574.126,-58.443.856,,"Relevamiento, Templos",Parroquia y anexos
+PROP_0264,Iglesia DEL NAZARENO,INDEPENDENCIA AV. 1166,📍maps,CABA,-34.617.766,-58.382.467,,Templos,Parroquia y anexos
+PROP_0265,Iglesia DEL SALVADOR,CALLAO AV. 580,📍maps,CABA,-34.602.318,-58.392.647,,Templos,Parroquia y anexos
+PROP_0266,Iglesia DIVINO ROSTRO,GALLARDO AV 576,📍maps,CABA,-3.460.543,-58.438.906,,Templos,Parroquia y anexos
+PROP_0267,Iglesia DIVINO SALVADOR,SALTA 870,📍maps,CABA,-34.618.155,-58.382.955,,Templos,Parroquia y anexos
+PROP_0268,Iglesia INMACULADA CONCEPCION,"BRAVO, MARIO 563",📍maps,CABA,-34.602.688,-5.841.653,,Templos,Parroquia y anexos
+PROP_0269,Iglesia LA PURISIMA DE SAN GABRIEL BROCHERO,CARACAS 533,📍maps,CABA,-34.623.266,-58.463.435,CARACAS 531,"Índice GCBA, Templos, Eduardo",Instituciones diocesanas propias
+PROP_0270,Iglesia MADRE R.ADMIRABLE de SCHONSTATT,ECHEVERRIA 3632,📍maps,CABA,-34.570.337,-58.468.143,,Templos,Parroquia y anexos
+PROP_0271,Iglesia MARIA AUXILIADORA,YAPEYU 172,📍maps,CABA,-3.461.402,-58.421.764,,Templos,Parroquia y anexos
+PROP_0272,Iglesia MARIA INMACULADA,GALLO 986,📍maps,CABA,-34.598.451,-58.412.052,,Templos,Parroquia y anexos
+PROP_0273,Iglesia MATER MISERICORDIAE,24 DE NOVIEMBRE 865,📍maps,CABA,-34.621.186,-58.410.837,,"Templos, Eduardo",Parroquia y anexos
+PROP_0274,Iglesia MATER MISERICORDIAE,MORENO 1669,📍maps,CABA,-34.612.491,-58.390.002,,Templos,Parroquia y anexos
+PROP_0275,Iglesia NTRA. SRA. de la MERCED de SION,"MITRE, BARTOLOME 3459",📍maps,CABA,-34.609.385,-58.415.359,,Templos,Parroquia y anexos
+PROP_0276,Iglesia NTRA. SRA. de la MISERICORDIA,AZCUENAGA 1654,📍maps,CABA,-34.589.946,-58.397.032,,Templos,Parroquia y anexos
+PROP_0277,Iglesia NTRA. SRA. de la MISERICORDIA,CABILDO AV. 1333,📍maps,CABA,-34.567.564,-58.449.349,,Templos,Parroquia y anexos
+PROP_0278,Iglesia NTRA. SRA. de la MISERICORDIA,DIRECTORIO AV. 2118,📍maps,CABA,-34.632.364,-58.456.834,,Templos,Parroquia y anexos
+PROP_0279,Iglesia NTRA. SRA. de LUJAN,JUJUY AV. 2181,📍maps,CABA,-34.635.321,-58.399.222,JUJUY AV. 2179,"Templos, Eduardo",Cedidos a terceros
+PROP_0280,Iglesia NTRA. SRA. del HUERTO,MOSCONI GENERAL AV. 3054,📍maps,CABA,-34.587.537,-58.504.108,,Templos,Parroquia y anexos
+PROP_0281,Iglesia NTRA. SRA. del HUERTO,RINCON 827,📍maps,CABA,-34.619.032,-58.396.016,,Templos,Parroquia y anexos
+PROP_0282,Iglesia NTRO. SEÑOR de la SALUD,"ANCHORENA, TOMAS MANUEL DE, DR. 1563",📍maps,CABA,-34.592.109,-58.403.652,,Templos,Parroquia y anexos
+PROP_0283,Iglesia REGINA MARTYRUM,"YRIGOYEN, HIPOLITO 2025",📍maps,CABA,-346.105,-58.395.258,"YRIGOYEN, HIPOLITO 2005 | YRIGOYEN, HIPOLITO 2031 | SARANDI 65","Índice GCBA, Templos, Eduardo","Cedidos a terceros, Parroquia y anexos"
+PROP_0284,Iglesia SAGRADA FAMILIA,"ARTIGAS, JOSE GERVASIO, GRAL. 1276",📍maps,CABA,-34.615.958,-58.470.611,,Templos,Parroquia y anexos
+PROP_0285,Iglesia SAGRADA FAMILIA DE NAZARETH,CONESA 1076,📍maps,CABA,-34.572.703,-58.452.237,,Templos,Parroquia y anexos
+PROP_0286,Iglesia SAGRADO CORAZON DE JESUS,"PELLEGRINI, CARLOS 1441",📍maps,CABA,-34.591.159,-58.381.485,,Templos,Parroquia y anexos
+PROP_0287,Iglesia SAGRADO CORAZON DE JESUS,COCHABAMBA 1470,📍maps,CABA,-34.624.024,-58.386.423,,Templos,Parroquia y anexos
+PROP_0288,Iglesia SAN ANTONIO,MEXICO 4050,📍maps,CABA,-34.620.327,-58.423.329,,Templos,Parroquia y anexos
+PROP_0289,Unidad comercial,BOLIVAR 218,📍maps,CABA,-34.610.377,-58.373.413,"ALSINA, ADOLFO 500 | BOLIVAR 216","Relevamiento, Eduardo, Alquileres",Comerciales
+PROP_0290,Unidad comercial,PARAGUAY 1606,📍maps,CABA,-34.598.526,-58.389.881,,Alquileres,Comerciales
+PROP_0291,Unidad comercial,PARAGUAY 1616,📍maps,CABA,-34.598.537,-58.390.027,,Alquileres,Comerciales
+PROP_0292,Unidad comercial,RIVADAVIA AV. 413,📍maps,CABA,-34.607.842,-58.372.484,RIVADAVIA AV. 423,"Índice GCBA, Relevamiento, Eduardo, Alquileres","Comerciales, Instituciones diocesanas propias"
+PROP_0293,Unidad comercial,PORTELA 239,📍maps,CABA,-34.635.057,-58.472.081,,"Índice GCBA, Eduardo, Alquileres",Cáritas
+PROP_0294,Unidad comercial,RIVADAVIA AV. 1399,📍maps,CABA,-34.608.748,-58.386.172,RIVADAVIA AV. 1391 | RIVADAVIA AV. 1395 | URUGUAY 17 | URUGUAY 36,"Índice GCBA, Eduardo, Alquileres",Comerciales
+PROP_0295,Unidad comercial,RIVADAVIA AV. 415,📍maps,CABA,-34.607.859,-58.372.717,,Alquileres,Comerciales
+PROP_0296,Unidad comercial,RIVADAVIA AV. 437,📍maps,CABA,-34.607.894,-58.373.197,,"Eduardo, Alquileres","Instituciones diocesanas propias, Comerciales"
+PROP_0297,Unidad comercial,RIVADAVIA AV. 851,📍maps,CABA,-34.608.229,-58.378.597,,Alquileres,Comerciales
+PROP_0298,Unidad comercial,RIVADAVIA AV. 857,📍maps,CABA,-34.608.229,-58.378.597,,Alquileres,Comerciales
+PROP_0299,Unidad comercial,"RODO, JOSE E. 4191",📍maps,CABA,-34.641.769,-58.482.978,,Alquileres,Comerciales
+PROP_0300,Unidad comercial,RODRIGUEZ PEÑA 898,📍maps,CABA,-34.598.944,-58.391.691,,Alquileres,Comerciales
+PROP_0301,Unidad comercial,CALLAO AV. 843,📍maps,CABA,-34.599.032,-58.392.907,CALLAO AV. 853 | PARAGUAY 1706 | PARAGUAY 1766 | RODRIGUEZ PEÑA 834 | RODRIGUEZ PEÑA 846,"Índice GCBA, Alquileres",Comerciales
+PROP_0302,Unidad comercial,SALGUERO JERONIMO 1862,📍maps,CABA,-34.588.517,-58.415.072,,Alquileres,Comerciales
+PROP_0303,Unidad comercial,SAN MARTIN AV. 6760,📍maps,CABA,-3.459.236,-58.509.159,SAN MARTIN AV. 6780,Alquileres,Comerciales
+PROP_0304,Unidad comercial,SANTA FE AV. 2018,📍maps,CABA,-34.595.771,-58.396.455,SANTA FE AV. 2022 | SANTA FE AV. 2020,"Índice GCBA, Eduardo, Alquileres",Comerciales
+PROP_0305,Unidad comercial,SARMIENTO 2302,📍maps,CABA,-34.606.112,-58.399.479,SARMIENTO 2310 | PASTEUR 292 | PASTEUR 294,"Índice GCBA, Eduardo, Alquileres",Comerciales
+PROP_0306,Unidad comercial,SARMIENTO 3123,📍maps,CABA,-34.606.639,-58.410.363,,Alquileres,Comerciales
+PROP_0307,Unidad comercial,TINOGASTA 3088,📍maps,CABA,-34.599.714,-5.849.423,TINOGASTA 3090,"Índice GCBA, Eduardo, Alquileres",Parroquia y anexos
+PROP_0308,Unidad comercial,"URIBURU JOSE E., PRES. 1141",📍maps,CABA,-34.594.857,-58.398.258,,"Eduardo, Alquileres",Comerciales
+PROP_0309,Unidad comercial,"URIBURU JOSE E., PRES. 582",📍maps,CABA,-34.602.434,-58.398.522,,Alquileres,Comerciales
+PROP_0310,Unidad comercial,WARNES 2676,📍maps,CABA,-34.597.134,-58.476.315,,Alquileres,Comerciales
+PROP_0311,Unidad comercial,COLOMBRES 83,📍maps,CABA,-34.612.494,-58.419.309,COLOMBRES 81,"Eduardo, Alquileres","Comerciales, en Juicio"
+PROP_0312,Unidad comercial,YERBAL 5210,📍maps,CABA,-34.636.575,-58.499.819,YERBAL 5230 | YERBAL 5214,"Índice GCBA, Relevamiento, Eduardo, Alquileres",Parroquia y anexos
+PROP_0313,Unidad comercial,CONCORDIA 4508,📍maps,CABA,-3.459.291,-58.508.639,,Alquileres,Comerciales
+PROP_0314,Unidad comercial,HOMERO 494,📍maps,CABA,-34.642.834,-58.493.866,,"Eduardo, Alquileres",Comerciales
+PROP_0315,Unidad comercial,"HERNANDEZ, JOSE 1863",📍maps,CABA,-3.456.283,-58.448.473,"HERNANDEZ, JOSE 1871","Índice GCBA, Eduardo, Alquileres",Comerciales
+PROP_0316,Unidad comercial,"ALBERDI, JUAN BAUTISTA AV. 902",📍maps,CABA,-34.622.972,-58.440.961,"ALBERDI, JUAN BAUTISTA AV. 906 | BARCO CENTENERA DEL 315","Índice GCBA, Eduardo, Alquileres",Cáritas
+PROP_0317,Unidad comercial,"URIBURU, J.E. 562",📍maps,CABA,-34.602.633,-58.398.499,,Alquileres,Comerciales
+PROP_0318,Unidad comercial,WARNES AV. 2672,📍maps,CABA,-34.597.134,-58.476.315,,"Eduardo, Alquileres",Instituciones diocesanas propias
+PROP_0319,Unidad comercial,"ALSINA, ADOLFO 1432",📍maps,CABA,-34.611.151,-58.386.588,,"Índice GCBA, Eduardo, Alquileres",Comerciales
+PROP_0320,Unidad comercial,AMENABAR 3141,📍maps,CABA,-34.554.221,-58.466.715,,"Índice GCBA, Eduardo, Alquileres",Comerciales
+PROP_0321,Unidad comercial,ARCOS 1737,📍maps,CABA,-34.563.789,-58.450.858,,Alquileres,Comerciales
+PROP_0322,Unidad comercial,CASEROS AV. 2412,📍maps,CABA,-34.635.523,-58.396.352,CASEROS AV. 2428,"Índice GCBA, Alquileres",Comerciales
+PROP_0323,Unidad comercial,"ROCA, JULIO A., PRESIDENTE DIAGONAL SUR AV. 562",📍maps,CABA,-34.609.901,-58.374.246,"ROCA, JULIO A., PRESIDENTE DIAGONAL SUR AV. 556 | ALSINA, ADOLFO 541 | ALSINA, ADOLFO 543","Índice GCBA, Alquileres",Comerciales
+PROP_0324,Unidad comercial,SANTA FE AV. 2265,📍maps,CABA,-34.595.141,-5.839.937,SANTA FE AV. 2267,"Relevamiento, Eduardo, Alquileres",Comerciales
+PROP_0325,Unidad comercial,CABILDO AV. 2370,📍maps,CABA,-34.559.547,-58.458.982,CIUDAD DE LA PAZ 2369,"Índice GCBA, Alquileres",Comerciales
+PROP_0326,Unidad comercial,CORDOBA AV. 1711,📍maps,CABA,-34.599.489,-58.391.719,CORDOBA AV. 1701 | RODRIGUEZ PEÑA 812,"Índice GCBA, Alquileres",Comerciales
+PROP_0327,Unidad comercial,AVELLANEDA 1124,📍maps,CABA,-34.617.717,-58.447.093,AVELLANEDA 1134 | AVELLANEDA 1126 | AVELLANEDA 1128 | AVELLANEDA 1130 | AVELLANEDA 1132,"Índice GCBA, Eduardo, Alquileres",Comerciales
+PROP_0328,Unidad comercial,AZCUENAGA 1144,📍maps,CABA,-34.594.615,-58.399.748,AZCUENAGA 1150,"Índice GCBA, Alquileres",Comerciales
+PROP_0329,Unidad comercial,AZCUENAGA 1852,📍maps,CABA,-34.588.225,-58.395.649,,Alquileres,Comerciales
+PROP_0330,Unidad comercial,BAEZ 439,📍maps,CABA,-34.571.132,-5.843.265,BAEZ 443,"Índice GCBA, Alquileres",Comerciales
+PROP_0331,Unidad comercial,BAHIA BLANCA 26,📍maps,CABA,-34.632.995,-58.480.617,,Alquileres,Comerciales
+PROP_0332,Unidad comercial,"BOCAYUVA, QUINTINO 653",📍maps,CABA,-34.619.638,-58.422.436,"BOCAYUVA, QUINTINO 655","Índice GCBA, Eduardo, Alquileres",Comerciales
+PROP_0333,Unidad comercial,BOEDO AV. 749,📍maps,CABA,-3.462.162,-5.841.653,BOEDO AV. 753,"Relevamiento, Eduardo, Alquileres","Comerciales, en Juicio"
+PROP_0334,Unidad comercial,CALLAO AV. 801,📍maps,CABA,-34.599.406,-58.392.869,CALLAO AV. 835 | CORDOBA AV. 1793 | CORDOBA AV. 1799 | CALLAO AV. 857 | CALLAO AV. 877 | PARAGUAY 1792 | PARAGUAY 1800 | CALLAO AV. 831,"Índice GCBA, Relevamiento, Eduardo, Alquileres",Comerciales
+PROP_0335,Unidad comercial,BA CAMPO SAN CASIMIRO,📍maps,CABA,,,,Alquileres,Comerciales
+PROP_0336,Unidad comercial,BA CAMPO SAN MIGUEL,📍maps,CABA,,,,Alquileres,Comerciales
+PROP_0337,Unidad comercial,BA CAMPO SANTA RITA,📍maps,CABA,,,,Alquileres,Comerciales
+PROP_0338,Unidad comercial,"CAPDEVILA, ARTURO 1638",📍maps,CABA,-34.598.966,-58.391.091,"CAPDEVILA, ARTURO 1660",Alquileres,Comerciales
+PROP_0339,Unidad comercial,CATAMARCA 177,📍maps,CABA,-3.461.216,-58.407.114,CATAMARCA 175 | CATAMARCA 173,"Índice GCBA, Eduardo, Alquileres",Cáritas
+PROP_0340,Unidad comercial,CHARCAS 3153,📍maps,CABA,-34.592.598,-58.410.413,CHARCAS 3159 | SANCHEZ DE BUSTAMANTE 1605 | SANCHEZ DE BUSTAMANTE 1613 | CHARCAS 3155 | CHARCAS 3157,"Índice GCBA, Eduardo, Alquileres",Comerciales
+PROP_0341,Unidad comercial,CHARCAS 3585,📍maps,CABA,-34.589.322,-58.415.313,CHARCAS 3587,"Índice GCBA, Relevamiento, Eduardo, Alquileres",Comerciales
+PROP_0342,Unidad comercial,CHARCAS 3647,📍maps,CABA,-34.588.639,-58.416.373,CHARCAS 3649,"Índice GCBA, Relevamiento, Eduardo, Alquileres",Cedidos a terceros
+PROP_0343,Unidad comercial,Sin altura,📍maps,CABA,,,,Alquileres,Comerciales
+PROP_0344,Unidad comercial,CONESA 618,📍maps,CABA,-34.575.217,-58.446.984,CONESA 620,"Eduardo, Alquileres",Escuela
+PROP_0345,Unidad comercial,CORDOBA AV. 1661,📍maps,CABA,-34.599.433,-58.390.807,CORDOBA AV. 1667,"Índice GCBA, Alquileres",Comerciales
+PROP_0346,Unidad comercial,CORDOBA AV. 1783,📍maps,CABA,-34.599.534,-58.392.575,CORDOBA AV. 1785,"Índice GCBA, Relevamiento, Alquileres",Comerciales
+PROP_0347,Unidad comercial,CORDOBA AV. 1729,📍maps,CABA,-34.599.498,-58.391.898,CORDOBA AV. 1727,"Índice GCBA, Alquileres",Comerciales
+PROP_0348,Unidad comercial,CORDOBA AV. 1733,📍maps,CABA,-34.599.504,-5.839.201,CORDOBA AV. 1735,"Índice GCBA, Alquileres",Comerciales
+PROP_0349,Unidad comercial,CORDOBA AV. 1739,📍maps,CABA,-34.599.512,-58.392.151,CORDOBA AV. 1749,"Índice GCBA, Alquileres",Comerciales
+PROP_0350,Unidad comercial,CORDOBA AV. 1751,📍maps,CABA,-34.599.519,-58.392.289,CORDOBA AV. 1757,"Índice GCBA, Alquileres",Comerciales
+PROP_0351,Unidad comercial,CORDOBA AV. 1765,📍maps,CABA,-34.599.526,-58.392.429,CORDOBA AV. 1771 | CORDOBA AV. 1767 | CORDOBA AV. 1769,"Índice GCBA, Alquileres",Comerciales
+PROP_0352,Unidad comercial,CORDOBA AV. 2565,📍maps,CABA,-34.598.558,-58.403.349,CORDOBA AV. 2561,"Índice GCBA, Eduardo, Alquileres",Comerciales
+PROP_0353,Unidad comercial,"CUBAS, JOSE 3572",📍maps,CABA,-34.594.056,-5.850.897,"CUBAS, JOSE 3574","Índice GCBA, Alquileres",Comerciales
+PROP_0354,Unidad comercial,DEAN FUNES 402,📍maps,CABA,-34.615.171,-58.407.183,,Alquileres,Comerciales
+PROP_0355,Unidad comercial,"ALVAREZ, DONATO, TTE. GRAL. AV. 2034",📍maps,CABA,-34.604.021,-58.464.444,,Alquileres,Comerciales
+PROP_0356,Unidad comercial,BA - LA MONTONERA,📍maps,CABA,,,,Alquileres,Comerciales
+PROP_0357,Unidad comercial,DORREGO AV. 2896,📍maps,CABA,-34.574.283,-58.431.142,,Alquileres,Comerciales
+PROP_0358,Unidad comercial,DORREGO AV. 2898,📍maps,CABA,-34.574.305,-58.431.211,,"Eduardo, Alquileres",Parroquia y anexos
+PROP_0359,Unidad comercial,"ARANGUREN, JUAN F., DR. 2686",📍maps,CABA,-34.624.246,-58.469.003,,Alquileres,Comerciales
+PROP_0360,Unidad comercial,"ARANGUREN, JUAN F., DR. 2690",📍maps,CABA,-34.624.246,-58.469.003,,Alquileres,Comerciales
+PROP_0361,Unidad comercial,FERNANDEZ 587,📍maps,CABA,-34.641.901,-58.483.535,,Alquileres,Comerciales
+PROP_0362,Unidad comercial,FERNANDEZ 598,📍maps,CABA,-34.641.961,-58.483.332,,Alquileres,Comerciales
+PROP_0363,Unidad comercial,FRENCH 2442,📍maps,CABA,-34.590.649,-58.399.681,,"Relevamiento, Eduardo, Alquileres",Instituciones diocesanas propias
+PROP_0364,Unidad comercial,GUTENBERG 2887,📍maps,CABA,-3.459.318,-58.495.704,,Alquileres,Comerciales
+PROP_0365,Unidad comercial,HOMERO 496,📍maps,CABA,-34.642.834,-58.493.866,,Alquileres,Comerciales
+PROP_0366,Unidad comercial,JUNCAL 3051,📍maps,CABA,-34.586.904,-58.407.796,,Alquileres,Comerciales
+PROP_0367,Unidad comercial,LA RIOJA 530,📍maps,CABA,-34.616.822,-58.408.148,,"Eduardo, Alquileres","Comerciales, en Juicio"
+PROP_0368,Unidad comercial,LAVALLE 1564,📍maps,CABA,-34.603.034,-58.388.936,LAVALLE 1566,"Índice GCBA, Eduardo, Alquileres",Comerciales
+PROP_0369,Unidad comercial,LIBERTAD 345,📍maps,CABA,-34.604.505,-58.383.636,LIBERTAD 357 | LIBERTAD 349 | LIBERTAD 351 | LIBERTAD 353,"Índice GCBA, Eduardo, Alquileres",Comerciales
+PROP_0370,Unidad comercial,LOYOLA 901,📍maps,CABA,-34.592.671,-58.438.601,LOYOLA 915 | THAMES 904 | THAMES 906,"Índice GCBA, Eduardo, Alquileres",Comerciales
+PROP_0371,Unidad comercial,MAIPU 730,📍maps,CABA,-34.599.592,-58.376.858,MAIPU 732 | MAIPU 738 | MAIPU 740 | MAIPU 742,"Eduardo, Alquileres",Comerciales
+PROP_0372,Unidad comercial,"ALVEAR, MARCELO T. DE 764",📍maps,CABA,-3.459.636,-58.377.857,"ALVEAR, MARCELO T. DE 770 | ALVEAR, MARCELO T. DE 768","Índice GCBA, Eduardo, Alquileres",Comerciales
+PROP_0373,Unidad comercial,MEXICO 642,📍maps,CABA,-34.614.989,-58.375.259,MEXICO 644,"Eduardo, Alquileres","Comerciales, en Juicio"
+PROP_0374,Unidad comercial,MOLINA 1795,📍maps,CABA,-34.658.163,-58.517.657,MOLINA 1799,"Índice GCBA, Alquileres",Comerciales
+PROP_0375,Unidad comercial,MONTEVIDEO 846,📍maps,CABA,-34.599.017,-5.838.974,,Alquileres,Comerciales
+PROP_0376,Unidad comercial,MONTEVIDEO 894,📍maps,CABA,-34.598.618,-58.389.763,,Alquileres,Comerciales
+PROP_0377,Unidad comercial,MORENO 451,📍maps,CABA,-34.611.319,-58.372.776,MORENO 461 | MORENO 455 | MORENO 457,"Índice GCBA, Eduardo, Alquileres",Comerciales
+PROP_0378,,YRUPE 6884,📍maps,CABA,-34.668.617,-58.498.665,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0379,Propiedad dependiente de la PARROQUIA SAN JUAN DIEGO CUAUHTLATOATZIN,ESCALADA AV. 2921,📍maps,CABA,-34.664.896,-58.469.917,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0380,,"LEGUIZAMON, MARTINIANO 654",📍maps,CABA,-34.645.447,-58.517.929,"LEGUIZAMON, MARTINIANO 664 | LEGUIZAMON, MARTINIANO 672 | LEGUIZAMON, MARTINIANO 656 | LEGUIZAMON, MARTINIANO 674","Índice GCBA, Relevamiento, Eduardo",Escuela
+PROP_0381,,PALMAR 6637,📍maps,CABA,-34.643.418,-58.519.774,PALMAR 6639,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0382,,PIZARRO 7457,📍maps,CABA,-34.658.342,-58.517.681,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0383,,MOLIERE 1692,📍maps,CABA,-34.624.514,-58.515.623,ARREGUI 5502,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0384,Colegio y Parroquia Santa Ana,TINOGASTA 3134,📍maps,CABA,-34.600.132,-58.494.929,,"Índice GCBA, Eduardo","Parroquia y anexos, Escuela"
+PROP_0385,Propiedad dependendiente de la Parroquia Nuestra Señora de Fátima (Belgrano),ROOSEVELT FRANKLIN D. 2050,📍maps,CABA,-34.555.516,-58.457.439,ROOSEVELT FRANKLIN D. 2056,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0386,Averiguar,DE LA CRUZ Y LARRAZABAL,📍maps,CABA,-34.679.937,-58.467.002,,Índice GCBA,a definir
+PROP_0387,Casa social Madre Teresa Parroquia Caacupé,RIO CUARTO 3335,📍maps,CABA,-34.652.697,-58.394.385,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0388,,CASTILLO 650,📍maps,CABA,-34.594.023,-58.435.684,CASTILLO 654,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0389,Propiedad dependiente de la Parroquia Buen Consejo.,"HUGO, VICTOR 1658",📍maps,CABA,-34.624.811,-58.517.424,"HUGO, VICTOR 1660","Índice GCBA, Eduardo",Instituciones diocesanas propias
+PROP_0390,,CONESA 1852,📍maps,CABA,-34.567.665,-58.460.396,CONESA 1856 | CONESA 1830 | CONESA 1846 | CONESA 1840,"Índice GCBA, Relevamiento, Eduardo",Escuela
+PROP_0391,,LA PAMPA 3023,📍maps,CABA,-34.568.286,-58.460.218,,"Índice GCBA, Eduardo",Escuela
+PROP_0392,Averiguar,OLAZABAL AV. 3849,📍maps,CABA,-34.569.101,-58.473.366,,Índice GCBA,a definir
+PROP_0393,Averiguar,CABILDO AV. 4970,📍maps,CABA,-34.539.552,-58.475.523,"CABILDO AV. 5000 | PAZ, GRAL. AV. 1106 | PAZ, GRAL. AV. 1126",Índice GCBA,a definir
+PROP_0394,Averiguar,OLAZABAL AV. 3883,📍maps,CABA,-34.569.241,-58.473.596,,Índice GCBA,a definir
+PROP_0395,,HUDSON 4689,📍maps,CABA,-34.683.461,-5.847.306,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0396,Colegio Instituto Parroquial Nuestra Señora de la Unidad,NAVARRO 2517,📍maps,CABA,-34.591.588,-58.490.715,NAVARRO 2523 | NAVARRO 2521,"Índice GCBA, Eduardo",Escuela
+PROP_0397,,PALMAR 6645,📍maps,CABA,-34.643.423,-5.851.989,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0398,Averiguar,AVELLANEDA AV. 2667,📍maps,CABA,-34.625.288,-58.468.394,AVELLANEDA AV. 2687,"Índice GCBA, Relevamiento",a definir
+PROP_0399,Averiguar,EZCURRA Y LANTERI,📍maps,CABA,-34.616.017,-58.360.297,,Índice GCBA,a definir
+PROP_0400,Averiguar,JURAMENTO 4859,📍maps,CABA,-34.576.039,-58.480.211,JURAMENTO 4861,Índice GCBA,a definir
+PROP_0401,Propiedad dependiente de la Parroquia Patrocinio de San José,JUNIN 632,📍maps,CABA,-3.460.175,-58.397.103,JUNIN 636 | JUNIN 634,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0402,,GUARANI 240,📍maps,CABA,-34.641.858,-58.414.378,GUARANI 242 | GUARANI 260 | GUARANI 300 | ACHALA 3581 | ACHALA 3593 | GUARANI 272 | GUARANI 292,"Índice GCBA, Eduardo",Cáritas
+PROP_0403,Propiedad dependiente de Cáritas Bs. As.,ARGERICH 3718,📍maps,CABA,-34.594.103,-58.497.199,,"Índice GCBA, Eduardo",Cáritas
+PROP_0404,,"DE LA TORRE, LISANDRO 336",📍maps,CABA,-34.643.044,-58.520.689,"DE LA TORRE, LISANDRO 350 | DE LA TORRE, LISANDRO 340","Índice GCBA, Eduardo",Escuela
+PROP_0405,Averiguar,GUATEMALA 4168,📍maps,CABA,-34.589.519,-58.418.685,,Índice GCBA,a definir
+PROP_0406,Propiedad cedida a Asociación Civil Jesús Amigo,LA FACULTAD 1628,📍maps,CABA,-34.651.137,-5.847.388,,"Índice GCBA, Eduardo",Cedidos a terceros
+PROP_0407,Averiguar,LASCANO Y DESAGUADERO,📍maps,CABA,-34.619.491,-58.507.902,,Índice GCBA,a definir
+PROP_0408,,IBARROLA 6628,📍maps,CABA,-34.641.463,-58.519.995,IBARROLA 6632,"Índice GCBA, Eduardo",Escuela
+PROP_0409,,"TABORDA, DIOGENES 950",📍maps,CABA,-34.649.684,-58.409.976,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0410,Parroquia San Ambrosio,ELCANO AV. 3265,📍maps,CABA,-34.573.788,-58.459.777,,"Índice GCBA, Relevamiento, Eduardo",Parroquia y anexos
+PROP_0411,Averiguar,OTERO 129,📍maps,CABA,-34.593.451,-58.451.789,,"Índice GCBA, Relevamiento",a definir
+PROP_0412,Colegio Espíritu Santo,"ACUÑA DE FIGUEROA, FRANCISCO 1742",📍maps,CABA,-34.590.952,-58.420.423,"ALVAREZ, JULIAN 1801 | ALVAREZ, JULIAN 1813 | ACUÑA DE FIGUEROA, FRANCISCO 1754","Índice GCBA, Eduardo","Escuela, Cedidos a terceros"
+PROP_0413,,"ALVAREZ, JULIAN 1987",📍maps,CABA,-3.458.947,-58.419.138,"ALVAREZ, JULIAN 1995 | GUATEMALA 4186","Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0414,Colegio Instituto San Roberto,ESTADO PLURINACIONAL DE BOLIVIA 736,📍maps,CABA,-34.622.556,-5.846.864,,"Índice GCBA, Relevamiento, Eduardo",Escuela
+PROP_0415,,EL TALA 1474,📍maps,CABA,-34.647.232,-58.466.761,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0416,,IBARROLA 6634,📍maps,CABA,-3.464.146,-58.520.069,,"Índice GCBA, Relevamiento, Eduardo",Escuela
+PROP_0417,Averiguar,SIN NOMBRE OFICIAL,📍maps,CABA,,,,Índice GCBA,a definir
+PROP_0418,Averiguar,MAIPU 370,📍maps,CABA,-34.603.908,-58.376.676,MAIPU 372,Índice GCBA,a definir
+PROP_0419,Propiedad dependiente de la Parroquia San Antonio de Padua,LAVARDEN 234,📍maps,CABA,-34.639.343,-58.401.415,LAVARDEN 236,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0420,,DORREGO AV. 1046,📍maps,CABA,-34.589.257,-5.844.626,DORREGO AV. 1048,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0421,Averiguar,SOMELLERA Y DE VEDIA,📍maps,CABA,-34.643.789,-58.435.794,,Índice GCBA,a definir
+PROP_0422,,FERNANDEZ 1468,📍maps,CABA,-34.648.595,-58.472.626,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0423,,"DELLEPIANE, LUIS, TTE. GRAL. 5760",📍maps,CABA,-34.676.196,-58.477.527,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0424,,PERGAMINO 926,📍maps,CABA,-34.642.305,-58.469.784,PERGAMINO 928,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0425,Propiedad dependiente de Parroquia Jesús Misericordioso,"RIVERA, PEDRO I., DR. 4779",📍maps,CABA,-34.570.102,-58.484.099,"RIVERA, PEDRO I., DR. 4755","Índice GCBA, Relevamiento, Eduardo",Parroquia y anexos
+PROP_0426,,AGUERO 725,📍maps,CABA,-34.601.753,-5.841.111,AGUERO 727,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0427,Propiedad dependiente de Cáritas Bs. As.,"QUINQUELA MARTIN, BENITO 1267",📍maps,CABA,-346.428,-58.368.256,"QUINQUELA MARTIN, BENITO 1271 | QUINQUELA MARTIN, BENITO 1269","Índice GCBA, Eduardo",Cáritas
+PROP_0428,,"BOSCH, VENTURA 6651",📍maps,CABA,-34.642.527,-58.520.002,"BOSCH, VENTURA 6655 | BOSCH, VENTURA 6659","Índice GCBA, Eduardo",Escuela
+PROP_0429,Propiedad dependendiente de la Parroquia San Ramón Nonato,"CARRANZA, CARLOS 4862",📍maps,CABA,-34.625.921,-58.502.717,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0430,Averiguar,MARIANO ACOSTA Y SIN NOMBRE OFICIAL,📍maps,CABA,-34.655.727,-58.454.696,,Índice GCBA,a definir
+PROP_0431,Averiguar,AZUL 59,📍maps,CABA,-34.633.163,-58.475.333,AZUL 61,Índice GCBA,a definir
+PROP_0432,Averiguar,MARIANO ACOSTA Y CASTAÑARES,📍maps,CABA,-34.653.928,-58.456.996,,Índice GCBA,a definir
+PROP_0433,,ZUVIRIA 2680,📍maps,CABA,-34.642.998,-58.455.975,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0434,Averiguar,OLAZABAL AV. 3835,📍maps,CABA,-34.569.043,-5.847.327,OLAZABAL AV. 3837,Índice GCBA,a definir
+PROP_0435,,"BOSCH, VENTURA 6661",📍maps,CABA,-3.464.254,-5.852.019,"BOSCH, VENTURA 6663","Índice GCBA, Eduardo",Escuela
+PROP_0436,Averiguar,"KORN, ALEJANDRO, DR. 4243",📍maps,CABA,-3.461.981,-58.495.306,,Índice GCBA,a definir
+PROP_0437,Propiedad dependiente de la Comisión Arquidiocesana de Minoridad para la Pastoral de niñez y adolescencia en riesgo,REPUBLICA BOLIVARIANA DE VENEZUELA 1232,📍maps,CABA,-34.614.454,-58.383.628,,"Índice GCBA, Eduardo",Instituciones diocesanas propias
+PROP_0438,Averiguar,CRISOSTOMO ALVAREZ Y MONTIEL,📍maps,CABA,-34.677.286,-58.492.317,,Índice GCBA,a definir
+PROP_0439,,"YRIGOYEN, HIPOLITO 672",📍maps,CABA,-34.609.296,-58.375.882,"YRIGOYEN, HIPOLITO 678","Índice GCBA, Relevamiento, Eduardo",Comerciales
+PROP_0440,,"ACUÑA DE FIGUEROA, FRANCISCO 220",📍maps,CABA,-34.608.246,-58.423.059,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0441,,"ACUÑA DE FIGUEROA, FRANCISCO 855",📍maps,CABA,-34.601.033,-58.422.238,"ACUÑA DE FIGUEROA, FRANCISCO 849","Índice GCBA, Eduardo",Silvina
+PROP_0442,,MOLIERE 932,📍maps,CABA,-34.630.478,-58.507.532,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0443,Averiguar,"KORN, ALEJANDRO, DR. 4281",📍maps,CABA,-34.620.031,-58.495.573,"KORN, ALEJANDRO, DR. 4285 | GUALEGUAYCHU 1669 | GUALEGUAYCHU 1671",Índice GCBA,a definir
+PROP_0444,,GUALEGUAYCHU 1661,📍maps,CABA,-34.620.153,-58.495.823,"KORN, ALEJANDRO, DR. 4287","Índice GCBA, Eduardo",Escuela
+PROP_0445,Averiguar,"KORN, ALEJANDRO, DR. 4251",📍maps,CABA,-34.619.866,-58.495.373,,Índice GCBA,a definir
+PROP_0446,Colegio San Isidro Labrador,SAN ISIDRO LABRADOR AV. 4700,📍maps,CABA,-34.541.958,-58.474.586,DEHEZA 2528,"Índice GCBA, Eduardo",Escuela
+PROP_0447,Averiguar,SOMELLERA 1798,📍maps,CABA,-34.644.115,-58.437.057,,Índice GCBA,a definir
+PROP_0448,,LARRAZABAL 2437,📍maps,CABA,-34.662.038,-58.490.575,LARRAZABAL 2441,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0449,Escuela Nuestra Señora del Pilar.,"LOPEZ, VICENTE 1969",📍maps,CABA,-3.458.939,-58.392.715,"LOPEZ, VICENTE 1985 | LOPEZ, VICENTE 1963 | LOPEZ, VICENTE 1979 | LOPEZ, VICENTE 1981 | LOPEZ, VICENTE 1993 | LOPEZ, VICENTE 1999","Índice GCBA, Relevamiento, Eduardo",Escuela
+PROP_0450,Averiguar,"KORN, ALEJANDRO, DR. 4218",📍maps,CABA,-34.619.738,-58.495.113,,Índice GCBA,a definir
+PROP_0451,Propiedad dependiente de Cáritas Bs. As.,FERNANDEZ 253,📍maps,CABA,-34.638.204,-58.485.443,,"Índice GCBA, Relevamiento, Eduardo",Cáritas
+PROP_0452,Casa Santa Teresita del Niño de Jesus,ALLENDE 2840,📍maps,CABA,-34.614.369,-58.511.981,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0453,,"BOSCH, VENTURA 6647",📍maps,CABA,-3.464.252,-58.519.907,,"Índice GCBA, Eduardo",Escuela
+PROP_0454,,PALMAR 6651,📍maps,CABA,-34.643.428,-58.519.986,,"Índice GCBA, Relevamiento, Eduardo",Parroquia y anexos
+PROP_0455,Propiedad dependiente de Cáritas Bs. As.,MELINCUE 5031,📍maps,CABA,-34.615.717,-5.851.517,,"Índice GCBA, Eduardo",Cáritas
+PROP_0456,Averiguar,PACHECO 2041,📍maps,CABA,-345.762,-58.481.014,PACHECO 2043,"Índice GCBA, Relevamiento",a definir
+PROP_0457,Averiguar,"BOSCH, VENTURA 6686",📍maps,CABA,-34.642.632,-58.520.431,,Índice GCBA,a definir
+PROP_0458,,LA PAMPA 2788,📍maps,CABA,-34.566.941,-58.457.687,,"Índice GCBA, Relevamiento, Eduardo",Parroquia y anexos
+PROP_0459,,"RIVAS, GRAL. 2369",📍maps,CABA,-34.598.882,-58.482.605,"RIVAS, GRAL. 2371","Índice GCBA, Relevamiento, Eduardo",Parroquia y anexos
+PROP_0460,,"BOSCH, VENTURA 6638",📍maps,CABA,-34.642.593,-58.519.892,"BOSCH, VENTURA 6640","Índice GCBA, Relevamiento, Eduardo",Escuela
+PROP_0461,Colegio San José de Flores,"BONIFACIO, JOSE 2445",📍maps,CABA,-34.632.544,-58.461.852,,"Índice GCBA, Eduardo",Escuela
+PROP_0462,Averiguar,THORNE Y ASAMBLEA,📍maps,CABA,-34.637.396,-58.447.323,,Índice GCBA,a definir
+PROP_0463,Averiguar,CUZCO 180,📍maps,CABA,-34.637.497,-58.527.985,,Índice GCBA,a definir
+PROP_0464,Averiguar,"MORENO, PERITO AV. 2482",📍maps,CABA,-34.651.072,-58.444.327,"MORENO, PERITO AV. 2486",Índice GCBA,a definir
+PROP_0465,,CORTINA 2789,📍maps,CABA,-34.616.436,-5.853.031,CORTINA 2791,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0466,Averiguar,MIRAFLORES 2092,📍maps,CABA,-34.644.228,-58.438.773,,Índice GCBA,a definir
+PROP_0467,Averiguar,"DORREGO AV. y CAMPOS, LUIS M. AV.",📍maps,CABA,-34.574.354,-58.431.758,,Índice GCBA,a definir
+PROP_0468,Escuela de la Parroquia San Pedro,BERMUDEZ 2050,📍maps,CABA,-3.461.968,-58.509.306,"ALMEIRA, HILARIO DE 5023 | ALMEIRA, HILARIO DE 5031 | BERMUDEZ 2052 | ALMEIRA, HILARIO DE 5029","Índice GCBA, Relevamiento, Eduardo",Escuela
+PROP_0469,,"ARTIGAS, JOSE GERVASIO, GRAL. 3563",📍maps,CABA,-3.459.171,-58.490.151,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0470,,MOLDES 1764,📍maps,CABA,-34.566.891,-58.456.737,MOLDES 1766,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0471,Colegio y Parroquia San Pedro,ARREGUI 5034,📍maps,CABA,-34.619.598,-58.510.242,ARREGUI 5036,"Índice GCBA, Eduardo","Parroquia y anexos, Escuela"
+PROP_0472,Colegio de Nuestra Señora,ESMERALDA 739,📍maps,CABA,-34.599.376,-58.378.219,ESMERALDA 761 | CORDOBA AV. 762 | CORDOBA AV. 772 | CORDOBA AV. 764 | CORDOBA AV. 766,"Índice GCBA, Eduardo",Escuela
+PROP_0473,Colegio San Isidro Labrador,DEHEZA 2550,📍maps,CABA,-34.541.993,-58.475.155,,"Índice GCBA, Eduardo",Escuela
+PROP_0474,Parroquia San Enrique,ESTERO BELLACO 6939,📍maps,CABA,-34.648.579,-5.852.318,ESTERO BELLACO 6941,"Índice GCBA, Relevamiento, Eduardo",Parroquia y anexos
+PROP_0475,Propiedad dependiente de la Parroquia San Pablo,ALVAREZ THOMAS AV. 745,📍maps,CABA,-34.579.892,-58.452.512,ALVAREZ THOMAS AV. 755 | ALVAREZ THOMAS AV. 747 | ALVAREZ THOMAS AV. 749 | ALVAREZ THOMAS AV. 751 | ALVAREZ THOMAS AV. 753,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0476,,BELGRANO AV. 2944,📍maps,CABA,-34.615,-58.407.116,BELGRANO AV. 2946 | DEAN FUNES 418 | DEAN FUNES 420,"Índice GCBA, Eduardo",Cáritas
+PROP_0477,,"BOSCH, VENTURA 6680",📍maps,CABA,-34.642.626,-58.520.355,,"Índice GCBA, Eduardo",Escuela
+PROP_0478,Averiguar,"BORGES, JORGE LUIS 1847",📍maps,CABA,-34.587.151,-58.427.679,,Índice GCBA,a definir
+PROP_0479,,"BOSCH, VENTURA 6656",📍maps,CABA,-3.464.261,-58.520.126,"BOSCH, VENTURA 6672","Índice GCBA, Relevamiento, Eduardo","Escuela, Parroquia y anexos"
+PROP_0480,,MOLINA 1740,📍maps,CABA,-34.657.553,-58.518.321,MOLINA 1749,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0481,,CULPINA 1420,📍maps,CABA,-34.643.379,-58.456.015,CULPINA 1410,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0482,Propiedad dependiente de Cáritas Bs. As.,MARTINEZ CASTRO 1168,📍maps,CABA,-34.645.227,-58.470.414,,"Índice GCBA, Eduardo",Cáritas
+PROP_0483,Misión Católica Eslovena en Argentina,"FALCON, RAMON L.,CNEL. 4164",📍maps,CABA,-34.636.143,-58.485.534,,"Índice GCBA, Eduardo",Cedidos a terceros
+PROP_0484,Averiguar,"BOCAYUVA, QUINTINO 661",📍maps,CABA,-34.619.714,-58.422.429,"BOCAYUVA, QUINTINO 663",Índice GCBA,a definir
+PROP_0485,Averiguar,RIVADAVIA Y PUMACAHUA,📍maps,CABA,-34.626.153,-58.455.378,,Índice GCBA,a definir
+PROP_0486,,BOGOTA 327,📍maps,CABA,-34.614.086,-58.436.438,BOGOTA 331 | BOGOTA 329,"Índice GCBA, Eduardo",Instituciones diocesanas propias
+PROP_0487,Averiguar,"ALVAREZ, CRISOSTOMO 4674",📍maps,CABA,-34.662.415,-58.475.446,,Índice GCBA,a definir
+PROP_0488,,MILLER 2713,📍maps,CABA,-34.569.022,-58.482.717,MILLER 2725 | MILLER 2735 | MILLER 2739,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0489,Averiguar,"OLAGUER Y FELIU, VIRREY 3178",📍maps,CABA,-34.573.786,-58.457.348,"OLAGUER Y FELIU, VIRREY 3192 | CONDE 1379 | CONDE 1389",Índice GCBA,a definir
+PROP_0490,Colegio Parroquial Nuestra Señora de la Misericordia Mataderos.,FONROUGE 2861,📍maps,CABA,-34.664.172,-58.483.795,FONROUGE 2865,"Índice GCBA, Eduardo",Escuela
+PROP_0491,Propiedad destinada a Obras Misionales Pontificias,CASTELLI 180,📍maps,CABA,-34.607.942,-58.404.779,CASTELLI 182,"Índice GCBA, Relevamiento, Eduardo",Comerciales
+PROP_0492,,"URIBURU JOSE E., PRES. 1632",📍maps,CABA,-34.589.837,-58.395.515,"URIBURU JOSE E., PRES. 1640","Índice GCBA, Eduardo",Instituciones diocesanas propias
+PROP_0493,,"ARTIGAS, JOSE GERVASIO, GRAL. 3575",📍maps,CABA,-3.459.171,-58.490.151,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0494,Propiedad dependiente de parroquia Inmaculada Concepcíon,INDEPENDENCIA AV. 948,📍maps,CABA,-34.617.674,-58.379.414,INDEPENDENCIA AV. 956 | INDEPENDENCIA AV. 950,"Índice GCBA, Relevamiento, Eduardo",Parroquia y anexos
+PROP_0495,,"MASANTONIO, HERMINIO 3034",📍maps,CABA,-3.464.671,-58.404.222,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0496,,"LEGUIZAMON, MARTINIANO 4034",📍maps,CABA,-34.676.584,-58.477.805,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0497,Averiguar,ORTIZ DE OCAMPO Y LIBERTADOR,📍maps,CABA,-34.581.292,-58.403.676,,Índice GCBA,a definir
+PROP_0498,Averiguar,FERNANDEZ 560,📍maps,CABA,-34.641.667,-58.483.705,,Índice GCBA,a definir
+PROP_0499,,FRAGATA CEFIRO 1716,📍maps,CABA,-34.657.728,-58.518.916,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0500,,MONTIEL 1717,📍maps,CABA,-34.657.152,-58.518.131,,"Índice GCBA, Eduardo",Escuela
+PROP_0501,,ARCOS 1549,📍maps,CABA,-34.565.517,-58.449.368,ARCOS 1551,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0502,Averiguar,SALCEDO 3374,📍maps,CABA,-34.633.268,-58.412.556,SALCEDO 3376,Índice GCBA,a definir
+PROP_0503,,SANTIAGO DEL ESTERO 1602,📍maps,CABA,-34.627.136,-58.384.311,"SANTIAGO DEL ESTERO 1610 | GARAY, JUAN DE AV. 1294 | GARAY, JUAN DE AV. 1300 | GARAY, JUAN DE AV. 1298","Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0504,Averiguar,DIAZ COLODRERO 3161,📍maps,CABA,-34.567.603,-58.490.364,DIAZ COLODRERO 3165,Índice GCBA,a definir
+PROP_0505,,PEPIRI 1450,📍maps,CABA,-34.654.729,-58.406.325,PEPIRI 1452,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0506,Averiguar,DIAZ COLODRERO 2321,📍maps,CABA,-34.574.269,-58.485.065,DIAZ COLODRERO 2333,Índice GCBA,a definir
+PROP_0507,,PASO 278,📍maps,CABA,-34.606.691,-58.403.566,PASO 282,"Índice GCBA, Eduardo",Instituciones diocesanas propias
+PROP_0508,,ITAQUI 2855,📍maps,CABA,-34.659.056,-58.440.018,ITAQUI 2859,"Índice GCBA, Eduardo","Parroquia y anexos, Escuela"
+PROP_0509,COLEGIO INSTITUTO MARIA B DE COPELLO,"PACHECO DE MELO, JOSE ANDRES 2455",📍maps,CABA,-34.588.021,-58.399.282,"PACHECO DE MELO, JOSE ANDRES 2461","Índice GCBA, Relevamiento, Eduardo","Cedidos a terceros, Escuela"
+PROP_0510,,"CARBALLIDO, JOSE E. 6316",📍maps,CABA,-34.639.916,-58.515.747,"CARBALLIDO, JOSE E. 6318","Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0511,,CHICLANA AV. 3619,📍maps,CABA,-34.636.595,-58.414.906,CHICLANA AV. 3621,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0512,Averiguar,CERVANTES 1198,📍maps,CABA,-3.462.753,-58.501.758,,"Índice GCBA, Relevamiento",a definir
+PROP_0513,Colegio Parroquial Santa Ana,TINOGASTA Y CUENCA,📍maps,CABA,-3.460.063,-58.495.844,TINOGASTA 3150,"Índice GCBA, Relevamiento, Eduardo",Escuela
+PROP_0514,,SANTIAGO DE CHILE 6445,📍maps,CABA,-34.643.029,-58.517.354,SANTIAGO DE CHILE 6455 | SANTIAGO DE CHILE 6461 | SANTIAGO DE CHILE 6463 | SANTIAGO DE CHILE 6449 | SANTIAGO DE CHILE 6453,"Índice GCBA, Eduardo",Escuela
+PROP_0515,,"LEGUIZAMON, MARTINIANO 233",📍maps,CABA,-34.641.875,-58.519.415,,"Índice GCBA, Eduardo",Escuela
+PROP_0516,Averiguar,RODRIGUEZ PEÑA Y PARAGUAY,📍maps,CABA,-34.598.618,-58.391.662,,Índice GCBA,a definir
+PROP_0517,Averiguar,URIARTE 1733,📍maps,CABA,-34.586.462,-5.843.052,URIARTE 1735,Índice GCBA,a definir
+PROP_0518,,ARCOS 2971,📍maps,CABA,-34.552.215,-58.460.861,,"Índice GCBA, Eduardo",Instituciones diocesanas propias
+PROP_0519,,PRIMERA JUNTA 5637,📍maps,CABA,-3.466.168,-58.486.181,PRIMERA JUNTA 5639,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0520,Averiguar,"SCHMIDL, ULRICO Y MOLINA",📍maps,CABA,-34.657.258,-58.518.772,"SCHMIDL, ULRICO 7470","Índice GCBA, Relevamiento",a definir
+PROP_0521,Averiguar,SARAVIA 2371,📍maps,CABA,-34.659.308,-58.475.717,,"Índice GCBA, Relevamiento",a definir
+PROP_0522,Averiguar,PIZARRO Y MOLINA,📍maps,CABA,-34.658.234,-58.517.498,,Índice GCBA,a definir
+PROP_0523,Averiguar,PIZARRO 7469,📍maps,CABA,-34.658.456,-58.517.801,FRAGATA CEFIRO 1796,Índice GCBA,a definir
+PROP_0524,Escuela Parroquia San Rafael,"CALDERON DE LA BARCA, PEDRO 3056",📍maps,CABA,-34.613.843,-58.522.523,"CALDERON DE LA BARCA, PEDRO 3058","Índice GCBA, Relevamiento, Eduardo",Escuela
+PROP_0525,,"ARTIGAS, JOSE GERVASIO, GRAL. 3553",📍maps,CABA,-34.591.805,-58.490.066,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0526,Averiguar,GRECIA Y RAMALLO,📍maps,CABA,-34.540.531,-58.467.723,GRECIA y RAMALLO,"Índice GCBA, Relevamiento",a definir
+PROP_0527,Propiedad dependiente de Cáritas Bs. As.,"MANSILLA, LUCIO NORBERTO, GENERAL 2446",📍maps,CABA,-34.596.858,-58.402.358,"MANSILLA, LUCIO NORBERTO, GENERAL 2448","Índice GCBA, Relevamiento, Eduardo",Cáritas
+PROP_0528,Congregación de Los Oblatos de María,ESCALADA AV. 2322,📍maps,CABA,-34.659.454,-58.476.664,,"Índice GCBA, Relevamiento, Eduardo",Cedidos a terceros
+PROP_0529,Averiguar,ZUVIRIA 2686,📍maps,CABA,-34.643.045,-58.456.039,ZUVIRIA 2688,Índice GCBA,a definir
+PROP_0530,,"MASANTONIO, HERMINIO 3012",📍maps,CABA,-34.646.657,-58.404.114,"MASANTONIO, HERMINIO 3014","Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0531,,PALMAR 6631,📍maps,CABA,-34.643.414,-58.519.703,,"Índice GCBA, Eduardo",Escuela
+PROP_0532,Propiedad dependiente del Arzobispado,DOBLAS 1680,📍maps,CABA,-34.635.896,-58.427.324,,"Índice GCBA, Eduardo",Instituciones diocesanas propias
+PROP_0533,Averiguar,"BORGES, JORGE LUIS 1851",📍maps,CABA,-34.587.063,-58.427.544,,Índice GCBA,a definir
+PROP_0534,Averiguar,"BORGES, JORGE LUIS 1883",📍maps,CABA,-34.586.942,-58.427.357,,Índice GCBA,a definir
+PROP_0535,Averiguar,NICARAGUA Y BONPLAND,📍maps,CABA,-34.580.877,-58.434.512,,Índice GCBA,a definir
+PROP_0536,,BAHIA BLANCA 323,📍maps,CABA,-34.629.912,-58.481.914,BAHIA BLANCA 327,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0537,Averiguar,"COGHLAN, JUAN M. 4734",📍maps,CABA,-34.611.568,-58.513.178,,Índice GCBA,a definir
+PROP_0538,Averiguar,"ARANGUREN, JUAN F., DR. 4029",📍maps,CABA,-34.628.702,-58.486.035,"ARANGUREN, JUAN F., DR. 4031",Índice GCBA,a definir
+PROP_0539,Averiguar,"ARANGUREN, JUAN F., DR. 4001",📍maps,CABA,-34.628.643,-58.485.795,"ARANGUREN, JUAN F., DR. 4015 | MERCEDES 534 | MERCEDES 536",Índice GCBA,a definir
+PROP_0540,COLEGIO PARROQUIAL NUESTRA SEÑORA DE LA ANUNCIACION,BARZANA 2025,📍maps,CABA,-3.458.015,-58.487.013,BARZANA 2027,"Índice GCBA, Eduardo",Escuela
+PROP_0541,Propiedad Comercial del Arzobispado,BEYROUTH 4945,📍maps,CABA,-34.626.389,-58.501.764,,"Índice GCBA, Eduardo",Comerciales
+PROP_0542,,MATANZA 2781,📍maps,CABA,-34.652.728,-5.843.201,,"Índice GCBA, Eduardo",Instituciones diocesanas propias
+PROP_0543,,"JEREZ, PEDRO DE 473",📍maps,CABA,-34.586.142,-58.467.174,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0544,,"OLMOS, AMBROSIO 1262",📍maps,CABA,-34.633.956,-58.382.018,"OLMOS, AMBROSIO 1266 | OLMOS, AMBROSIO 1264","Índice GCBA, Eduardo",Escuela
+PROP_0545,Averiguar,"FALCON, RAMON L.,CNEL. 2671",📍maps,CABA,-34.631.154,-58.465.942,,Índice GCBA,a definir
+PROP_0546,,"ALVAREZ, CRISOSTOMO 4680",📍maps,CABA,-34.662.471,-58.475.511,,"Índice GCBA, Eduardo",Escuela
+PROP_0547,Averiguar,"BONIFACIO, JOSE 2447",📍maps,CABA,-34.632.571,-58.461.945,,Índice GCBA,a definir
+PROP_0548,,JUJUY AV. 1259,📍maps,CABA,-3.462.471,-58.402.073,JUJUY AV. 1265 | JUJUY AV. 1261 | JUJUY AV. 1263,"Índice GCBA, Eduardo",Escuela
+PROP_0549,,CULLEN 5723,📍maps,CABA,-3.457.663,-58.494.799,CULLEN 5725,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0550,,NAVARRO 2492,📍maps,CABA,-34.591.373,-58.490.211,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0551,,AYACUCHO 1451,📍maps,CABA,-34.592.319,-58.394.447,AYACUCHO 1453 | AYACUCHO 1455,"Índice GCBA, Eduardo",Instituciones diocesanas propias
+PROP_0552,Escuela Emilia Montiel de Pirán- Hnas. Dominicas,BAUNESS 2647,📍maps,CABA,-34.573.066,-58.489.188,BAUNESS 2655 | BAUNESS 2651,"Índice GCBA, Eduardo","Escuela, Cedidos a terceros"
+PROP_0553,,SAN MARTIN AV. 4444,📍maps,CABA,-34.598.172,-58.482.621,SAN MARTIN AV. 4450,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0554,Colegio Hermanos Maristas (Mac Nab Bernal),SALADILLO 5282,📍maps,CABA,-34.690.749,-58.477.741,"SALADILLO 5286 | ITAQUI 6879 | FERNANDEZ DE LA CRUZ, F., GRAL. AV. 6838 | FERNANDEZ DE LA CRUZ, F., GRAL. AV. 6880","Índice GCBA, Eduardo","Escuela, Cedidos a terceros"
+PROP_0555,,REPUBLICA BOLIVARIANA DE VENEZUELA 2203,📍maps,CABA,-346.148,-58.397.896,REPUBLICA BOLIVARIANA DE VENEZUELA 2205,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0556,Escuela Emilia Montiel de Pírán- Hnas. Dominicas,BAUNESS 2631,📍maps,CABA,-34.573.167,-58.489.107,BAUNESS 2635,"Índice GCBA, Relevamiento, Eduardo","Escuela, Cedidos a terceros"
+PROP_0557,,"DE LA TORRE, LISANDRO 366",📍maps,CABA,-34.643.119,-58.520.678,"DE LA TORRE, LISANDRO 372 | DE LA TORRE, LISANDRO 370","Índice GCBA, Eduardo",Escuela
+PROP_0558,,"DE LA TORRE, LISANDRO 326",📍maps,CABA,-34.642.954,-58.520.702,"DE LA TORRE, LISANDRO 330","Índice GCBA, Eduardo",Escuela
+PROP_0559,Congregación Hermanas San Antonio de Padua. Colegio San Antonio de Padua,TILCARA 3178,📍maps,CABA,-3.465.279,-58.418.847,TILCARA 3186,"Índice GCBA, Eduardo","Cedidos a terceros, Escuela"
+PROP_0560,,VIDAL 1743,📍maps,CABA,-3.456.752,-58.457.433,VIDAL 1741,"Índice GCBA, Eduardo",Escuela
+PROP_0561,,ZAMUDIO 3043,📍maps,CABA,-34.599.112,-58.483.359,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0562,,"ACUÑA DE FIGUEROA, FRANCISCO 226",📍maps,CABA,-34.608.169,-58.423.051,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0563,Colegio y Parroquia San Pedro,ARREGUI 5038,📍maps,CABA,-34.619.653,-58.510.309,ARREGUI 5040,"Índice GCBA, Eduardo","Parroquia y anexos, Escuela"
+PROP_0564,,"TAMBORINI, JOSE PASCUAL 3060",📍maps,CABA,-34.556.039,-58.471.239,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0565,,NAVARRO 2475,📍maps,CABA,-3.459.117,-58.490.044,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0566,Parroquia Santa Lucía,ISABEL LA CATOLICA 213,📍maps,CABA,-34.634.543,-58.374.248,ISABEL LA CATOLICA 245 | ISABEL LA CATOLICA 205 | ISABEL LA CATOLICA 235 | ISABEL LA CATOLICA 221,"Índice GCBA, Relevamiento, Eduardo",Parroquia y anexos
+PROP_0567,,MALVINAS ARGENTINAS 416,📍maps,CABA,-34.629.391,-58.449.736,,"Índice GCBA, Eduardo",Instituciones diocesanas propias
+PROP_0568,Escuela de la Parroquia San Bartolomé,METAN 3648,📍maps,CABA,-34.635.938,-58.415.548,,"Índice GCBA, Eduardo","Parroquia y anexos, Escuela"
+PROP_0569,Colegio. Instituto Hijas de Jesus,OLAZABAL AV. 3871,📍maps,CABA,-34.569.171,-58.473.481,,"Índice GCBA, Eduardo","Cedidos a terceros, Escuela"
+PROP_0570,,SIMBRON 5270,📍maps,CABA,-34.615.995,-5.852.149,SIMBRON 5275 | SIMBRON 5251 | SIMBRON 5271,"Índice GCBA, Eduardo",Escuela
+PROP_0571,,ESTOMBA 1830,📍maps,CABA,-34.573.079,-58.469.524,ESTOMBA 1840,"Índice GCBA, Eduardo",Escuela
+PROP_0572,,PIZARRO 7465,📍maps,CABA,-346.584,-58.517.741,,"Índice GCBA, Eduardo",Parroquia y anexos
+PROP_0573,Colegio de la Parroquia Nuestra Señora de la Misericordia de Mataderos,LARRAYA 2862,📍maps,CABA,-34.664.817,-58.484.474,LARRAYA 2864 | LARRAYA 2866 | LARRAYA 2868,Eduardo,Escuela
+PROP_0574,Colegio Parroquia de La Piedad,PARANA 56,📍maps,CABA,-34.608.094,-5.838.775,,Eduardo,Escuela
+PROP_0575,Colegio Parroquial de la Concepción,"CALVO, CARLOS 1186",📍maps,CABA,-346.198,-58.382.676,,"Relevamiento, Eduardo",Escuela
+PROP_0576,Colegio Parroquial de San Miguel,"PERON, JUAN DOMINGO, TTE. GENERAL 1269",📍maps,CABA,-34.606.286,-58.384.614,,Eduardo,Escuela
+PROP_0577,Colegio Parroquial Santa Julia,"MARTINEZ, VICTOR 50",📍maps,CABA,-3.462.328,-58.445.239,"MARTINEZ, VICTOR 62","Relevamiento, Eduardo",Escuela
+PROP_0578,Colegio San Alfonso (pertenece a la Parroquia Nuestra Señora de la,BARZANA 2034,📍maps,CABA,-34.580.201,-58.487.081,BARZANA 2040,"Relevamiento, Eduardo",Escuela
+PROP_0579,Colegio Santo Tomás de Aquino,"PERON, JUAN DOMINGO, TTE. GENERAL 1862",📍maps,CABA,-34.606.913,-58.393.053,"PERON, JUAN DOMINGO, TTE. GENERAL 1868 | PERON, JUAN DOMINGO, TTE. GENERAL 1872",Eduardo,Escuela
+PROP_0580,Propiedad dependiente de arzobispado,LAFUENTE AV. y BALBASTRO,📍maps,CABA,-34.648.841,-58.456.177,,Eduardo,"Instituciones diocesanas propias, Comodato GCBA"
+PROP_0581,Congregación de la Compañía del Divino Maestro,RODRIGUEZ PEÑA 1034,📍maps,CABA,-34.596.874,-58.391.896,RODRIGUEZ PEÑA 1040 | RODRIGUEZ PEÑA 1054 | RODRIGUEZ PEÑA 1060 | RODRIGUEZ PEÑA 1080 | RODRIGUEZ PEÑA 1072 | RODRIGUEZ PEÑA 1078,"Relevamiento, Eduardo",Cedidos a terceros
+PROP_0582,Propiedad dependiente de la Parroquia Cristo Obrero.,Acosta Mariano  S/N,📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0583,Congregación de Las Misioneras de la Sagrada Familia,CARDOSO 220,📍maps,CABA,-34.633.878,-58.492.749,CARDOSO 222,Eduardo,Cedidos a terceros
+PROP_0584,Congregación Hermanas Dominicas.,LAUTARO 802,📍maps,CABA,-34.635.934,-58.453.499,,Eduardo,"Cedidos a terceros, REVISAR"
+PROP_0585,Congregación Hijas de San José,AVELLANEDA AV. 2350,📍maps,CABA,-34.624.024,-58.463.866,AVELLANEDA AV. 2344,"Relevamiento, Eduardo",Cedidos a terceros
+PROP_0586,Parroquia Nuestra Señora de Loreto,"DIAZ, CNEL. AV. S/N",📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0587,Propiedad dependiente de la Parroquia Inmaculada Concepción de Belgrano,O'HIGGINS 3,📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0588,Propiedad dependiente del Arzobispado,"SALGUERO, JERONIMO 1858",📍maps,CABA,-34.588.517,-58.415.072,"SALGUERO, JERONIMO 1860 | SALGUERO, JERONIMO 1862",Eduardo,Comerciales
+PROP_0589,Propiedad dependiente de Parroquia San Bernardo,Acevedo (entre 44 y 62),📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0590,No es del Arzobispado,"VICTORICA, BENJAMIN, GENERAL, AV. 2439",📍maps,CABA,-34.580.277,-58.479.124,"VICTORICA, BENJAMIN, GENERAL, AV. 2441",Eduardo,"Otros, No AZB"
+PROP_0591,,MORENO 3202,📍maps,CABA,-34.614.097,-58.411.463,MORENO 3208,Eduardo,Parroquia y anexos
+PROP_0592,,"CASTRO, EMILIO 4891",📍maps,CABA,-34.642.886,-58.493.639,,Eduardo,Comerciales
+PROP_0593,Escuela de la Parroquial Nuestra Señora de La Merced,VIAMONTE 318,📍maps,CABA,-34.599.629,-58.371.721,,"Relevamiento, Eduardo",Escuela
+PROP_0594,No se corresponde con registro actual,"BROWN, ALTE. AV. 638",📍maps,CABA,-34.630.555,-58.362.851,,Eduardo,Escuela
+PROP_0595,,BELGRANO AV. 1344,📍maps,CABA,-34.613.462,-58.385.315,,Eduardo,Escuela
+PROP_0596,Escuela de la Parroquia Nuestra Señora del Carmen Villa Urquiza,CULLEN 5193,📍maps,CABA,-34.573.217,-58.488.569,,Eduardo,Escuela
+PROP_0597,,"BONIFACIO, JOSE 2475",📍maps,CABA,-3.463.264,-58.462.174,"BONIFACIO, JOSE 2485",Eduardo,Escuela
+PROP_0598,,SUIPACHA 1241,📍maps,CABA,-34.593.254,-58.380.031,,Eduardo,Escuela
+PROP_0599,,"LARRALDE, CRISOLOGO AV. 4841",📍maps,CABA,-34.560.561,-58.490.497,,Eduardo,"Escuela, Parroquia y anexos"
+PROP_0600,Ateneo Félix Marino dependiente del Circulo de Obreros Católicos,HABANA 4542,📍maps,CABA,-34.601.928,-58.519.928,,"Relevamiento, Eduardo",Cedidos a terceros
+PROP_0601,Club Deportivo Circulo de Obreros Católicos,"GUTIERREZ, RICARDO 4557",📍maps,CABA,-34.602.691,-58.519.949,,Eduardo,Cedidos a terceros
+PROP_0602,Fundación Universidad Católica Argentina Santa María de los Buenos Aires. Comodato,ARENALES 1877,📍maps,CABA,-34.594.703,-58.394.299,,Eduardo,Cedidos a terceros
+PROP_0603,,CLAY 2885,📍maps,CABA,-34.573.661,-58.430.949,,Eduardo,Parroquia y anexos
+PROP_0604,Propiedad dependiente de Congregación Hermanas Adoratrices,Parral (ahora Honorio Pueyrredón,📍maps,CABA,,,,Eduardo,Cedidos a terceros
+PROP_0605,Propiedad dependiente de Congregación Hermanas Adoratrices,Virasoro s/n,📍maps,CABA,,,,Eduardo,Cedidos a terceros
+PROP_0606,Congregación Hermanas de Nuestra Señora del Perpetuo Socorro,MIRANDA 5774,📍maps,CABA,-34.630.003,-58.513.692,,Eduardo,Cedidos a terceros
+PROP_0607,Congregación Hermanas de Nuestra Señora del Rosario,"VALLE, ARISTOBULO DEL 1979",📍maps,CABA,-3.463.665,-58.378.525,,"Relevamiento, Eduardo",Cedidos a terceros
+PROP_0608,Congregación Hermanas de Nuestra Señora del Rosario,386,📍maps,CABA,,,,Eduardo,Cedidos a terceros
+PROP_0609,Congregación Hermanas Nuestra Señora del Rosario,HERRERA 583,📍maps,CABA,-34.636.335,-58.378.316,,"Relevamiento, Eduardo",Cedidos a terceros
+PROP_0610,Propiedad dependiente del arzobispado,AVELLANEDA AV. 2655,📍maps,CABA,-34.625.229,-58.468.204,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0611,,DIRECTORIO AV. 2208,📍maps,CABA,-34.632.687,-58.457.835,,Eduardo,Parroquia y anexos
+PROP_0612,Hogar Sacerdotal,"ARANGUREN, JUAN F., DR. y CONDARCO",📍maps,CABA,-34.624.328,-58.469.392,,Eduardo,Instituciones diocesanas propias
+PROP_0613,,ESTADO PLURINACIONAL DE BOLIVIA 550,📍maps,CABA,-34.624.391,-58.467.884,,Eduardo,Instituciones diocesanas propias
+PROP_0614,,"ALSINA, ADOLFO 533",📍maps,CABA,-34.610.246,-58.373.899,"ALSINA, ADOLFO 547","Relevamiento, Eduardo",Comerciales
+PROP_0615,,"ROCA, JULIO A., PRESIDENTE DIAGONAL SUR AV. 542",📍maps,CABA,-34.609.727,-58.374.057,,Eduardo,Comerciales
+PROP_0616,Iglesia Catòlica Rusa,GUEMES 2962,📍maps,CABA,-34.592.116,-5.840.857,,Eduardo,Cedidos a terceros
+PROP_0617,,PINZON 1480,📍maps,CABA,-34.636.905,-58.372.352,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0618,,Pinzón S/N,📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0619,Propiedad destinada a la Compañía del Divino Maestro,"ALVEAR, MARCELO T. DE 1733",📍maps,CABA,-34.597.179,-58.392.332,,"Relevamiento, Eduardo",Cedidos a terceros
+PROP_0620,,Alegria S/N,📍maps,CABA,,,,Eduardo,"Parroquia y anexos, REVISAR"
+PROP_0621,Hogar de Ancianos pertenece a Asociacion Madres de Desamparados y San José de la Montaña,HABANA 4192,📍maps,CABA,-34.599.157,-58.515.436,HABANA 4194,Eduardo,Cedidos a terceros
+PROP_0622,Colegio Instituto de enseñanza Misioneros Claretianos,SAN BLAS 1610,📍maps,CABA,-34.603.575,-58.465.216,SAN BLAS 1640,"Relevamiento, Eduardo","Cedidos a terceros, Escuela"
+PROP_0623,Instituto de Hermanos Cristianos,BELGRANO AV. 1560,📍maps,CABA,-34.613.672,-58.388.303,,Eduardo,Cedidos a terceros
+PROP_0624,Colegio. Instituto Educativo C.E.A.E.S.,"ACUÑA DE FIGUEROA, FRANCISCO 1750",📍maps,CABA,-3.459.083,-58.420.399,,Eduardo,"Escuela, Cedidos a terceros"
+PROP_0625,,SAN JUAN AV. 1762,📍maps,CABA,-34.622.772,-58.390.757,SAN JUAN AV. 1764 | SAN JUAN AV. 1770 | SAN JUAN AV. 1772,"Relevamiento, Eduardo",Escuela
+PROP_0626,Propiedad dependiente de la Parroquia San Pedro Apostol,LASCANO y BERMUDEZ,📍maps,CABA,-34.619.991,-58.508.829,,Eduardo,Parroquia y anexos
+PROP_0627,,"ALVAREZ, CRISOSTOMO 4664",📍maps,CABA,-34.662.359,-58.475.381,,Eduardo,Escuela
+PROP_0628,Colegio Instituto San Roberto,ESTADO PLURINACIONAL DE BOLIVIA 667,📍maps,CABA,-34.623.283,-58.468.274,,"Relevamiento, Eduardo",Escuela
+PROP_0629,Jardín de Infantes de la Parroquia Santo Cristo,,📍maps,CABA,#N/A,#N/A,,Eduardo,Parroquia y anexos
+PROP_0630,Colegio Regina Virginum de Congregación Adoratrices Argentinas,"PUEYRREDON, HONORIO, DR. AV. 1300",📍maps,CABA,-34.605.625,-58.447.223,,Eduardo,"Cedidos a terceros, Escuela"
+PROP_0631,Junta Catequística Central. Depende de Comisión Episcopal de Catequesis de la CEA,REPUBLICA BOLIVARIANA DE VENEZUELA 4143,📍maps,CABA,-34.617.799,-58.423.411,REPUBLICA BOLIVARIANA DE VENEZUELA 4145,"Relevamiento, Eduardo",Instituciones diocesanas propias
+PROP_0632,Capilla María Auxiliadora dependiente de la parroquia Natividad de María Santísima,"CRUZ, OSVALDO S/N",📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0633,,FONROUGE 2869,📍maps,CABA,-34.664.253,-58.483.692,,Eduardo,Escuela
+PROP_0634,Parroquia Asunción de la Santísima Virgen,FRANKLIN 2173,📍maps,CABA,-3.461.683,-58.465.181,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0635,Propiedad dependiente de Misión Católica de Migraciones,LAPRIDA 930,📍maps,CABA,-34.597.614,-58.409.265,,"Relevamiento, Eduardo",No AZB
+PROP_0636,Misión Católica Eslovena en Argentina,"FALCON, RAMON L.,CNEL. 4150",📍maps,CABA,-34.636.105,-5.848.537,"FALCON, RAMON L.,CNEL. 4158",Eduardo,Cedidos a terceros
+PROP_0637,Monasterio Carmelitas Descalzas,Amenábar y Ushuaia,📍maps,CABA,,,,Eduardo,Cedidos a terceros
+PROP_0638,Capilla San Luis depende de Parroquia Nuestra Señora de las Mercedes.,Blandengues  esq. Monroe,📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0639,,MEDRANO AV. 735,📍maps,CABA,-34.601.566,-58.420.667,MEDRANO AV. 737 | MEDRANO AV. 739,"Relevamiento, Eduardo",Instituciones diocesanas propias
+PROP_0640,,LIBERTAD 850,📍maps,CABA,-34.598.602,-58.384.115,LIBERTAD 870,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0641,,LA PLATA AV. 282,📍maps,CABA,-34.618.066,-58.428.494,LA PLATA AV. 296,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0642,Parroquia Asunción de la Santísima Virgen,GAVILAN 1137,📍maps,CABA,-34.616.576,-58.465.474,GAVILAN 1149,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0643,Parroquia Corpus Domini,GARCIA DE COSSIO 5550,📍maps,CABA,-34.640.176,-58.508.774,,"Relevamiento, Eduardo","Parroquia y anexos, REVISAR"
+PROP_0644,,CONDOR y LAFUENTE,📍maps,CABA,-3.466.347,-58.437.875,,Eduardo,Parroquia y anexos
+PROP_0645,Capilla Nuestra Señora del Buen Consejo dependiente de la parroquia Natividad de María Santísima,SANTA ELENA y VILLARINO,📍maps,CABA,-3.465.496,-58.381.993,,Eduardo,Parroquia y anexos
+PROP_0646,Parroquia Cristo Rey,COCHRANE 2371,📍maps,CABA,-34.576.091,-58.501.995,,"Relevamiento, Eduardo","Parroquia y anexos, REVISAR"
+PROP_0647,No es del Arzobispado,TERRADA 5435,📍maps,CABA,-34.579.737,-58.506.298,,Eduardo,Otros
+PROP_0648,Parroquia Nuestra Señora del Carmen Lugano. Villa 15,Villa 15 Barrio Gral Belgrano,📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0649,Parroquia Imnaculada Virgen de Fátima,5656,📍maps,CABA,,,,Eduardo,"Parroquia y anexos, REVISAR"
+PROP_0650,Parroquia Inmaculada Concepción,TACUARI 870,📍maps,CABA,-34.618.264,-58.378.707,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0651,,,📍maps,CABA,#N/A,#N/A,,Eduardo,Parroquia y anexos
+PROP_0652,,"POMAR, GREGORIO TTE. CNEL. S/N",📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0653,,"FERNANDEZ DE LA CRUZ, F., GRAL. AV. 5570",📍maps,CABA,-34.680.869,-58.467.359,,Eduardo,Parroquia y anexos
+PROP_0654,Parroquia La Consolata,"ALVAREZ, DONATO, TTE. GRAL. AV. 2060",📍maps,CABA,-34.603.675,-58.464.615,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0655,,ESCALADA AV. y ZUVIRIA,📍maps,CABA,-34.660.163,-58.475.869,,Eduardo,Parroquia y anexos
+PROP_0656,,SAN ANTONIO 551,📍maps,CABA,-34.648.684,-58.378.419,SAN ANTONIO 565,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0657,Propiedad dependiente de la Parroquia San Juan Evangelista,GARIBALDI 2032,📍maps,CABA,-34.644.297,-583.608,,Eduardo,Parroquia y anexos
+PROP_0658,Parroquia Natividad del Señor,"ARENAL, CONCEPCION 2545",📍maps,CABA,-3.457.567,-58.438.783,,Eduardo,"Parroquia y anexos, REVISAR"
+PROP_0659,Parroquia Niño Jesús,Derqui Av. e/ Murguiondo y Leguizamón,📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0660,,AZCUENAGA 126,📍maps,CABA,-34.608.215,-58.400.629,,Eduardo,Parroquia y anexos
+PROP_0661,,Progreso s/n (Hoy Bogotá),📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0662,,"PERON, JUAN DOMINGO, TTE. GENERAL y RECONQUISTA",📍maps,CABA,-34.605.509,-58.372.333,,Eduardo,Parroquia y anexos
+PROP_0663,Colegio. INSTITUTO SAN ROMAN,JURAMENTO 1380,📍maps,CABA,-34.555.956,-58.446.397,,Eduardo,"Escuela, No AZB"
+PROP_0664,Parroquia Nuestra Señora de Las Mercedes,ECHEVERRIA 1361,📍maps,CABA,-34.556.715,-5.844.543,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0665,,MIGUELETES 2039,📍maps,CABA,-34.556.527,-58.446.199,MIGUELETES 2095,Eduardo,Parroquia y anexos
+PROP_0666,Propiedad dependiente de Cáritas Bs. As.,CONDE 790,📍maps,CABA,-34.577.573,-58.450.383,CONDE 792,Eduardo,Cáritas
+PROP_0667,,FERNANDEZ 596,📍maps,CABA,-346.419,-58.483.409,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0668,,MONROE AV. 3216,📍maps,CABA,-34.563.163,-58.467.648,,Eduardo,Parroquia y anexos
+PROP_0669,,PERGAMINO 940,📍maps,CABA,-34.642.434,-58.469.626,PERGAMINO 946,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0670,,Piedrabuena (Complejo Habitacional),📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0671,,"ALVAREZ, CRISOSTOMO y MONTIEL",📍maps,CABA,-34.677.286,-58.492.317,,Eduardo,Parroquia y anexos
+PROP_0672,,"NEWBERY, JORGE AV. 3920",📍maps,CABA,-34.587.234,-58.450.219,,Eduardo,Parroquia y anexos
+PROP_0673,,BUCARELLI y HAMBURGO,📍maps,CABA,-34.584.486,-58.480.836,,Eduardo,Parroquia y anexos
+PROP_0674,,"Sofía, Barzana",📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0675,Propiedad dependiente de Cáritas Bs. As.,CHACABUCO 1345,📍maps,CABA,-34.623.969,-58.375.567,,"Relevamiento, Eduardo",Cáritas
+PROP_0676,Parroquia San Cosme y San Damián,MONTIEL 1074,📍maps,CABA,-34.650.875,-58.525.611,MONTIEL 1076 | MONTIEL 1078,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0677,,"ANDALGALA y RODO, JOSE E.",📍maps,CABA,-34.661.548,-58.507.706,,Eduardo,Parroquia y anexos
+PROP_0678,,NICARAGUA 4835,📍maps,CABA,-34.586.372,-58.427.417,NICARAGUA 4849,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0679,Propiedad dependiente de Cáritas Bs. As.,"MELO, CARLOS F. 231",📍maps,CABA,-34.640.572,-58.364.656,,Eduardo,Cáritas
+PROP_0680,Parroquia San Isidro Labrador,San Isidro s/n,📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0681,,SALALA 60,📍maps,CABA,-34.629.709,-58.463.228,,Eduardo,Parroquia y anexos
+PROP_0682,Parroquia San Juan Bautista,"CARRIL, SALVADOR MARIA DEL AV. 4746",📍maps,CABA,-34.605.048,-58.521.234,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0683,Propiedad dependiente de Cáritas Bs. As.,AZCUENAGA 27,📍maps,CABA,-34.609.369,-58.400.456,,Eduardo,Cáritas
+PROP_0684,Parroquia San Juan María Vianney,"RIVAS, GRAL. 2363",📍maps,CABA,-34.598.824,-58.482.568,"RIVAS, GRAL. 2365","Relevamiento, Eduardo","Parroquia y anexos, REVISAR"
+PROP_0685,,"DIAZ, AVELINO y DOBLAS",📍maps,CABA,-34.635.316,-58.427.533,,Eduardo,Parroquia y anexos
+PROP_0686,,"Fahy, Padre s/n",📍maps,CABA,,,,Eduardo,"Parroquia y anexos, REVISAR"
+PROP_0687,,"VARELA, JOSE PEDRO 5251",📍maps,CABA,-34.615.008,-58.522.619,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0688,,"Varela, José Pedro  s/n",📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0689,Parroquia San Ramón Nonato,"MAGARIÑOS CERVANTES, A. 4910",📍maps,CABA,-34.627.716,-58.501.971,,"Relevamiento, Eduardo","Parroquia y anexos, REVISAR"
+PROP_0690,,ZUVIRIA y CULPINA,📍maps,CABA,-3.464.318,-58.456.308,,Eduardo,"Parroquia y anexos, REVISAR"
+PROP_0691,,ZUVIRIA y VARELA AV.,📍maps,CABA,-34.642.479,-58.455.359,,"Relevamiento, Eduardo","Parroquia y anexos, REVISAR"
+PROP_0692,,3350,📍maps,CABA,,,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0693,Parroquia Santa Elisa,Andalucía S/N (Ambrosio Olmos),📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0694,,Saladillo esq. Pasaje Andalucía,📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0695,,"MONTES DE OCA, MANUEL AV. 76",📍maps,CABA,-34.629.227,-58.377.417,,Eduardo,Parroquia y anexos
+PROP_0696,,NUEVA YORK 2467,📍maps,CABA,-34.588.294,-58.492.592,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0697,Parroquia Santa Margarita María de Alacoque,DEHEZA 4953,📍maps,CABA,-34.552.372,-58.497.582,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0698,Parroquia Santa Rita,"ALBARRACIN DE SARMIENTO, PAULA y LLAVALLOL",📍maps,CABA,-34.615.095,-58.487.062,,Eduardo,Parroquia y anexos
+PROP_0699,,JUNCAL y LARREA,📍maps,CABA,-34.592.001,-58.399.965,,Eduardo,Parroquia y anexos
+PROP_0700,Parroquia Santo Cristo,TABARE y LAFUENTE,📍maps,CABA,-34.662.814,-58.438.701,,Eduardo,Parroquia y anexos
+PROP_0701,PARROQUIA PRESENTACION DEL SEÑOR,MELIAN AV. y RUIZ HUIDOBRO,📍maps,CABA,-34.549.608,-58.484.014,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0702,,"SUAREZ, JOSE LEON y FERNANDEZ DE LA CRUZ, F., GRAL. AV.",📍maps,CABA,-3.468.963,-58.477.622,,Eduardo,Parroquia y anexos
+PROP_0703,,MERCEDES 4734,📍maps,CABA,-34.595.228,-58.517.399,,Eduardo,Parroquia y anexos
+PROP_0704,,Leguizamòn S/N,📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0705,Parroqua San Saturnino y San Judas Tadeo,VALENCIA 2087,📍maps,CABA,-34.643.975,-58.438.329,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0706,,"CASTRO, EMILIO AV. 6351",📍maps,CABA,-34.650.039,-58.511.423,,Eduardo,"Parroquia y anexos, REVISAR"
+PROP_0707,,ARTIGAS MANUEL DE 6132,📍maps,CABA,-34.651.779,-58.504.795,ARTIGAS MANUEL DE 6140,"Relevamiento, Eduardo","Parroquia y anexos, Escuela"
+PROP_0708,,BRUSELAS 1022,📍maps,CABA,-34.625.276,-58.523.871,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0709,Propiedad que pertenece a la Compañía del Divino Maestro,PERU 555,📍maps,CABA,-3.461.446,-58.374.666,,"Relevamiento, Eduardo",Cedidos a terceros
+PROP_0710,,"IRIGOYEN, BERNARDO DE 454",📍maps,CABA,-34.613.639,-58.380.403,,Eduardo,Parroquia y anexos
+PROP_0711,,"PELLEGRINI, CARLOS 1535",📍maps,CABA,-34.590.139,-58.381.221,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0712,,Modelell; Brown; Alegria . Av. Montes de Ocs,📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0713,Propiedad dependiente de las Hermanas Nuestra Señora del Rosario,HERRERA 370,📍maps,CABA,-34.634.521,-58.378.802,HERRERA 386,"Relevamiento, Eduardo",Cedidos a terceros
+PROP_0714,Colectividad Coreana Católica.,SARAZA 1145,📍maps,CABA,-3.463.826,-58.433.534,SARAZA 1147 | SARAZA 1149,Eduardo,Cedidos a terceros
+PROP_0715,Propiedad de Caritas,3433,📍maps,CABA,,,,Eduardo,Cáritas
+PROP_0716,,TUCUMAN 1889,📍maps,CABA,-34.602.006,-58.393.814,,"Relevamiento, Eduardo",Instituciones diocesanas propias
+PROP_0717,Propiedad dependiente de la Parroquia Buen Pastor,COLPAYO 490,📍maps,CABA,-34.614.747,-58.442.359,,Eduardo,Parroquia y anexos
+PROP_0718,,GURRUCHAGA 593,📍maps,CABA,-34.596.503,-58.440.388,,Eduardo,Parroquia y anexos
+PROP_0719,,ENTRE RIOS AV. 284,📍maps,CABA,-34.612.466,-58.391.672,ENTRE RIOS AV. 294,Eduardo,Instituciones diocesanas propias
+PROP_0720,,SARANDI 307,📍maps,CABA,-34.613.095,-58.394.765,SARANDI 315,Eduardo,Instituciones diocesanas propias
+PROP_0721,,"Somellera , Lautaro s/n",📍maps,CABA,,,,Eduardo,Instituciones diocesanas propias
+PROP_0722,,"Somellera, Lautaro s/n",📍maps,CABA,,,,Eduardo,Instituciones diocesanas propias
+PROP_0723,,AGUERO 250,📍maps,CABA,-34.606.825,-58.412.582,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0724,Parroquia San Cayetano de Belgrano,VIDAL 1765,📍maps,CABA,-34.567.272,-58.457.645,,"Relevamiento, Eduardo","Parroquia y anexos, REVISAR"
+PROP_0725,,SAN MARTIN 444,📍maps,CABA,-34.602.834,-58.373.915,,Eduardo,Parroquia y anexos
+PROP_0726,,SANCHEZ DE BUSTAMANTE 1674,📍maps,CABA,-34.591.619,-58.410.058,SANCHEZ DE BUSTAMANTE 1684,"Relevamiento, Eduardo",Otros
+PROP_0727,,BILLINGHURST 1677,📍maps,CABA,-34.591.253,-58.410.797,BILLINGHURST 1681,"Relevamiento, Eduardo",Otros
+PROP_0728,,"GOMEZ, VALENTIN 3619",📍maps,CABA,-34.604.743,-58.416.164,"GOMEZ, VALENTIN 3621",Eduardo,Otros
+PROP_0729,PARROQUIA CORAZON DE JESUS,"PAZ, GRAL. AV. 5022",📍maps,CABA,-3.457.051,-58.509.269,,Eduardo,Parroquia y anexos
+PROP_0730,,DONADO 4080,📍maps,CABA,-34.555.011,-58.488.697,,Eduardo,Parroquia y anexos
+PROP_0731,,"PACHECO y LARRALDE, CRISOLOGO AV.",📍maps,CABA,-34.561.759,-58.492.883,,"Relevamiento, Eduardo",Otros
+PROP_0732,,ZADO y NUÑEZ,📍maps,CABA,-34.569.467,-58.505.272,ZADO Y NUÑEZ,"Relevamiento, Eduardo",Otros
+PROP_0733,NO TENEMOS CARPETA,24 DE NOVIEMBRE 305,📍maps,CABA,-34.614.157,-58.411.354,,Eduardo,Otros
+PROP_0734,VENDIDA,"BEIRO, FRANCISCO AV. 5526",📍maps,CABA,-34.616.044,-5.852.764,,Eduardo,Otros
+PROP_0735,,LOYOLA 1092,📍maps,CABA,-34.591.691,-58.439.593,,Eduardo,Otros
+PROP_0736,,"PORCEL DE PERALTA, MANUEL 1041",📍maps,CABA,-34.625.359,-58.525.036,"PORCEL DE PERALTA, MANUEL 1043","Relevamiento, Eduardo",Otros
+PROP_0737,Casa Parroquial San Antonio Caseros,LAVARDEN 64,📍maps,CABA,-34.636.908,-58.401.974,LAVARDEN 70 | LAVARDEN 84 | LAVARDEN 96,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0738,Propiedad de Los Operarios Diocesanos. Religiosos.,"CUBAS, JOSE 2",📍maps,CABA,,,,Eduardo,Cedidos a terceros
+PROP_0739,Propiedad dependiente del Seminario Metropolitano,"CUBAS, JOSE 3543",📍maps,CABA,-34.593.804,-58.508.662,,"Relevamiento, Eduardo",Instituciones diocesanas propias
+PROP_0740,,MORENO 1793,📍maps,CABA,-346.126,-58.391.556,,Eduardo,Instituciones diocesanas propias
+PROP_0741,,CHARLONE 1850,📍maps,CABA,-34.580.587,-58.467.644,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0742,,"ACOSTA, MARIANO y JANER, ANA MARIA",📍maps,CABA,-34.659.592,-58.449.762,,Eduardo,Parroquia y anexos
+PROP_0743,,MENDOZA 2277,📍maps,CABA,-34.560.277,-5.845.621,MENDOZA 2279 | MENDOZA 2281 | MENDOZA 2285 | MENDOZA 2287,"Relevamiento, Eduardo",
+PROP_0744,,"DIAZ, CESAR, GRAL. 3120",📍maps,CABA,-34.615.965,-58.481.839,,"Relevamiento, Eduardo",Comerciales
+PROP_0745,,"URIBURU JOSE E., PRES. 532",📍maps,CABA,-34.602.864,-58.398.472,,Eduardo,Comerciales
+PROP_0746,,SOLER 5671,📍maps,CABA,-34.580.309,-5.843.322,,Eduardo,Comerciales
+PROP_0747,Casa Parroquial San Isidro Labrador,ARIAS 2529,📍maps,CABA,-34.542.671,-58.474.569,,Eduardo,Parroquia y anexos
+PROP_0748,Casa Parroquial San Bernardo,GURRUCHAGA 171,📍maps,CABA,-34.600.129,-58.445.125,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0749,,GUATEMALA 5672,📍maps,CABA,-34.579.845,-58.432.685,GUATEMALA 5674,Eduardo,Comerciales
+PROP_0750,Casa Parroquial San Tarsicio,DEMARIA 4418,📍maps,CABA,-34.575.403,-58.419.785,DEMARIA 4424,Eduardo,Parroquia y anexos
+PROP_0751,Casa Parroquial Santa Elena,LAFINUR 3331,📍maps,CABA,-34.577.265,-58.412.235,,"Relevamiento, Eduardo",Parroquia y anexos
+PROP_0752,Propiedad dependiente de la Parroquia Nuestra Señora de Fátima (F),"BARROS PAZOS, JOSE 3443",📍maps,CABA,-34.661.247,-58.448.788,"BARROS PAZOS, JOSE 3445",Eduardo,Parroquia y anexos
+PROP_0753,Propiedad cedida  a COMUNIDAD FRATERNA DE GUADALUPE,"ALVAREZ, DONATO, TTE. GRAL. AV. 1801",📍maps,CABA,-346.065,-58.463.047,"ALVAREZ, DONATO, TTE. GRAL. AV. 1809",Eduardo,Cedidos a terceros
+PROP_0754,Casa Parroquial de Nuestra Señora de Fátima (Soldati),"ACOSTA, MARIANO 2969",📍maps,CABA,-3.466.058,-58.448.877,,Eduardo,Parroquia y anexos
+PROP_0755,Casa Parroquial Santa Francisca Javier Cabrini,"FERNANDEZ MORENO, BALDOMERO 2383",📍maps,CABA,-34.636.947,-58.457.838,,Eduardo,Parroquia y anexos
+PROP_0756,Escuela Parroquial Sagrada Eucaristía,SANTA FE AV. 4320,📍maps,CABA,-34.580.449,-5.842.294,SANTA FE AV. 4330,Eduardo,"Parroquia y anexos, Escuela"
+PROP_0757,Parroquia Santa Francisca Javier Cabrini,2383,📍maps,CABA,,,,Eduardo,Parroquia y anexos
+PROP_0758,Escuela San Francisco Javier,1655,📍maps,CABA,,,,Eduardo,Escuela
+PROP_0759,Parroquia San Juan Diego,Saraza s/n,📍maps,CABA,,,,Eduardo,"Parroquia y anexos, Comodato GCBA"
+PROP_0760,Vendido,"PERON, JUAN DOMINGO, TTE. GENERAL 2576",📍maps,CABA,-34.607.551,-58.403.135,,Eduardo,No AZB
+PROP_0761,Colegio Corazón de Jesús. Hermanas Carmelitas de la Caridad,AYACUCHO 474,📍maps,CABA,-34.603.642,-5.839.543,,"Relevamiento, Eduardo",Escuela
+PROP_0762,Averiguar,SALTA 2284,📍maps,CABA,-34.633.765,-58.382.471,SALTA 2296,Relevamiento,a definir
+PROP_0763,Averiguar,"SALGUERO, JERONIMO y CORRIENTES AV.",📍maps,CABA,-34.603.319,-58.419.515,,Relevamiento,a definir
+PROP_0764,Averiguar,RUIZ HUIDOBRO 3501,📍maps,CABA,-34.549.292,-58.483.508,RUIZ HUIDOBRO 3591,Relevamiento,a definir
+PROP_0765,Averiguar,"GUIRALDES, RICARDO y SANTANDER",📍maps,CABA,-34.668.503,-5.848.072,,Relevamiento,a definir
+PROP_0766,Averiguar,VILLARINO 2535,📍maps,CABA,-34.654.686,-58.381.106,,Relevamiento,a definir
+PROP_0767,Averiguar,SARAZA y CACHIMAYO,📍maps,CABA,-34.638.755,-5.843.592,,Relevamiento,a definir
+PROP_0768,Averiguar,Dirección inexistente 1655,📍maps,CABA,,,,Relevamiento,a definir
+PROP_0769,Averiguar,SUPERI 1973,📍maps,CABA,-34.569.056,-5.846.545,,Relevamiento,a definir
+PROP_0770,Averiguar,Dirección inexistente,📍maps,CABA,,,,Relevamiento,a definir
+PROP_0771,Averiguar,WARNES AV. 2676,📍maps,CABA,-34.597.134,-58.476.315,,Relevamiento,a definir
+PROP_0772,Averiguar,Calle sin altura,📍maps,CABA,,,,Relevamiento,a definir
+PROP_0773,Averiguar,ZUVIRIA 2260,📍maps,CABA,-34.639.467,-58.451.841,,Relevamiento,a definir
+PROP_0774,Averiguar,ZUVIRIA 2660,📍maps,CABA,-34.642.923,-58.455.874,,Relevamiento,a definir
+PROP_0775,Averiguar,INDEPENDENCIA AV. 749,📍maps,CABA,-34.617.318,-58.376.703,INDEPENDENCIA AV. 751,Relevamiento,a definir
+PROP_0776,Averiguar,MELINCUE 2776,📍maps,CABA,-3.459.987,-58.488.906,,Relevamiento,a definir
+PROP_0777,Averiguar,AVELLANEDA AV. 2677,📍maps,CABA,-34.625.318,-5.846.849,,Relevamiento,a definir
+PROP_0778,Averiguar,Dirección inexistente 4260,📍maps,CABA,,,,Relevamiento,a definir
+PROP_0779,Averiguar,BILLINGHURST 454,📍maps,CABA,-34.604.706,-58.415.898,BILLINGHURST 456,Relevamiento,a definir
+PROP_0780,Averiguar,DEL LIBERTADOR AV. 8036,📍maps,CABA,-34.541.124,-58.463.705,DEL LIBERTADOR AV. 8066,Relevamiento,a definir
+PROP_0781,Averiguar,CAMPICHUELO 1850,📍maps,CABA,,,CAMPICHUELO 1852 | CAMPICHUELO 1854 | CAMPICHUELO 1856,Relevamiento,a definir
+PROP_0782,Averiguar,"SCALABRINI ORTIZ, RAUL 2680",📍maps,CABA,-34.584.218,-58.414.604,,Relevamiento,a definir
+PROP_0783,Averiguar,CONDOR 2967,📍maps,CABA,-34.663.162,-58.437.636,,Relevamiento,a definir
+PROP_0784,Averiguar,CHACABUCO 456,📍maps,CABA,-34.613.406,-58.376.093,CHACABUCO 462,Relevamiento,a definir
+PROP_0785,Averiguar,"BILBAO, FRANCISCO AV. y PORTELA",📍maps,CABA,-34.641.394,-58.469.242,,Relevamiento,a definir
+PROP_0786,Averiguar,"ARTIGAS, JOSE GERVASIO, GRAL. 2058",📍maps,CABA,-34.608.198,-58.476.812,,Relevamiento,a definir
+PROP_0787,Averiguar,PEDRO FAHY NA,📍maps,CABA,,,,Relevamiento,a definir
+PROP_0788,Averiguar,"JUSTO, JUAN B. AV. 7525",📍maps,CABA,-34.629.749,-58.495.372,,Relevamiento,a definir
+PROP_0789,Averiguar,"BRUSELAS y SASTRE, MARCOS",📍maps,CABA,-34.625.598,-58.523.727,,Relevamiento,a definir
+PROP_0790,Averiguar,MEMBRILLAR 68,📍maps,CABA,-34.629.121,-58.460.823,,Relevamiento,a definir
+PROP_0791,Averiguar,RAMON FALCON 2271,📍maps,CABA,-34.629.431,-58.460.254,,Relevamiento,a definir
+PROP_0792,Averiguar,PBA 76 23,📍maps,Buenos Aires,,,,,a definir
+PROP_0793,Averiguar,ARTIGAS MANUEL DE 6142,📍maps,CABA,-34.651.779,-58.504.795,,Relevamiento,a definir
+PROP_0794,Averiguar,Sin dirección 850,📍maps,CABA,,,Sin dirección 858 | Sin dirección 860 | Sin dirección 862,Relevamiento,a definir
+PROP_0795,Averiguar,PADRE FAHY 2721,📍maps,CABA,-34.616.169,-58.520.462,,Relevamiento,a definir
+PROP_0796,Averiguar,ESCALADA AV. y ECHEANDIA,📍maps,CABA,-34.659.248,-58.477.042,,Relevamiento,a definir
+PROP_0797,Averiguar,GRECIA 4370,📍maps,CABA,-34.540.941,-58.467.475,,Relevamiento,a definir
+PROP_0798,Averiguar,ERCILLA y ANDALGALA,📍maps,CABA,-34.653.817,-58.517.486,,Relevamiento,a definir
+PROP_0799,Averiguar,"LOZANO, PEDRO 3151",📍maps,CABA,-34.600.944,-58.494.651,,Relevamiento,a definir
+PROP_0800,Averiguar,RECONQUISTA 1166,📍maps,CABA,-34.594.677,-58.373.378,RECONQUISTA 1172 | RECONQUISTA 1178 | RECONQUISTA 1198,Relevamiento,a definir
+PROP_0801,Averiguar,ESQUIU 1002,📍maps,CABA,-34.651.877,-58.417.931,ESQUIU 1012,,a definir
+PROP_0802,Averiguar,MORENO 2231,📍maps,CABA,-3.461.304,-58.397.951,,Relevamiento,a definir
+PROP_0803,Averiguar,"MANSILLA, LUCIO NORBERTO, GENERAL y SALGUERO, JERONIMO",📍maps,CABA,-34.589.729,-58.416.489,,Relevamiento,a definir
+PROP_0804,Averiguar,"ACEVEDO, EDUARDO 493",📍maps,CABA,-34.610.365,-58.432.137,"ACEVEDO, EDUARDO 495",Relevamiento,a definir
+PROP_0805,Averiguar,Sin dirección,📍maps,CABA,,,,Relevamiento,a definir
+PROP_0806,Averiguar,"POMAR, GREGORIO TTE. CNEL. 4341",📍maps,CABA,-34.641.057,-58.422.777,,Relevamiento,a definir
+PROP_0807,Averiguar,#REF!,📍maps,CABA,,,,Relevamiento,a definir
+PROP_0808,Averiguar,"UGARTE, MANUEL 3433",📍maps,CABA,-34.561.691,-58.472.462,,Relevamiento,a definir
+PROP_0809,Averiguar,Sin dirección 831,📍maps,CABA,,,,Relevamiento,a definir
+PROP_0810,Averiguar,CORVALAN 1349,📍maps,CABA,-34.651.009,-58.494.098,,Relevamiento,a definir
+PROP_0811,Averiguar,#REF! 3048,📍maps,CABA,,,,Relevamiento,a definir
+PROP_0812,Averiguar,PARAGUAY 1867,📍maps,CABA,-34.598.711,-58.394.158,PARAGUAY 1869,Relevamiento,a definir
+PROP_0813,Averiguar,#REF! 234,📍maps,Buenos Aires,,,,Relevamiento,a definir
+PROP_0814,Averiguar,#REF!,📍maps,Buenos Aires,,,,Relevamiento,a definir
+PROP_0815,Averiguar,#REF!,📍maps,Buenos Aires,,,,Relevamiento,a definir
+PROP_0816,Averiguar,25 DE MAYO 337,📍maps,Buenos Aires,-34.603.703,-58.371.015,,Relevamiento,a definir
+PROP_0817,Averiguar,RAMALLO 1948,📍maps,CABA,-3.454.081,-58.468.156,,Relevamiento,a definir
+PROP_0818,Averiguar,GNERAL RODRIGUEZ SOBRE EL CAMINO DE TIERRA DE MARCOS PAZ,📍maps,Buenos Aires,,,,Relevamiento,a definir
+PROP_0819,Averiguar,Sin dirección 1630,📍maps,CABA,,,Sin dirección 1632,Relevamiento,a definir
+PROP_0820,Averiguar,COCHABAMBA 2282,📍maps,CABA,-3.462.447,-58.397.115,,Relevamiento,a definir
+PROP_0821,Averiguar,JACINTO DIAZ 316,📍maps,Buenos Aires,,,,Relevamiento,a definir
+PROP_0822,Averiguar,Sin dirección 345,📍maps,Buenos Aires,,,,Relevamiento,a definir
+PROP_0823,Averiguar,Sin dirección 2041,📍maps,CABA,,,Sin dirección 2043,Relevamiento,a definir
+PROP_0824,Averiguar,AVELLANEDA AV. 2645,📍maps,CABA,-34.625.229,-58.468.204,,Relevamiento,a definir
+PROP_0825,Averiguar,Sin dirección 123,📍maps,CABA,,,Sin dirección 131,Relevamiento,a definir
+PROP_0826,Averiguar,DEMARIA 4422,📍maps,CABA,-34.575.382,-58.419.834,,Relevamiento,a definir
+PROP_0827,Averiguar,DIAZ VELEZ AV. 3815,📍maps,CABA,-34.608.464,-5.842.032,,,a definir
+PROP_0828,Averiguar,HAMBURGO y BUCARELLI,📍maps,CABA,-34.584.486,-58.480.836,,Relevamiento,a definir
+PROP_0829,Averiguar,MATHEU 126,📍maps,CABA,-34.611.283,-58.400.328,MATHEU 128,Relevamiento,a definir
+PROP_0830,Averiguar,CARHUE 5085,📍maps,Buenos Aires,,,,,a definir
+PROP_0831,Averiguar,OLIDEN 4440,📍maps,CABA,-34.678.077,-58.472.129,,Relevamiento,a definir
+PROP_0832,Averiguar,MATHEU 134,📍maps,CABA,-34.611.351,-58.400.324,MATHEU 150,Relevamiento,a definir
+PROP_0833,Averiguar,OLLEROS 2080,📍maps,CABA,-34.567.864,-58.441.283,,Relevamiento,a definir
+PROP_0834,Averiguar,PAEZ 2878,📍maps,CABA,-34.622.085,-58.473.015,,Relevamiento,a definir
+PROP_0835,Averiguar,CAFAYATE 1209,📍maps,CABA,-34.651.287,-58.511.836,,Relevamiento,a definir
+PROP_0836,Averiguar,CABILDO AV. 638,📍maps,Buenos Aires,-34.570.814,-58.443.406,CABILDO AV. 642,Relevamiento,a definir
+PROP_0837,Averiguar,Sin dirección 1141,📍maps,CABA,,,,Relevamiento,a definir
+PROP_0838,Averiguar,Sin dirección 672,📍maps,CABA,,,Sin dirección 676 | Sin dirección 678,Relevamiento,a definir
+PROP_0839,Averiguar,BACACAY y GUALEGUAYCHU,📍maps,CABA,-34.632.192,-58.485.202,,Relevamiento,a definir
+PROP_0840,Averiguar,Sin dirección 2208,📍maps,CABA,,,Sin dirección 2216 | Sin dirección 2220,Relevamiento,a definir
+PROP_0841,Averiguar,Sin dirección 1344,📍maps,CABA,,,,Relevamiento,a definir
+PROP_0842,Averiguar,Sin dirección 1152,📍maps,CABA,,,Sin dirección 1156,Relevamiento,a definir
+PROP_0843,Averiguar,BOLIVAR 1267,📍maps,CABA,-34.622.687,-58.372.802,,Relevamiento,a definir
+PROP_0844,Averiguar,CORRIENTES AV. y YATAY,📍maps,CABA,-34.602.418,-58.428.575,,,a definir
+PROP_0845,Averiguar,#REF!,📍maps,,,,,,a definir
+PROP_0846,Averiguar,DERQUI PARTIDO DE PILAR,📍maps,Buenos Aires,,,,Relevamiento,a definir
+PROP_0847,Averiguar,DIRECTORIO AV. 2138,📍maps,CABA,-34.632.444,-5.845.709,,Relevamiento,a definir
+PROP_0848,Averiguar,Sin dirección 6351,📍maps,CABA,,,,Relevamiento,a definir
+PROP_0849,Averiguar,"PAZ, GRAL. AV. 3600",📍maps,CABA,-34.552.019,-58.500.671,,Relevamiento,a definir
+PROP_0850,Averiguar,Sin dirección 1154,📍maps,CABA,,,Sin dirección 1153,Relevamiento,a definir
+PROP_0851,Averiguar,LARRAZABAL 3300,📍maps,CABA,-34.669.752,-58.480.694,,Relevamiento,a definir
+PROP_0852,Averiguar,"VARELA, JOSE PEDRO y LOPE DE VEGA AV.",📍maps,CABA,-34.615.508,-58.523.115,,Relevamiento,a definir
+PROP_0853,Averiguar,JUJUY AV. 1241,📍maps,CABA,-34.624.466,-58.402.128,,Relevamiento,a definir
+PROP_0854,Averiguar,Dirección inexistente 2383,📍maps,CABA,,,,Relevamiento,a definir
+PROP_0855,Averiguar,25 DE MAYO 327,📍maps,Buenos Aires,-34.603.828,-58.371.006,,Relevamiento,a definir
+PROP_0856,Averiguar,PBA,📍maps,Buenos Aires,,,,Relevamiento,a definir
+PROP_0857,Averiguar,"URIBURU JOSE E., PRES. 560",📍maps,CABA,-34.602.633,-58.398.499,"URIBURU JOSE E., PRES. 562",Relevamiento,a definir
+PROP_0858,Averiguar,PBA?,📍maps,Buenos Aires,,,,Relevamiento,a definir
+PROP_0859,Averiguar,LARREA 416,📍maps,CABA,-34.604.332,-5.840.221,LARREA 418 | LARREA 420 | LARREA 422,Relevamiento,a definir
+PROP_0860,Averiguar,PERU 540,📍maps,CABA,-34.614.309,-58.374.568,PERU 544 | PERU 548,Relevamiento,a definir
+PROP_0861,Averiguar,MEXICO 3640,📍maps,CABA,-34.619.891,-5.841.729,,Relevamiento,a definir
+PROP_0862,Averiguar,LAFUENTE AV. 1350,📍maps,CABA,-34.645.946,-58.459.052,,Relevamiento,a definir
+PROP_0863,Averiguar,LAVALLE 348,📍maps,CABA,-34.602.015,-58.371.754,,Relevamiento,a definir
+PROP_0864,Averiguar,MORENO 2245,📍maps,CABA,-3.461.305,-58.398.127,MORENO 2247,Relevamiento,a definir
+PROP_0865,Averiguar,NEUQUEN 2747,📍maps,CABA,-34.620.484,-58.471.758,NEUQUEN 2749,Relevamiento,a definir
+PROP_0866,Averiguar,PAEZ 2884,📍maps,CABA,-34.622.115,-58.473.096,,Relevamiento,a definir
+PROP_0867,Averiguar,PARAGUAY 834,📍maps,CABA,-34.597.708,-58.378.825,,Relevamiento,a definir
+PROP_0868,Averiguar,PARAGUAY 840,📍maps,CABA,-34.597.716,-58.378.993,,Relevamiento,a definir
+PROP_0869,Averiguar,"OLMOS, AMBROSIO y SALTA",📍maps,CABA,-34.634.102,-58.382.511,,Relevamiento,a definir
+PROP_0870,Averiguar,Dirección inexistente 4135,📍maps,CABA,,,,Relevamiento,a definir
+PROP_0871,Averiguar,Dirección inexistente 1057,📍maps,CABA,,,,Relevamiento,a definir
+PROP_0872,Averiguar,Dirección inexistente 1065,📍maps,CABA,,,,Relevamiento,a definir
+PROP_0873,Averiguar,"ALBARRACIN DE SARMIENTO, PAULA 3434",📍maps,CABA,-34.615.348,-58.487.459,,Relevamiento,a definir

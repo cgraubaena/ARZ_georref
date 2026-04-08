@@ -1,0 +1,419 @@
+---
+title: "Equivalencias posibles entre propiedades por descripción"
+author: "Arzobispado"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: hide
+    warning: false
+    message: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r librerias}
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(purrr)
+library(readr)
+library(leaflet)
+library(htmltools)
+library(igraph)
+library(stringdist)
+```
+
+## 1) Parámetros de entrada
+
+En esta sección se define el archivo de Excel y los nombres de las hojas.
+
+- **archivo_excel**: Excel que contiene la hoja `tabla única` y la hoja `catálogo`.
+- **hoja_tabla_unica**: hoja con la tabla única de propiedades.
+- **hoja_catalogo**: hoja con el catálogo de orígenes (`Origen`, `ID origen`, `Descripción`, etc.).
+
+```{r parametros}
+# Ruta al Excel (ajustar al nombre real del archivo)
+archivo_excel    <- "Tabla_unica.xlsx"
+hoja_tabla_unica <- "Tabla unica"
+hoja_catalogo    <- "Catalogo"
+
+# Encabezados:
+# - Tabla única: encabezados en fila 3 -> skip = 2
+# - Catálogo: encabezados en fila 1 -> skip = 0
+skip_tabla_unica <- 2
+skip_catalogo    <- 0
+```
+
+## 2) Lectura de datos
+
+Para evitar “demasiadas equivalencias”, este flujo usa **`Tabla única` como filtro maestro**:
+
+- Solo se buscan equivalencias entre `ID_propiedad` que estén en `Tabla única` (y por lo tanto ya tienen el trabajo de consolidación previo).
+- El mapa muestra **solo** las direcciones oficiales de las `ID_propiedad` que quedaron en alguna equivalencia.
+
+```{r leer-datos}
+tabla_unica_raw <- read_excel(
+  archivo_excel,
+  sheet     = hoja_tabla_unica,
+  skip      = skip_tabla_unica,
+  col_names = TRUE
+)
+
+catalogo_raw <- read_excel(
+  archivo_excel,
+  sheet     = hoja_catalogo,
+  skip      = skip_catalogo,
+  col_names = TRUE
+)
+
+names(tabla_unica_raw)
+names(catalogo_raw)
+```
+
+### 2.1) Normalización mínima de columnas
+
+```{r renombrar-columnas}
+tabla_unica <- tabla_unica_raw %>%
+  rename(
+    id_propiedad           = Propiedad_ID,
+    descripcion_tabla_unica = `Descripción`
+  ) %>%
+  mutate(
+    id_propiedad = as.character(id_propiedad)
+  )
+
+catalogo <- catalogo_raw %>%
+  rename(
+    origen                 = `Origen`,
+    id_origen              = `ID origen`,
+    descripcion            = `Descripción`,
+    direccion              = `Dirección`,
+    direccion_normalizada  = `Dirección normalizada`,
+    id_propiedad           = ID_propiedad,
+    prioridad_oficial      = `Prioridad dirección oficial x origen`,
+    lat                    = lat,
+    lon                    = lon,
+    fuente_geo             = fuente_geo,
+    precision_geo          = `precisión_geo`,
+    observaciones          = observaciones
+  ) %>%
+  mutate(
+    id_origen = as.character(id_origen),
+    id_propiedad = as.character(id_propiedad),
+    prioridad_oficial_num = suppressWarnings(as.numeric(prioridad_oficial)),
+    lat = suppressWarnings(as.numeric(lat)),
+    lon = suppressWarnings(as.numeric(lon))
+  )
+
+glimpse(tabla_unica)
+glimpse(catalogo)
+```
+
+## 3) Limpieza y normalización de descripciones
+
+Se normalizan las descripciones para poder compararlas:
+
+- Mayúsculas
+- Quitar espacios múltiples
+- Quitar puntos y otros signos simples
+
+Si querés algo más agresivo (quitar tildes, etc.) se puede extender la función.
+
+```{r normalizar-descripciones}
+normalizar_descripcion <- function(x) {
+  x %>%
+    str_to_upper() %>%
+    str_replace_all("[[:punct:]]+", " ") %>%
+    str_replace_all("\\s+", " ") %>%
+    str_trim()
+}
+
+catalogo <- catalogo %>%
+  mutate(
+    desc_norm = normalizar_descripcion(descripcion)
+  )
+
+tabla_unica <- tabla_unica %>%
+  mutate(
+    desc_norm = normalizar_descripcion(descripcion_tabla_unica)
+  )
+```
+
+## 4) Dirección oficial por `ID_propiedad`
+
+Acá elegimos **una fila oficial por cada `ID_propiedad`** (la de menor `Prioridad dirección oficial x origen`).  
+En empate, desempata por `Origen` y luego por `ID origen`.
+
+```{r direccion-oficial-por-propiedad}
+prioridad_origen <- c("Índice GCBA", "Índice de propiedad", "Templos", "Entes dependientes", "Alquileres", "Eduardo", "Relevamiento")
+
+oficial_por_propiedad <- catalogo %>%
+  filter(!is.na(id_propiedad), id_propiedad != "") %>%
+  semi_join(tabla_unica %>% distinct(id_propiedad), by = "id_propiedad") %>%
+  mutate(
+    orden_origen = match(origen, prioridad_origen),
+    orden_origen = if_else(is.na(orden_origen), 999L, as.integer(orden_origen)),
+    prioridad_oficial_num = if_else(is.na(prioridad_oficial_num), 999999, prioridad_oficial_num)
+  ) %>%
+  arrange(id_propiedad, prioridad_oficial_num, orden_origen, id_origen) %>%
+  group_by(id_propiedad) %>%
+  slice(1) %>%
+  ungroup() %>%
+  transmute(
+    id_propiedad,
+    id_origen_oficial = id_origen,
+    origen_oficial    = origen,
+    descripcion_oficial = descripcion,
+    desc_norm,
+    direccion_oficial = coalesce(direccion_normalizada, direccion),
+    lat, lon
+  )
+
+glimpse(oficial_por_propiedad)
+```
+
+## 5) Nuevas equivalencias entre `ID_propiedad` por similitud de descripción oficial
+
+Se comparan descripciones oficiales entre propiedades distintas y se generan candidatos cuando la similitud es alta.
+
+Parámetros:
+
+- `similaridad_min`: entre 0 y 1 (más alto = más estricto). Recomendado 0.92–0.97 para Jaro-Winkler.
+
+```{r parametros-similitud}
+similaridad_min <- 0.94
+
+# Proximidad máxima para considerar equivalencia (metros)
+max_dist_m <- 100
+```
+
+```{r equivalencias-por-descripcion-oficial}
+#
+# Distancia aproximada sobre la Tierra (WGS84) en metros (fórmula de Haversine).
+# Evita traer dependencias extra.
+haversine_m <- function(lat1, lon1, lat2, lon2) {
+  to_rad <- pi / 180
+  lat1 <- lat1 * to_rad
+  lon1 <- lon1 * to_rad
+  lat2 <- lat2 * to_rad
+  lon2 <- lon2 * to_rad
+  dlat <- lat2 - lat1
+  dlon <- lon2 - lon1
+  a <- sin(dlat / 2)^2 + cos(lat1) * cos(lat2) * sin(dlon / 2)^2
+  c <- 2 * asin(pmin(1, sqrt(a)))
+  6371000 * c
+}
+
+df <- oficial_por_propiedad %>%
+  filter(!is.na(desc_norm), desc_norm != "")
+
+# Excluir casos que no querés usar para equivalencias
+# (descripción oficial normalizada, en mayúsculas sin signos de puntuación)
+exclude_keywords <- c("UNIDAD COMERCIAL", "AVERIGUAR")
+df <- df %>%
+  filter(
+    !str_detect(desc_norm, paste(exclude_keywords, collapse = "|"))
+  )
+
+# Bloqueo (ajustable) para evitar comparar todo con todo:
+df <- df %>%
+  mutate(
+    # primeras 2 palabras + largo (reduce muchísimo los cruces espurios)
+    w1 = word(desc_norm, 1),
+    w2 = word(desc_norm, 2),
+    bloque = paste0(w1, "_", w2, "_", nchar(desc_norm))
+  )
+
+candidatos <- df %>%
+  inner_join(df, by = "bloque", suffix = c("_A", "_B")) %>%
+  filter(id_propiedad_A < id_propiedad_B) %>%
+  mutate(
+    dist_jw = stringdist(desc_norm_A, desc_norm_B, method = "jw", p = 0.1),
+    similitud = 1 - dist_jw,
+    dist_m = haversine_m(lat_A, lon_A, lat_B, lon_B)
+  ) %>%
+  filter(similitud >= similaridad_min) %>%
+  filter(!is.na(dist_m), dist_m <= max_dist_m) %>%
+  arrange(desc(similitud))
+
+tabla_equivalencias_propiedad <- candidatos %>%
+  transmute(
+    id_propiedad_A,
+    id_origen_A = id_origen_oficial_A,
+    direccion_origen_A = direccion_oficial_A,
+    id_propiedad_B,
+    id_origen_B = id_origen_oficial_B,
+    direccion_origen_B = direccion_oficial_B,
+    tipo = "automático",
+    comentario = paste0(
+      "descripción oficial similar (similitud=", round(similitud, 3),
+      ", distancia=", round(dist_m, 0), "m)"
+    ),
+    activa = "sí"
+  )
+
+# Agregar el mismo "grupo de equivalencias" que usa el mapa
+g_tmp <- graph_from_data_frame(
+  d = tabla_equivalencias_propiedad %>%
+    select(from = id_propiedad_A, to = id_propiedad_B),
+  directed = FALSE
+)
+comp_tmp <- components(g_tmp)
+mapa_grupos <- tibble(
+  id_propiedad = names(comp_tmp$membership),
+  grupo_equiv = as.integer(comp_tmp$membership)
+)
+
+tabla_equivalencias_propiedad <- tabla_equivalencias_propiedad %>%
+  left_join(
+    mapa_grupos %>% rename(id_propiedad_A = id_propiedad),
+    by = "id_propiedad_A"
+  ) %>%
+  arrange(grupo_equiv, id_propiedad_A, id_propiedad_B) %>%
+  select(grupo_equiv, everything())
+
+tabla_equivalencias_propiedad
+```
+
+## 7) Mapa de equivalencias por grupo
+
+En este mapa se muestran las direcciones de los `id_origen` que participan en alguna equivalencia.  
+Los `id_origen` que pertenecen al **mismo grupo de equivalencias** (cadena de A–B–C…) aparecen con el **mismo color**.
+
+Se asume que en la hoja `catálogo` existen columnas `Dirección`, `lat` y `lon` con la georreferenciación de cada `id_origen`.
+
+```{r mapa-equivalencias}
+if (exists("tabla_equivalencias_propiedad") && nrow(tabla_equivalencias_propiedad) > 0) {
+
+  # Armar grafo de equivalencias (componentes conexas = grupos)
+  g <- graph_from_data_frame(
+    d = tabla_equivalencias_propiedad %>%
+      select(from = id_propiedad_A, to = id_propiedad_B),
+    directed = FALSE
+  )
+
+  comp <- components(g)
+
+  nodos_comp <- tibble(
+    id_propiedad = names(comp$membership),
+    grupo_equiv = as.integer(comp$membership)
+  )
+
+  # Unir con dirección oficial por propiedad para obtener dirección y coordenadas
+  puntos_equiv <- nodos_comp %>%
+    left_join(oficial_por_propiedad, by = "id_propiedad") %>%
+    filter(
+      !is.na(lat), !is.na(lon),
+      lat > -90, lat < 90,
+      lon > -180, lon < 180
+    )
+
+  if (nrow(puntos_equiv) == 0) {
+    message("No hay coordenadas válidas para los id_origen en equivalencias; no se genera mapa.")
+  } else {
+
+    grupos_unicos <- sort(unique(puntos_equiv$grupo_equiv))
+
+    pal_grupo <- colorFactor(
+      palette = "Set3",
+      domain  = grupos_unicos
+    )
+
+    labels_equiv <- with(puntos_equiv, paste0(
+      if_else(!is.na(descripcion_oficial) & descripcion_oficial != "",
+              paste0("<b>", descripcion_oficial, "</b><br/>"),
+              ""),
+      "ID_propiedad: ", id_propiedad, "<br/>",
+      "Origen oficial: ", origen_oficial, "<br/>",
+      "ID origen oficial: ", id_origen_oficial, "<br/>",
+      if_else(!is.na(direccion_oficial) & direccion_oficial != "",
+              paste0("Dirección oficial: ", direccion_oficial, "<br/>"),
+              ""),
+      "Grupo de equivalencia: ", grupo_equiv
+    ) %>% lapply(HTML))
+
+    m_equiv <- leaflet(
+      data    = puntos_equiv,
+      # Usar CRS por defecto (Leaflet/EPSG3857) para asegurar que los tiles de mapa base carguen bien.
+      options = leafletOptions()
+    ) %>%
+      addProviderTiles(
+        providers$CartoDB.Voyager,
+        group = "CartoDB Voyager",
+        options = providerTileOptions(opacity = 0.9)
+      ) %>%
+      addProviderTiles(
+        providers$OpenStreetMap.Mapnik,
+        group = "OpenStreetMap",
+        options = providerTileOptions(opacity = 0.6)
+      ) %>%
+      addLayersControl(
+        baseGroups = c("CartoDB Voyager", "OpenStreetMap"),
+        options = layersControlOptions(collapsed = FALSE)
+      ) %>%
+      addCircleMarkers(
+        lng = ~lon, lat = ~lat,
+        radius = 6,
+        stroke = TRUE, weight = 1,
+        fillOpacity = 0.9,
+        color = "#333333",
+        fillColor = ~pal_grupo(grupo_equiv),
+        label = labels_equiv,
+        labelOptions = labelOptions(textsize = "12px", direction = "auto"),
+        group = "Equivalencias"
+      )
+
+    # Leyenda custom con scroll para que no se entrecorte (16-40 grupos).
+    colores_leg <- pal_grupo(grupos_unicos)
+    items_leg <- paste0(
+      "<div style='display:flex;align-items:center;gap:6px;margin:2px 4px;'>",
+      "<span style='width:10px;height:10px;background:", colores_leg,
+      ";display:inline-block;border-radius:2px;'></span>",
+      "<span>", grupos_unicos, "</span>",
+      "</div>"
+    )
+    legend_html <- paste0(
+      "<div style='background:rgba(255,255,255,0.9);padding:6px 8px;border-radius:4px;",
+      "max-height:160px;overflow:auto;box-shadow:0 1px 4px rgba(0,0,0,0.2);'>",
+      "<div style='font-weight:bold;margin-bottom:4px;'>Grupo de equivalencias</div>",
+      paste(items_leg, collapse = ""),
+      "</div>"
+    )
+
+    m_equiv <- m_equiv %>%
+      addControl(
+        html = legend_html,
+        position = "bottomright"
+      )
+
+    # Intentar centrar en el promedio de las coordenadas
+    centro_lon <- mean(puntos_equiv$lon, na.rm = TRUE)
+    centro_lat <- mean(puntos_equiv$lat, na.rm = TRUE)
+
+    m_equiv <- m_equiv %>%
+      setView(lng = centro_lon, lat = centro_lat, zoom = 12)
+
+    m_equiv
+  }
+
+} else {
+  message("No hay equivalencias generadas; tabla_equivalencias_propiedad está vacía.")
+}
+```
+
+## 8) Exportar a Excel / CSV
+
+Podés exportar el resultado a CSV o Excel para seguir trabajándolo manualmente.
+
+```{r exportar, eval=TRUE}
+# A CSV
+readr::write_csv(tabla_equivalencias_propiedad, "equivalencias_propiedades_por_descripcion_oficial.csv")
+
+# A Excel (requiere el paquete writexl)
+# install.packages("writexl")
+# writexl::write_xlsx(list(equivalencias = tabla_equivalencias),
+#                     path = "equivalencias_propiedades_por_descripcion.xlsx")
+```

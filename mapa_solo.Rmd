@@ -1,0 +1,25 @@
+---
+title: "Arzobispado | Propiedades en CABA y PBA"
+output:
+  html_document:
+    warning: false
+    message: false
+---
+
+Los mapas interactivos están en **dos archivos HTML separados** (un mapa por documento). Así se evitan problemas de renderizado y el encabezado YAML debe quedar bien formado.
+
+| Mapa | Archivo fuente | Salida HTML |
+|------|----------------|-------------|
+| Por fuente disponible | `mapa_fuentes.Rmd` | `mapa_fuentes.html` |
+| Por tipo de uso | `mapa_uso.Rmd` | `mapa_uso.html` |
+
+La lógica de datos y el mapa compartidos están en **`mapa_leaflet_core.R`** (lo cargan ambos `.Rmd`). En el mapa por tipo de uso, cada categoría es una **capa** que podés activar o desactivar con el **control de capas** del mapa (no se usa crosstalk, para evitar cuelgues del navegador).
+
+En R, con el directorio de trabajo en esta carpeta del proyecto:
+
+```{r, eval=FALSE}
+rmarkdown::render("mapa_fuentes.Rmd")
+rmarkdown::render("mapa_uso.Rmd")
+```
+
+**Importante:** en un archivo `.Rmd`, la primera línea debe ser `---` **sin espacios delante**. Si el YAML aparece como texto plano en el HTML, revisá que no haya sangría antes de `---`.
