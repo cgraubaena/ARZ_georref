@@ -1,0 +1,22 @@
+---
+title: "Arzobispado | Propiedades por tipo de uso"
+output:
+  html_document:
+    code_folding: hide
+    warning: false
+    message: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+if (!is.na(knitr::current_input(dir = TRUE))) {
+  knitr::opts_knit$set(root.dir = dirname(normalizePath(knitr::current_input(dir = TRUE))))
+}
+```
+
+```{r}
+source("mapa_leaflet_core.R", local = TRUE)
+agregar_capas_mapa(m_uso, "uso")
+```
+
+Cada **categoría de uso** es una capa distinta. Usá el control de capas (arriba a la derecha en el mapa) para mostrar u ocultar categorías.

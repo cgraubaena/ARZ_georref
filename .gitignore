@@ -1,0 +1,8 @@
+# RStudio / R
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# Knitr / intermedios
+*_cache/
