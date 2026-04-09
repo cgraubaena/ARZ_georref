@@ -55,7 +55,7 @@ parc_todos <- map(partidos_unicos, leer_parcela_partido) %>%
 # 4) Filtrar solo las parcelas que están en el índice PBA
 parc_mias <- parc_todos %>%
   inner_join(
-    df_pba %>% select(PBA_ID, PDA, partido_pdo, nombre_partido, C, S, MZ, PA),
+    df_pba %>% select(PBA_ID, PDA, partido_pdo, nombre_partido, C, S, MZ, PA, Descripción),
     by = "PDA"
   ) %>%
   mutate(partido_pdo = partido_pdo.y) %>%
@@ -674,13 +674,26 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
     weight      = 2.5,  # borde más grueso para mejor visibilidad
     fillOpacity = 0.9,  # muy opaco para que resalte sobre el partido
     label = ~paste0(
+      "<b>",
+      if_else(
+        !is.na(Descripción) & str_trim(Descripción) != "",
+        str_trim(Descripción),
+        "Parcela"
+      ),
+      "</b><br>",
       "PBA_ID: ", PBA_ID,
       "<br>Partido: ", nombre_partido,
       "<br>Partida: ", PDA,
       "<br>C/S/MZ/PA: ", C, "-", S, "-", MZ, "-", PA
     ),
     popup = ~paste0(
-      "<b>Parcela</b><br>",
+      "<b>",
+      if_else(
+        !is.na(Descripción) & str_trim(Descripción) != "",
+        str_trim(Descripción),
+        "Parcela"
+      ),
+      "</b><br>",
       "<b>Partido:</b> ", nombre_partido, " (", partido_pdo, ")<br>",
       "<b>Manzana:</b> ", MZ, "<br>",
       "<b>Parcela:</b> ", PA, "<br>",
