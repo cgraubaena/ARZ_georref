@@ -909,7 +909,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
     },
     options = layersControlOptions(collapsed = TRUE)
   ) %>%
-  # Mapa por uso: panel de categorías (título + botones) y control de capas siempre desplegable a la derecha
+  # Mapa por uso: panel de categorías (título + botones) y control de capas a la izquierda
   {
     mapa_temp <- .
     if (modo == "uso" && nrow(propiedades_caba) > 0 && length(grupos_capas_prop_caba) > 0) {
@@ -941,13 +941,13 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
               )
             )
           ),
-          position = "topright",
+          position = "topleft",
           className = "leaflet-uso-acciones"
         ) %>%
         addLayersControl(
           overlayGroups = grupos_capas_prop_caba,
           options = layersControlOptions(collapsed = FALSE),
-          position = "topright"
+          position = "topleft"
         )
     }
     mapa_temp
@@ -1071,17 +1071,17 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
             L.DomEvent.on(btnPanel, 'click', function(e) {
               L.DomEvent.stopPropagation(e);
               L.DomEvent.preventDefault(e);
-              var tr = document.querySelector('.leaflet-top.leaflet-right');
+              var tr = document.querySelector('.leaflet-top.leaflet-left');
               if (!tr) return;
-              var ctrls = tr.querySelectorAll(':scope > .leaflet-control');
-              var capasCtrl = ctrls.length > 1 ? ctrls[1] : null;
+              /* Lista de categorías: el control de capas (no el zoom ni el bloque de botones) */
+              var capasCtrl = tr.querySelector('.leaflet-control-layers');
               if (!capasCtrl) return;
               listaVisible = !listaVisible;
               capasCtrl.style.display = listaVisible ? '' : 'none';
               btnPanel.textContent = listaVisible ? 'Ocultar lista' : 'Mostrar lista';
             });
           }
-          var trTop = document.querySelector('.leaflet-top.leaflet-right');
+          var trTop = document.querySelector('.leaflet-top.leaflet-left');
           if (trTop) L.DomEvent.disableClickPropagation(trTop);
         }, 200);
       }
