@@ -241,7 +241,7 @@ propiedades_caba_raw <- propiedades_caba_raw %>%
     })
   )
 
-propiedades_caba <- propiedades_caba_raw %>%
+propiedades_caba_flags <- propiedades_caba_raw %>%
   mutate(
     Lat_str = as.character(Lat),
     Long_str = as.character(Long),
@@ -273,7 +273,7 @@ propiedades_caba <- propiedades_caba_raw %>%
     long_valida = Long > -59 & Long < -58
   )
 
-propiedades_caba <- propiedades_caba %>%
+propiedades_caba <- propiedades_caba_flags %>%
   filter(tiene_lat & tiene_long & lat_valida & long_valida) %>%
   select(-Lat_str, -Long_str, -Lat_clean, -Long_clean, 
          -tiene_lat, -tiene_long, -lat_valida, -long_valida) %>%
@@ -310,6 +310,58 @@ propiedades_caba <- propiedades_caba %>%
       color_fill_uso
     )
   )
+
+propiedades_caba_sin_coord <- propiedades_caba_flags %>%
+  filter(!(tiene_lat & tiene_long & lat_valida & long_valida)) %>%
+  select(-Lat_str, -Long_str, -Lat_clean, -Long_clean,
+         -tiene_lat, -tiene_long, -lat_valida, -long_valida)
+
+n_propiedades_caba_geo <- nrow(propiedades_caba)
+n_propiedades_caba_sin_coord <- nrow(propiedades_caba_sin_coord)
+
+max_items_popup_sin_coord <- 20
+if (n_propiedades_caba_sin_coord > 0) {
+  items_popup_sin_coord <- propiedades_caba_sin_coord %>%
+    mutate(
+      texto_item = paste0(
+        "<li><b>", Propiedad_ID, "</b>: ",
+        if_else(
+          !is.na(Descripción) & str_trim(Descripción) != "",
+          Descripción,
+          "(sin descripción)"
+        ),
+        if_else(
+          !is.na(`Dirección oficial`) & str_trim(`Dirección oficial`) != "",
+          paste0(" - ", `Dirección oficial`),
+          ""
+        ),
+        "</li>"
+      )
+    ) %>%
+    pull(texto_item)
+
+  items_popup_sin_coord_preview <- head(items_popup_sin_coord, max_items_popup_sin_coord)
+  n_items_restantes_sin_coord <- n_propiedades_caba_sin_coord - length(items_popup_sin_coord_preview)
+  texto_restantes_sin_coord <- if (n_items_restantes_sin_coord > 0) {
+    paste0("<br><i>... y ", n_items_restantes_sin_coord, " más</i>")
+  } else {
+    ""
+  }
+
+  popup_caba_sin_coord <- paste0(
+    "<b>CABA sin coordenadas válidas</b><br>",
+    "Total CABA (tabla): ", n_propiedades_caba_ref, "<br>",
+    "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
+    "Sin coordenadas: ", n_propiedades_caba_sin_coord, "<br><br>",
+    "<b>Listado (ID, descripción, dirección):</b>",
+    "<ul style='max-height:220px;overflow:auto;padding-left:18px;margin:6px 0 0 0;'>",
+    paste(items_popup_sin_coord_preview, collapse = ""),
+    "</ul>",
+    texto_restantes_sin_coord
+  )
+} else {
+  popup_caba_sin_coord <- ""
+}
 # 7) Mapa: partidos coloreados (viridis) + parcelas + propiedades CABA
 # transformar a WGS84 (lat/lon) para Leaflet
 deptos_plot_ll <- st_transform(deptos_plot, 4326)
@@ -596,7 +648,9 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
           fillOpacity = 0.6,
           label = paste0(
             "CABA<br>",
-            "Propiedades: ", n_propiedades_caba_ref
+            "Total CABA (tabla): ", n_propiedades_caba_ref, "<br>",
+            "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
+            "Sin coordenadas: ", n_propiedades_caba_sin_coord
           ),
           highlightOptions = highlightOptions(
             weight = 3,
@@ -696,8 +750,49 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
             labelOptions = labelOptions(noHide = TRUE, direction = "center", textOnly = TRUE,
               style = list("color" = "white", "font-weight" = "bold", "font-size" = "18px",
                 "text-align" = "center", "text-shadow" = "1px 1px 2px rgba(0,0,0,0.8)")),
-            popup = paste0("<b>CABA</b><br>Propiedades: ", n_propiedades_caba_ref),
+            popup = paste0(
+              "<b>CABA</b><br>",
+              "Total CABA (tabla): ", n_propiedades_caba_ref, "<br>",
+              "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
+              "Sin coordenadas: ", n_propiedades_caba_sin_coord
+            ),
             group = "Clusters agregados"
+          )
+      }
+    }
+    if (n_propiedades_caba_sin_coord > 0 && nrow(caba_polygon) > 0) {
+      centroide_caba_sin_coord <- caba_polygon %>%
+        st_centroid() %>%
+        st_coordinates() %>%
+        as.data.frame() %>%
+        rename(lng = X, lat = Y)
+
+      if (nrow(centroide_caba_sin_coord) > 0) {
+        mapa_temp <- mapa_temp %>%
+          addCircleMarkers(
+            lng = centroide_caba_sin_coord$lng[1],
+            lat = centroide_caba_sin_coord$lat[1],
+            radius = 14,
+            stroke = TRUE,
+            color = "#FFFFFF",
+            weight = 2,
+            fillOpacity = 0.95,
+            fillColor = "#7A7A7A",
+            label = as.character(n_propiedades_caba_sin_coord),
+            labelOptions = labelOptions(
+              noHide = TRUE,
+              direction = "center",
+              textOnly = TRUE,
+              style = list(
+                "color" = "white",
+                "font-weight" = "bold",
+                "font-size" = "13px",
+                "text-align" = "center",
+                "text-shadow" = "1px 1px 2px rgba(0,0,0,0.8)"
+              )
+            ),
+            popup = popup_caba_sin_coord,
+            group = "CABA sin coordenadas"
           )
       }
     }
@@ -777,7 +872,9 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
             ),
             popup = paste0(
               "<b>CABA</b><br>",
-              "Total propiedades: ", total_propiedades_caba
+              "Total CABA (tabla): ", total_propiedades_caba, "<br>",
+              "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
+              "Sin coordenadas: ", n_propiedades_caba_sin_coord
             ),
             group = "Clusters por partido"
           )
@@ -897,6 +994,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
         "Partidos",
         "Parcelas (polígonos)",
         "Clusters por partido",
+        "CABA sin coordenadas",
         grupos_capas_prop_caba
       )
     } else {
@@ -904,7 +1002,8 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
         "Partidos",
         "Parcelas (polígonos)",
         "Clusters por partido",
-        "Clusters agregados"
+        "Clusters agregados",
+        "CABA sin coordenadas"
       )
     },
     options = layersControlOptions(collapsed = TRUE)
