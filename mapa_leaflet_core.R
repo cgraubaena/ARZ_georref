@@ -1,10 +1,20 @@
   # mapa_leaflet_core.R - datos y agregar_capas_mapa()
 
+# ANTES de library(): si .Rprofile cargó tidyverse/purrr/maps, `map` es una función
+# y leaflet::invokeMethod(map,...) hace map$x → error "closure is not subsettable".
+suppressWarnings({
+  for (pkg in c("tidyverse", "purrr", "maps")) {
+    dn <- paste0("package:", pkg)
+    while (dn %in% search()) {
+      try(detach(dn, unload = TRUE, character.only = TRUE), silent = TRUE)
+    }
+  }
+})
+
 library(sf)
 library(dplyr)
 library(leaflet)
 library(readr)
-library(purrr)
 library(tidyr)
 library(viridisLite)
 library(stringr)
@@ -48,8 +58,8 @@ leer_parcela_partido <- function(pdo) {
     )
 }
 
-parc_todos <- map(partidos_unicos, leer_parcela_partido) %>%
-  compact() %>%
+parc_todos <- purrr::map(partidos_unicos, leer_parcela_partido) %>%
+  purrr::compact() %>%
   do.call(rbind, .)
 
 # 4) Filtrar solo las parcelas que están en el índice PBA
@@ -193,7 +203,7 @@ n_propiedades_caba_ref <- nrow(propiedades_caba_raw)
 
 propiedades_caba_raw <- propiedades_caba_raw %>%
   mutate(
-    fuente_priorizada = map_chr(`Fuentes disponibles`, function(fuentes_str) {
+    fuente_priorizada = purrr::map_chr(`Fuentes disponibles`, function(fuentes_str) {
       # Orden de prioridad para el color si hay varias fuentes: 1 Templos, 2 Entes dependientes, 3 Alquileres,
       # 4 Índice (GCBA / de propiedad), 5 Planilla Destinos (texto "Destinos" o "Destino" en Fuentes disponibles), 6 Relevamiento
       prioridades <- c("Templos", "Entes dependientes", "Alquileres", "Índice GCBA", "Índice de propiedad", "Destinos", "Relevamiento")
@@ -308,7 +318,7 @@ propiedades_caba <- propiedades_caba_flags %>%
       fuente_priorizada == "Relevamiento" ~ "#66FF66",
       TRUE ~ "#888888"  # Sin fuente: gris
     ),
-    categoria_uso_priorizada = map_chr(`Categoría de uso`, priorizar_categoria_uso),
+    categoria_uso_priorizada = purrr::map_chr(`Categoría de uso`, priorizar_categoria_uso),
     color_fill_uso = unname(colores_uso_fijos[as.character(categoria_uso_priorizada)])
   ) %>%
   mutate(
@@ -323,7 +333,7 @@ propiedades_caba_sin_coord <- propiedades_caba_flags %>%
   filter(!(tiene_lat & tiene_long & lat_valida & long_valida)) %>%
   select(-Lat_str, -Long_str, -Lat_clean, -Long_clean,
          -tiene_lat, -tiene_long, -lat_valida, -long_valida) %>%
-  mutate(categoria_uso_priorizada = map_chr(`Categoría de uso`, priorizar_categoria_uso))
+  mutate(categoria_uso_priorizada = purrr::map_chr(`Categoría de uso`, priorizar_categoria_uso))
 
 n_propiedades_caba_geo <- nrow(propiedades_caba)
 n_propiedades_caba_sin_coord <- nrow(propiedades_caba_sin_coord)
@@ -472,7 +482,7 @@ if (n_propiedades_caba_ref > 0) {
     fuentes_para_leyenda <- orden_fuentes[orden_fuentes %in% fuentes_disponibles_raw]
     if (length(fuentes_para_leyenda) == 0) fuentes_para_leyenda <- "Sin fuente"
     fuentes_disponibles <- fuentes_para_leyenda
-    labels_leyenda_fuente <- map_chr(fuentes_disponibles, function(f) {
+    labels_leyenda_fuente <- purrr::map_chr(fuentes_disponibles, function(f) {
       n <- sum(propiedades_caba$fuente_priorizada == f, na.rm = TRUE)
       paste0(f, " (", n, ")")
     })
@@ -480,11 +490,11 @@ if (n_propiedades_caba_ref > 0) {
     cats_en_datos <- unique(propiedades_caba$categoria_uso_priorizada)
     categorias_para_leyenda_uso <- orden_categoria_uso[orden_categoria_uso %in% cats_en_datos]
     colores_uso_completos <- colores_uso_fijos[categorias_para_leyenda_uso]
-    conteos_uso <- map_int(categorias_para_leyenda_uso, function(cat) {
+    conteos_uso <- purrr::map_int(categorias_para_leyenda_uso, function(cat) {
       sum(propiedades_caba$categoria_uso_priorizada == cat, na.rm = TRUE)
     })
     ancho_conteo_uso <- max(nchar(as.character(conteos_uso)))
-    labels_leyenda_uso <- map2_chr(categorias_para_leyenda_uso, conteos_uso, function(cat, n) {
+    labels_leyenda_uso <- purrr::map2_chr(categorias_para_leyenda_uso, conteos_uso, function(cat, n) {
       paste0(sprintf(paste0("%0", ancho_conteo_uso, "d"), n), " - ", cat)
     })
   } else {
@@ -601,6 +611,7 @@ m_uso <- crear_base()
 
 agregar_capas_mapa <- function(mapa_inicial, modo) {
   stopifnot(modo %in% c("fuente", "uso"))
+  stopifnot(inherits(mapa_inicial, "leaflet"))
   # Mapa "uso": una capa por categoría (nombre legible, sin prefijo) para el control de capas (sin crosstalk).
   grupos_capas_prop_caba <- if (modo == "fuente") {
     "Propiedades CABA"
@@ -623,7 +634,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
       0L
     }
     conteos_por_cat <- setNames(
-      map_int(grupos_capas_prop_caba, function(cat) {
+      purrr::map_int(grupos_capas_prop_caba, function(cat) {
         if (n_propiedades_caba_sin_coord == 0) {
           0L
         } else {
@@ -647,7 +658,8 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
   mapa_inicial %>%
   {
     if (modo == "fuente") {
-      . %>%
+      mapa_fuente <- .
+      mapa_fuente %>%
         addPolygons(
           data = deptos_plot_ll,
           fillColor   = ~ifelse(
@@ -774,8 +786,8 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
         if (nrow(centroide_caba_sin_coord_uso) > 0) {
           lng_gris_u <- centroide_caba_sin_coord_uso$lng[1] + 0.012
           lat_gris_u <- centroide_caba_sin_coord_uso$lat[1] - 0.012
-          mapa_uso_base <- mapa_uso_base %>%
-            addCircleMarkers(
+          mapa_uso_base <- leaflet::addCircleMarkers(
+              map = mapa_uso_base,
               lng = lng_gris_u,
               lat = lat_gris_u,
               radius = 14,
@@ -832,41 +844,41 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
       centro_pba_xy <- st_coordinates(centro_pba_sf)
       centro_pba_lng <- as.numeric(centro_pba_xy[1, 1])
       centro_pba_lat <- as.numeric(centro_pba_xy[1, 2])
-      mapa_temp <- mapa_temp %>%
-        addCircleMarkers(
-          lng = centro_pba_lng,
-          lat = centro_pba_lat,
-          radius = 28,
-          stroke = TRUE, color = "#FFFFFF", weight = 3,
-          fillOpacity = 0.95, fillColor = "#5B7C99",
-          label = as.character(total_parcelas_pba),
-          labelOptions = labelOptions(noHide = TRUE, direction = "center", textOnly = TRUE,
-            style = list("color" = "white", "font-weight" = "bold", "font-size" = "18px",
-              "text-align" = "center")),
-          popup = paste0("<b>PBA</b><br>Parcelas en índice: ", total_parcelas_pba),
-          group = "Clusters agregados"
-        )
+      mapa_temp <- leaflet::addCircleMarkers(
+        map = mapa_temp,
+        lng = centro_pba_lng,
+        lat = centro_pba_lat,
+        radius = 28,
+        stroke = TRUE, color = "#FFFFFF", weight = 3,
+        fillOpacity = 0.95, fillColor = "#5B7C99",
+        label = as.character(total_parcelas_pba),
+        labelOptions = labelOptions(noHide = TRUE, direction = "center", textOnly = TRUE,
+          style = list("color" = "white", "font-weight" = "bold", "font-size" = "18px",
+            "text-align" = "center")),
+        popup = paste0("<b>PBA</b><br>Parcelas en índice: ", total_parcelas_pba),
+        group = "Clusters agregados"
+      )
     }
     if (n_propiedades_caba_ref > 0 && nrow(caba_polygon) > 0) {
       centroide_caba_agg <- caba_polygon %>% st_centroid() %>% st_coordinates() %>% as.data.frame() %>% rename(lng = X, lat = Y)
       if (nrow(centroide_caba_agg) > 0) {
-        mapa_temp <- mapa_temp %>%
-          addCircleMarkers(
-            lng = centroide_caba_agg$lng[1], lat = centroide_caba_agg$lat[1],
-            radius = 28, stroke = TRUE, color = "#FFFFFF", weight = 3,
-            fillOpacity = 0.95, fillColor = "#FFB347",
-            label = as.character(n_propiedades_caba_ref),
-            labelOptions = labelOptions(noHide = TRUE, direction = "center", textOnly = TRUE,
-              style = list("color" = "white", "font-weight" = "bold", "font-size" = "18px",
-                "text-align" = "center")),
-            popup = paste0(
-              "<b>CABA</b><br>",
-              "Total CABA (tabla): ", n_propiedades_caba_ref, "<br>",
-              "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
-              "Sin coordenadas: ", n_propiedades_caba_sin_coord
-            ),
-            group = "Clusters agregados"
-          )
+        mapa_temp <- leaflet::addCircleMarkers(
+          map = mapa_temp,
+          lng = centroide_caba_agg$lng[1], lat = centroide_caba_agg$lat[1],
+          radius = 28, stroke = TRUE, color = "#FFFFFF", weight = 3,
+          fillOpacity = 0.95, fillColor = "#FFB347",
+          label = as.character(n_propiedades_caba_ref),
+          labelOptions = labelOptions(noHide = TRUE, direction = "center", textOnly = TRUE,
+            style = list("color" = "white", "font-weight" = "bold", "font-size" = "18px",
+              "text-align" = "center")),
+          popup = paste0(
+            "<b>CABA</b><br>",
+            "Total CABA (tabla): ", n_propiedades_caba_ref, "<br>",
+            "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
+            "Sin coordenadas: ", n_propiedades_caba_sin_coord
+          ),
+          group = "Clusters agregados"
+        )
       }
     }
     if (n_propiedades_caba_sin_coord > 0 && nrow(caba_polygon) > 0) {
@@ -880,32 +892,32 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
         # Desplazar respecto al círculo naranja (total CABA) para no superponer dos etiquetas permanentes
         lng_gris <- centroide_caba_sin_coord$lng[1] + 0.012
         lat_gris <- centroide_caba_sin_coord$lat[1] - 0.012
-        mapa_temp <- mapa_temp %>%
-          addCircleMarkers(
-            lng = lng_gris,
-            lat = lat_gris,
-            radius = 14,
-            stroke = TRUE,
-            color = "#FFFFFF",
-            weight = 2,
-            fillOpacity = 0.95,
-            fillColor = "#7A7A7A",
-            label = as.character(n_propiedades_caba_sin_coord),
-            labelOptions = labelOptions(
-              noHide = TRUE,
-              direction = "center",
-              textOnly = TRUE,
-              style = list(
-                "color" = "white",
-                "font-weight" = "bold",
-                "font-size" = "13px",
-                "text-align" = "center"
-              )
-            ),
-            popup = popup_caba_sin_coord,
-            group = "CABA sin coordenadas",
-            layerId = "caba_sin_coord_contador"
-          )
+        mapa_temp <- leaflet::addCircleMarkers(
+          map = mapa_temp,
+          lng = lng_gris,
+          lat = lat_gris,
+          radius = 14,
+          stroke = TRUE,
+          color = "#FFFFFF",
+          weight = 2,
+          fillOpacity = 0.95,
+          fillColor = "#7A7A7A",
+          label = as.character(n_propiedades_caba_sin_coord),
+          labelOptions = labelOptions(
+            noHide = TRUE,
+            direction = "center",
+            textOnly = TRUE,
+            style = list(
+              "color" = "white",
+              "font-weight" = "bold",
+              "font-size" = "13px",
+              "text-align" = "center"
+            )
+          ),
+          popup = popup_caba_sin_coord,
+          group = "CABA sin coordenadas",
+          layerId = "caba_sin_coord_contador"
+        )
       }
     }
     
@@ -917,34 +929,34 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
       total_parcelas <- centroides_partidos$n_parcelas[i]
       color_partido <- pal_partidos_leaflet(partido)
       
-      mapa_temp <- mapa_temp %>%
-        addCircleMarkers(
-          lng = centro_lng,
-          lat = centro_lat,
-          radius = 25,
-          stroke = TRUE,
-          color = "#FFFFFF",
-          weight = 3,
-          fillOpacity = 0.95,
-          fillColor = color_partido,
-          label = as.character(total_parcelas),
-          labelOptions = labelOptions(
-            noHide = TRUE,
-            direction = "center",
-            textOnly = TRUE,
-            style = list(
-              "color" = "white",
-              "font-weight" = "bold",
-              "font-size" = "16px",
-              "text-align" = "center"
-            )
-          ),
-          popup = paste0(
-            "<b>", partido, "</b><br>",
-            "Total parcelas: ", total_parcelas
-          ),
-          group = "Clusters por partido"
-        )
+      mapa_temp <- leaflet::addCircleMarkers(
+        map = mapa_temp,
+        lng = centro_lng,
+        lat = centro_lat,
+        radius = 25,
+        stroke = TRUE,
+        color = "#FFFFFF",
+        weight = 3,
+        fillOpacity = 0.95,
+        fillColor = color_partido,
+        label = as.character(total_parcelas),
+        labelOptions = labelOptions(
+          noHide = TRUE,
+          direction = "center",
+          textOnly = TRUE,
+          style = list(
+            "color" = "white",
+            "font-weight" = "bold",
+            "font-size" = "16px",
+            "text-align" = "center"
+          )
+        ),
+        popup = paste0(
+          "<b>", partido, "</b><br>",
+          "Total parcelas: ", total_parcelas
+        ),
+        group = "Clusters por partido"
+      )
     }
     
     if (n_propiedades_caba_ref > 0 && nrow(caba_polygon) > 0) {
@@ -958,36 +970,36 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
         total_propiedades_caba <- n_propiedades_caba_ref
         color_caba <- "#FFB347"
         
-        mapa_temp <- mapa_temp %>%
-          addCircleMarkers(
-            lng = centroide_caba$lng[1],
-            lat = centroide_caba$lat[1],
-            radius = 25,
-            stroke = TRUE,
-            color = "#FFFFFF",
-            weight = 3,
-            fillOpacity = 0.95,
-            fillColor = color_caba,
-            label = as.character(total_propiedades_caba),
-            labelOptions = labelOptions(
-              noHide = TRUE,
-              direction = "center",
-              textOnly = TRUE,
-              style = list(
-                "color" = "white",
-                "font-weight" = "bold",
-                "font-size" = "16px",
-                "text-align" = "center"
-              )
-            ),
-            popup = paste0(
-              "<b>CABA</b><br>",
-              "Total CABA (tabla): ", total_propiedades_caba, "<br>",
-              "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
-              "Sin coordenadas: ", n_propiedades_caba_sin_coord
-            ),
-            group = "Clusters por partido"
-          )
+        mapa_temp <- leaflet::addCircleMarkers(
+          map = mapa_temp,
+          lng = centroide_caba$lng[1],
+          lat = centroide_caba$lat[1],
+          radius = 25,
+          stroke = TRUE,
+          color = "#FFFFFF",
+          weight = 3,
+          fillOpacity = 0.95,
+          fillColor = color_caba,
+          label = as.character(total_propiedades_caba),
+          labelOptions = labelOptions(
+            noHide = TRUE,
+            direction = "center",
+            textOnly = TRUE,
+            style = list(
+              "color" = "white",
+              "font-weight" = "bold",
+              "font-size" = "16px",
+              "text-align" = "center"
+            )
+          ),
+          popup = paste0(
+            "<b>CABA</b><br>",
+            "Total CABA (tabla): ", total_propiedades_caba, "<br>",
+            "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
+            "Sin coordenadas: ", n_propiedades_caba_sin_coord
+          ),
+          group = "Clusters por partido"
+        )
       }
     }
     
@@ -1001,9 +1013,59 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
     mapa_temp <- .
     if (nrow(propiedades_caba) > 0) {
       if (modo == "fuente") {
-        mapa_temp <- mapa_temp %>%
-          addCircleMarkers(
-            data = propiedades_caba,
+        mapa_temp <- leaflet::addCircleMarkers(
+          map = mapa_temp,
+          data = propiedades_caba,
+          lng = ~Long,
+          lat = ~Lat,
+          radius = 5,
+          stroke = TRUE,
+          color = "#000000",
+          weight = 1.5,
+          fillOpacity = 0.95,
+          fillColor = ~color_fill,
+          label = ~paste0(
+            "<b>", if_else(
+              is.na(Descripción) | Descripción == "" | str_detect(Descripción, "(?i)averiguar"),
+              Propiedad_ID,
+              Descripción
+            ), "</b><br>",
+            if_else(!is.na(`Dirección oficial`), paste0("Dirección oficial: ", `Dirección oficial`, "<br>"), ""),
+            if_else(!is.na(`Direcciones secundarias`) & `Direcciones secundarias` != "", 
+                    paste0("Direcciones secundarias: ", `Direcciones secundarias`, "<br>"), ""),
+            if_else(!is.na(`Categoría de uso`) & `Categoría de uso` != "", 
+                    paste0("Categoría de uso: ", `Categoría de uso`, "<br>"), ""),
+            if_else(!is.na(`Fuentes disponibles`), paste0("Fuentes: ", `Fuentes disponibles`, "<br>"), ""),
+            "ID: ", Propiedad_ID
+          ),
+          popup = ~paste0(
+            "<b>", if_else(
+              is.na(Descripción) | Descripción == "" | str_detect(Descripción, "(?i)averiguar"),
+              Propiedad_ID,
+              Descripción
+            ), "</b><br>",
+            "<hr>",
+            if_else(!is.na(`Dirección oficial`), paste0("<b>Dirección oficial:</b> ", `Dirección oficial`, "<br>"), ""),
+            if_else(!is.na(`Direcciones secundarias`) & `Direcciones secundarias` != "", 
+                    paste0("<b>Direcciones secundarias:</b> ", `Direcciones secundarias`, "<br>"), ""),
+            if_else(!is.na(`Categoría de uso`) & `Categoría de uso` != "", 
+                    paste0("<b>Categoría de uso:</b> ", `Categoría de uso`, "<br>"), ""),
+            if_else(!is.na(`Fuentes disponibles`), paste0("<b>Fuentes disponibles:</b> ", `Fuentes disponibles`, "<br>"), ""),
+            "<b>ID:</b> ", Propiedad_ID
+          ),
+          group = "Propiedades CABA"
+        )
+      } else {
+        cats_uso <- orden_categoria_uso[
+          orden_categoria_uso %in% unique(propiedades_caba$categoria_uso_priorizada)
+        ]
+        for (cat in cats_uso) {
+          sub_df <- propiedades_caba %>% filter(categoria_uso_priorizada == cat)
+          if (nrow(sub_df) == 0) next
+          nm_capa <- as.character(cat)
+          mapa_temp <- leaflet::addCircleMarkers(
+            map = mapa_temp,
+            data = sub_df,
             lng = ~Long,
             lat = ~Lat,
             radius = 5,
@@ -1011,7 +1073,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
             color = "#000000",
             weight = 1.5,
             fillOpacity = 0.95,
-            fillColor = ~color_fill,
+            fillColor = ~color_fill_uso,
             label = ~paste0(
               "<b>", if_else(
                 is.na(Descripción) | Descripción == "" | str_detect(Descripción, "(?i)averiguar"),
@@ -1041,58 +1103,8 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
               if_else(!is.na(`Fuentes disponibles`), paste0("<b>Fuentes disponibles:</b> ", `Fuentes disponibles`, "<br>"), ""),
               "<b>ID:</b> ", Propiedad_ID
             ),
-            group = "Propiedades CABA"
+            group = nm_capa
           )
-      } else {
-        cats_uso <- orden_categoria_uso[
-          orden_categoria_uso %in% unique(propiedades_caba$categoria_uso_priorizada)
-        ]
-        for (cat in cats_uso) {
-          sub_df <- propiedades_caba %>% filter(categoria_uso_priorizada == cat)
-          if (nrow(sub_df) == 0) next
-          nm_capa <- as.character(cat)
-          mapa_temp <- mapa_temp %>%
-            addCircleMarkers(
-              data = sub_df,
-              lng = ~Long,
-              lat = ~Lat,
-              radius = 5,
-              stroke = TRUE,
-              color = "#000000",
-              weight = 1.5,
-              fillOpacity = 0.95,
-              fillColor = ~color_fill_uso,
-              label = ~paste0(
-                "<b>", if_else(
-                  is.na(Descripción) | Descripción == "" | str_detect(Descripción, "(?i)averiguar"),
-                  Propiedad_ID,
-                  Descripción
-                ), "</b><br>",
-                if_else(!is.na(`Dirección oficial`), paste0("Dirección oficial: ", `Dirección oficial`, "<br>"), ""),
-                if_else(!is.na(`Direcciones secundarias`) & `Direcciones secundarias` != "", 
-                        paste0("Direcciones secundarias: ", `Direcciones secundarias`, "<br>"), ""),
-                if_else(!is.na(`Categoría de uso`) & `Categoría de uso` != "", 
-                        paste0("Categoría de uso: ", `Categoría de uso`, "<br>"), ""),
-                if_else(!is.na(`Fuentes disponibles`), paste0("Fuentes: ", `Fuentes disponibles`, "<br>"), ""),
-                "ID: ", Propiedad_ID
-              ),
-              popup = ~paste0(
-                "<b>", if_else(
-                  is.na(Descripción) | Descripción == "" | str_detect(Descripción, "(?i)averiguar"),
-                  Propiedad_ID,
-                  Descripción
-                ), "</b><br>",
-                "<hr>",
-                if_else(!is.na(`Dirección oficial`), paste0("<b>Dirección oficial:</b> ", `Dirección oficial`, "<br>"), ""),
-                if_else(!is.na(`Direcciones secundarias`) & `Direcciones secundarias` != "", 
-                        paste0("<b>Direcciones secundarias:</b> ", `Direcciones secundarias`, "<br>"), ""),
-                if_else(!is.na(`Categoría de uso`) & `Categoría de uso` != "", 
-                        paste0("<b>Categoría de uso:</b> ", `Categoría de uso`, "<br>"), ""),
-                if_else(!is.na(`Fuentes disponibles`), paste0("<b>Fuentes disponibles:</b> ", `Fuentes disponibles`, "<br>"), ""),
-                "<b>ID:</b> ", Propiedad_ID
-              ),
-              group = nm_capa
-            )
         }
       }
     }

@@ -9,6 +9,8 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+# Knit muy rápido + mismo HTML: a veces es caché de chunks (`mapa_fuentes_cache` junto a este .Rmd,
+# solo si alguna vez usaste cache=TRUE). Si falla al inicio, el mensaje está en la consola Render.
 # Rutas relativas (CSV, shapefiles) respecto a la carpeta de este .Rmd
 if (!is.na(knitr::current_input(dir = TRUE))) {
   knitr::opts_knit$set(root.dir = dirname(normalizePath(knitr::current_input(dir = TRUE))))
@@ -16,6 +18,7 @@ if (!is.na(knitr::current_input(dir = TRUE))) {
 ```
 
 ```{r}
+# map$x / closure: resuelto en mapa_leaflet_core.R (addCircleMarkers con map = explícito)
 source("mapa_leaflet_core.R", local = TRUE)
 agregar_capas_mapa(m, "fuente")
 ```

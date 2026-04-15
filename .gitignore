@@ -10,6 +10,7 @@ __pycache__/
 
 # Knitr / intermedios
 *_cache/
+debug-505aa1.log
 
 # GitHub límite 100 MB por archivo: no subir instaladores ni capas catastrales enormes
 *.exe
