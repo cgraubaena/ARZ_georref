@@ -148,13 +148,15 @@ Acá elegimos **una fila oficial por cada `ID_propiedad`** (la de menor `Priorid
 En empate, desempata por `Origen` y luego por `ID origen`.
 
 ```{r direccion-oficial-por-propiedad}
-prioridad_origen <- c("Índice GCBA", "Índice de propiedad", "Templos", "Entes dependientes", "Alquileres", "Destinos", "Eduardo", "Relevamiento")
+# Origen "Eduardo" (histórico) se trata como "Destinos" para la prioridad del color / dirección oficial
+prioridad_origen <- c("Índice GCBA", "Índice de propiedad", "Templos", "Entes dependientes", "Alquileres", "Destinos", "Relevamiento")
 
 oficial_por_propiedad <- catalogo %>%
   filter(!is.na(id_propiedad), id_propiedad != "") %>%
   semi_join(tabla_unica %>% distinct(id_propiedad), by = "id_propiedad") %>%
   mutate(
-    orden_origen = match(origen, prioridad_origen),
+    origen_prioridad = if_else(origen %in% c("Eduardo"), "Destinos", origen),
+    orden_origen = match(origen_prioridad, prioridad_origen),
     orden_origen = if_else(is.na(orden_origen), 999L, as.integer(orden_origen)),
     prioridad_oficial_num = if_else(is.na(prioridad_oficial_num), 999999, prioridad_oficial_num)
   ) %>%

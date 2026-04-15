@@ -218,21 +218,26 @@ propiedades_caba_raw <- read_csv("Tabla única v4.csv", skip = 2, show_col_types
   # función para priorizar fuentes según el orden especificado
   mutate(
     fuente_priorizada = map_chr(`Fuentes disponibles`, function(fuentes_str) {
-      # orden de prioridad: 1. Templos, 2. Alquileres, 3. Índice GCBA, 4. Destinos (legado: Eduardo)
-      prioridades <- c("Templos", "Alquileres", "Índice GCBA", "Destinos", "Eduardo")
+      # orden de prioridad (color si hay varias fuentes): 1 Templos, 2 Alquileres, 3 Índice GCBA, 4 Destinos
+      prioridades <- c("Templos", "Alquileres", "Índice GCBA", "Destinos")
+      pat_destinos <- regex("destinos?", ignore_case = TRUE)
       
       if (is.na(fuentes_str) || fuentes_str == "") {
         return("Sin fuente")
       }
       
-      # dividir las fuentes por comas
-      fuentes <- str_split(fuentes_str, ",") %>%
+      fuentes <- str_split(fuentes_str, "\\s*[,;]\\s*") %>%
         unlist() %>%
         str_trim()
+      fuentes <- fuentes[nzchar(fuentes)]
       
-      # buscar la primera fuente que coincida con las prioridades
       for (prioridad in prioridades) {
-        if (any(str_detect(fuentes, regex(prioridad, ignore_case = TRUE)))) {
+        hit <- if (prioridad == "Destinos") {
+          any(str_detect(fuentes, pat_destinos))
+        } else {
+          any(str_detect(fuentes, regex(prioridad, ignore_case = TRUE)))
+        }
+        if (hit) {
           return(prioridad)
         }
       }

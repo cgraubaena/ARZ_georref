@@ -194,24 +194,32 @@ n_propiedades_caba_ref <- nrow(propiedades_caba_raw)
 propiedades_caba_raw <- propiedades_caba_raw %>%
   mutate(
     fuente_priorizada = map_chr(`Fuentes disponibles`, function(fuentes_str) {
-      # Orden de prioridad para colorear: 1 Templos, 2 Entes dependientes, 3 Alquileres, 4 Índice (GCBA/propiedad), 5 Planilla Destinos (texto "Destinos" o legado "Eduardo"), 6 Relevamiento
-      prioridades <- c("Templos", "Entes dependientes", "Alquileres", "Índice GCBA", "Índice de propiedad", "Destinos", "Eduardo", "Relevamiento")
+      # Orden de prioridad para el color si hay varias fuentes: 1 Templos, 2 Entes dependientes, 3 Alquileres,
+      # 4 Índice (GCBA / de propiedad), 5 Planilla Destinos (texto "Destinos" o "Destino" en Fuentes disponibles), 6 Relevamiento
+      prioridades <- c("Templos", "Entes dependientes", "Alquileres", "Índice GCBA", "Índice de propiedad", "Destinos", "Relevamiento")
+      pat_planilla_destinos <- regex("destinos?|planilla\\s*destinos?", ignore_case = TRUE)
+      pat_indice <- regex("índice|indice|ndice\\s*gcba|índice\\s*de\\s*propiedad", ignore_case = TRUE)
       
       if (is.na(fuentes_str) || fuentes_str == "") {
         return("Sin fuente")
       }
       
-      fuentes <- str_split(fuentes_str, ",") %>%
+      fuentes <- str_split(fuentes_str, "\\s*[,;]\\s*") %>%
         unlist() %>%
         str_trim()
+      fuentes <- fuentes[nzchar(fuentes)]
       
       # Buscar cada prioridad en las fuentes (case-insensitive)
       for (prioridad in prioridades) {
-        if (any(str_detect(fuentes, regex(prioridad, ignore_case = TRUE)))) {
+        hit <- if (prioridad == "Destinos") {
+          any(str_detect(fuentes, pat_planilla_destinos))
+        } else {
+          any(str_detect(fuentes, regex(prioridad, ignore_case = TRUE)))
+        }
+        if (hit) {
           # Unificar "Índice de propiedad" e "Índice GCBA" para un solo color
           if (prioridad == "Índice de propiedad") return("Índice GCBA")
-          # Nombre mostrado unificado (tabla única: "Destinos"; datos viejos: "Eduardo")
-          if (prioridad %in% c("Destinos", "Eduardo")) return("Planilla Destinos")
+          if (prioridad == "Destinos") return("Planilla Destinos")
           return(prioridad)
         }
       }
@@ -227,9 +235,9 @@ propiedades_caba_raw <- propiedades_caba_raw %>%
           return("Entes dependientes")
         } else if (str_detect(primera_fuente_lower, regex("alquiler", ignore_case = TRUE))) {
           return("Alquileres")
-        } else if (str_detect(primera_fuente_lower, regex("índice|indice", ignore_case = TRUE))) {
+        } else if (str_detect(primera_fuente_lower, pat_indice)) {
           return("Índice GCBA")
-        } else if (str_detect(primera_fuente_lower, regex("destinos|eduardo", ignore_case = TRUE))) {
+        } else if (str_detect(primera_fuente_lower, pat_planilla_destinos)) {
           return("Planilla Destinos")
         } else if (str_detect(primera_fuente_lower, regex("relevamiento|relev", ignore_case = TRUE))) {
           return("Relevamiento")
@@ -285,8 +293,8 @@ propiedades_caba <- propiedades_caba_flags %>%
       str_detect(tolower(fuente_priorizada), regex("templo", ignore_case = TRUE)) ~ "Templos",
       str_detect(tolower(fuente_priorizada), regex("entes dependientes|entes", ignore_case = TRUE)) ~ "Entes dependientes",
       str_detect(tolower(fuente_priorizada), regex("alquiler", ignore_case = TRUE)) ~ "Alquileres",
-      str_detect(tolower(fuente_priorizada), regex("índice|indice", ignore_case = TRUE)) ~ "Índice GCBA",
-      str_detect(tolower(fuente_priorizada), regex("destinos|eduardo", ignore_case = TRUE)) ~ "Planilla Destinos",
+      str_detect(fuente_priorizada, regex("índice|indice|ndice\\s*gcba", ignore_case = TRUE)) ~ "Índice GCBA",
+      str_detect(fuente_priorizada, regex("destinos?|planilla\\s*destinos?", ignore_case = TRUE)) ~ "Planilla Destinos",
       str_detect(tolower(fuente_priorizada), regex("relevamiento|relev", ignore_case = TRUE)) ~ "Relevamiento",
       TRUE ~ "Sin fuente"
     ),
@@ -425,7 +433,7 @@ colores_fuentes <- c(
   "Entes dependientes" = "#9944CC", # violeta
   "Alquileres" = "#0066CC",        # azul intenso
   "Índice GCBA" = "#FF0000",       # rojo intenso
-  "Planilla Destinos" = "#00AA00", # verde intenso (antes "Eduardo" en datos)
+  "Planilla Destinos" = "#00AA00", # verde intenso (referencia: Destinos en tabla)
   "Relevamiento" = "#66FF66",      # verde claro
   "Sin fuente" = "#888888"         # gris medio (evitar negro puro)
 )
