@@ -5,6 +5,9 @@
 .RDataTmp*
 .Ruserdata
 
+# Python
+__pycache__/
+
 # Knitr / intermedios
 *_cache/
 

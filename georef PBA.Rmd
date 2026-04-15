@@ -218,8 +218,8 @@ propiedades_caba_raw <- read_csv("Tabla única v4.csv", skip = 2, show_col_types
   # función para priorizar fuentes según el orden especificado
   mutate(
     fuente_priorizada = map_chr(`Fuentes disponibles`, function(fuentes_str) {
-      # orden de prioridad: 1. Templos, 2. Alquileres, 3. Índice GCBA, 4. Eduardo
-      prioridades <- c("Templos", "Alquileres", "Índice GCBA", "Eduardo")
+      # orden de prioridad: 1. Templos, 2. Alquileres, 3. Índice GCBA, 4. Destinos (legado: Eduardo)
+      prioridades <- c("Templos", "Alquileres", "Índice GCBA", "Destinos", "Eduardo")
       
       if (is.na(fuentes_str) || fuentes_str == "") {
         return("Sin fuente")

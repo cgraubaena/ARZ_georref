@@ -148,7 +148,7 @@ Acá elegimos **una fila oficial por cada `ID_propiedad`** (la de menor `Priorid
 En empate, desempata por `Origen` y luego por `ID origen`.
 
 ```{r direccion-oficial-por-propiedad}
-prioridad_origen <- c("Índice GCBA", "Índice de propiedad", "Templos", "Entes dependientes", "Alquileres", "Eduardo", "Relevamiento")
+prioridad_origen <- c("Índice GCBA", "Índice de propiedad", "Templos", "Entes dependientes", "Alquileres", "Destinos", "Eduardo", "Relevamiento")
 
 oficial_por_propiedad <- catalogo %>%
   filter(!is.na(id_propiedad), id_propiedad != "") %>%

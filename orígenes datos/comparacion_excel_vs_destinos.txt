@@ -1,0 +1,13 @@
+Comparación Excel original vs Tabla Destinos (CSV)
+
+Registros unificados desde Excel: 632
+Filas en CSV Destinos: 581
+Carpetas numéricas únicas en Excel: 543
+Carpetas numéricas únicas en CSV: 468
+Carpetas solo en CSV (no aparecen en Excel unificado): 0
+Carpetas solo en Excel (no en CSV Destinos): 75
+
+Carpetas solo en Excel (lista completa):
+4, 25, 33, 47, 59, 60, 61, 73, 100, 125, 126, 127, 138, 139, 169, 174, 188, 208, 209, 212, 215, 224, 225, 230, 235, 249, 250, 259, 267, 271, 282, 285, 290, 326, 375, 389, 399, 404, 410, 411, 422, 432, 437, 439, 440, 449, 453, 458, 468, 470, 494, 499, 509, 518, 526, 534, 538, 552, 557, 564, 576, 594, 606, 614, 615, 623, 630, 631, 632, 644, 652, 662, 674, 689, 728
+
+Nota: en el Excel original puede repetirse el mismo N° de carpeta en varias filas (varias propiedades o lotes); por eso hay más filas unificadas que carpetas únicas.

@@ -16,7 +16,15 @@ if (!is.na(knitr::current_input(dir = TRUE))) {
 
 ```{r}
 source("mapa_leaflet_core.R", local = TRUE)
-agregar_capas_mapa(m_uso, "uso")
+htmltools::tagList(
+  htmltools::tags$style(htmltools::HTML("
+    .georef-uso-doc .leaflet-bottom.leaflet-right .legend { max-height: 38vh; overflow-y: auto; font-size: 12px; }
+    .georef-uso-doc .leaflet-top.leaflet-left .leaflet-control-layers { max-height: 50vh; overflow-y: auto; }
+    .georef-uso-doc .html-widget.leaflet { min-height: 72vh; }
+    .georef-uso-doc .leaflet-uso-acciones.leaflet-control { z-index: 1100 !important; position: relative; }
+  ")),
+  htmltools::tags$div(class = "georef-uso-doc", agregar_capas_mapa(m_uso, "uso"))
+)
 ```
 
-Cada **categoría de uso** es una capa distinta. Usá el control de capas (arriba a la derecha en el mapa) para mostrar u ocultar categorías.
+Cada **categoría de uso** es una capa distinta. Usá el control de capas (arriba a la izquierda) para mostrar u ocultar categorías y el contorno de CABA.

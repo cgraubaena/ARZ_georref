@@ -1,4 +1,4 @@
-# mapa_leaflet_core.R - datos y agregar_capas_mapa()
+  # mapa_leaflet_core.R - datos y agregar_capas_mapa()
 
 library(sf)
 library(dplyr)
@@ -194,8 +194,8 @@ n_propiedades_caba_ref <- nrow(propiedades_caba_raw)
 propiedades_caba_raw <- propiedades_caba_raw %>%
   mutate(
     fuente_priorizada = map_chr(`Fuentes disponibles`, function(fuentes_str) {
-      # Orden de prioridad para colorear: 1 Templos, 2 Entes dependientes, 3 Alquileres, 4 Índice (GCBA/propiedad), 5 Planilla Destinos (texto "Eduardo"), 6 Relevamiento
-      prioridades <- c("Templos", "Entes dependientes", "Alquileres", "Índice GCBA", "Índice de propiedad", "Eduardo", "Relevamiento")
+      # Orden de prioridad para colorear: 1 Templos, 2 Entes dependientes, 3 Alquileres, 4 Índice (GCBA/propiedad), 5 Planilla Destinos (texto "Destinos" o legado "Eduardo"), 6 Relevamiento
+      prioridades <- c("Templos", "Entes dependientes", "Alquileres", "Índice GCBA", "Índice de propiedad", "Destinos", "Eduardo", "Relevamiento")
       
       if (is.na(fuentes_str) || fuentes_str == "") {
         return("Sin fuente")
@@ -210,8 +210,8 @@ propiedades_caba_raw <- propiedades_caba_raw %>%
         if (any(str_detect(fuentes, regex(prioridad, ignore_case = TRUE)))) {
           # Unificar "Índice de propiedad" e "Índice GCBA" para un solo color
           if (prioridad == "Índice de propiedad") return("Índice GCBA")
-          # Nombre mostrado: la fuente en datos sigue pudiendo decir "Eduardo"
-          if (prioridad == "Eduardo") return("Planilla Destinos")
+          # Nombre mostrado unificado (tabla única: "Destinos"; datos viejos: "Eduardo")
+          if (prioridad %in% c("Destinos", "Eduardo")) return("Planilla Destinos")
           return(prioridad)
         }
       }
@@ -229,7 +229,7 @@ propiedades_caba_raw <- propiedades_caba_raw %>%
           return("Alquileres")
         } else if (str_detect(primera_fuente_lower, regex("índice|indice", ignore_case = TRUE))) {
           return("Índice GCBA")
-        } else if (str_detect(primera_fuente_lower, regex("eduardo", ignore_case = TRUE))) {
+        } else if (str_detect(primera_fuente_lower, regex("destinos|eduardo", ignore_case = TRUE))) {
           return("Planilla Destinos")
         } else if (str_detect(primera_fuente_lower, regex("relevamiento|relev", ignore_case = TRUE))) {
           return("Relevamiento")
@@ -286,7 +286,7 @@ propiedades_caba <- propiedades_caba_flags %>%
       str_detect(tolower(fuente_priorizada), regex("entes dependientes|entes", ignore_case = TRUE)) ~ "Entes dependientes",
       str_detect(tolower(fuente_priorizada), regex("alquiler", ignore_case = TRUE)) ~ "Alquileres",
       str_detect(tolower(fuente_priorizada), regex("índice|indice", ignore_case = TRUE)) ~ "Índice GCBA",
-      str_detect(tolower(fuente_priorizada), regex("eduardo", ignore_case = TRUE)) ~ "Planilla Destinos",
+      str_detect(tolower(fuente_priorizada), regex("destinos|eduardo", ignore_case = TRUE)) ~ "Planilla Destinos",
       str_detect(tolower(fuente_priorizada), regex("relevamiento|relev", ignore_case = TRUE)) ~ "Relevamiento",
       TRUE ~ "Sin fuente"
     ),
@@ -314,7 +314,8 @@ propiedades_caba <- propiedades_caba_flags %>%
 propiedades_caba_sin_coord <- propiedades_caba_flags %>%
   filter(!(tiene_lat & tiene_long & lat_valida & long_valida)) %>%
   select(-Lat_str, -Long_str, -Lat_clean, -Long_clean,
-         -tiene_lat, -tiene_long, -lat_valida, -long_valida)
+         -tiene_lat, -tiene_long, -lat_valida, -long_valida) %>%
+  mutate(categoria_uso_priorizada = map_chr(`Categoría de uso`, priorizar_categoria_uso))
 
 n_propiedades_caba_geo <- nrow(propiedades_caba)
 n_propiedades_caba_sin_coord <- nrow(propiedades_caba_sin_coord)
@@ -607,115 +608,202 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
     "[]"
   }
 
+  sin_coord_conteos_json <- if (modo == "uso" && length(grupos_capas_prop_caba) > 0) {
+    n_resto <- if (n_propiedades_caba_sin_coord > 0) {
+      as.integer(sum(!propiedades_caba_sin_coord$categoria_uso_priorizada %in% grupos_capas_prop_caba, na.rm = TRUE))
+    } else {
+      0L
+    }
+    conteos_por_cat <- setNames(
+      map_int(grupos_capas_prop_caba, function(cat) {
+        if (n_propiedades_caba_sin_coord == 0) {
+          0L
+        } else {
+          as.integer(sum(propiedades_caba_sin_coord$categoria_uso_priorizada == cat, na.rm = TRUE))
+        }
+      }),
+      grupos_capas_prop_caba
+    )
+    lst <- c(as.list(conteos_por_cat), list(sinCoordResto = n_resto))
+    jsonlite::toJSON(lst, auto_unbox = TRUE)
+  } else {
+    "{}"
+  }
+
+  esperar_contador_sin_coord_js <- if (modo == "uso" && n_propiedades_caba_sin_coord > 0) {
+    "true"
+  } else {
+    "false"
+  }
+
   mapa_inicial %>%
-  
-  # partidos: mismo color por partido, gris claro si n_parcelas == 0
-  # Deshabilitar interacción para que no bloqueen clics en parcelas y propiedades
-  addPolygons(
-    data = deptos_plot_ll,
-    fillColor   = ~ifelse(
-      n_parcelas > 0,
-      pal_partidos_leaflet(nombre_partido),
-      "#DDDDDD"
-    ),
-    color       = "#666666",
-    weight      = 1,
-    fillOpacity = 0.6,
-    label = ~paste0(
-      if_else(!is.na(NAM), NAM, ""),
-      "<br>Parcelas índice: ", n_parcelas
-    ),
-    highlightOptions = highlightOptions(
-      weight = 2,
-      color  = "#000000",
-      bringToFront = TRUE
-    ),
-    # Deshabilitar interacción para que no bloqueen clics
-    options = pathOptions(interactive = FALSE),
-    group = "Partidos"
-  ) %>%
-  
-  # agregar polígono de CABA - también deshabilitar interacción
   {
-    mapa_temp <- .
-    if (n_propiedades_caba_ref > 0 && nrow(caba_polygon) > 0) {
-      mapa_temp <- mapa_temp %>%
+    if (modo == "fuente") {
+      . %>%
         addPolygons(
-          data = caba_polygon,
-          fillColor   = "#FFB347",  # naranja pastel
+          data = deptos_plot_ll,
+          fillColor   = ~ifelse(
+            n_parcelas > 0,
+            pal_partidos_leaflet(nombre_partido),
+            "#DDDDDD"
+          ),
           color       = "#666666",
-          weight      = 2,  # borde más grueso para destacarlo
+          weight      = 1,
           fillOpacity = 0.6,
-          label = paste0(
-            "CABA<br>",
-            "Total CABA (tabla): ", n_propiedades_caba_ref, "<br>",
-            "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
-            "Sin coordenadas: ", n_propiedades_caba_sin_coord
+          label = ~paste0(
+            if_else(!is.na(NAM), NAM, ""),
+            "<br>Parcelas índice: ", n_parcelas
           ),
           highlightOptions = highlightOptions(
-            weight = 3,
+            weight = 2,
             color  = "#000000",
             bringToFront = TRUE
           ),
-          # Deshabilitar interacción para que no bloquee clics
           options = pathOptions(interactive = FALSE),
           group = "Partidos"
+        ) %>%
+        {
+          mapa_temp <- .
+          if (n_propiedades_caba_ref > 0 && nrow(caba_polygon) > 0) {
+            mapa_temp <- mapa_temp %>%
+              addPolygons(
+                data = caba_polygon,
+                fillColor   = "#FFB347",
+                color       = "#666666",
+                weight      = 2,
+                fillOpacity = 0.6,
+                label = paste0(
+                  "CABA<br>",
+                  "Total CABA (tabla): ", n_propiedades_caba_ref, "<br>",
+                  "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
+                  "Sin coordenadas: ", n_propiedades_caba_sin_coord
+                ),
+                highlightOptions = highlightOptions(
+                  weight = 3,
+                  color  = "#000000",
+                  bringToFront = TRUE
+                ),
+                options = pathOptions(interactive = FALSE),
+                group = "Partidos"
+              )
+          }
+          mapa_temp
+        } %>%
+        addPolygons(
+          data        = parc_mias_ll,
+          color       = "#000000",
+          fillColor   = "#FF0000",
+          weight      = 2.5,
+          fillOpacity = 0.9,
+          label = ~paste0(
+            "<b>",
+            if_else(
+              !is.na(Descripción) & str_trim(Descripción) != "",
+              str_trim(Descripción),
+              "Parcela"
+            ),
+            "</b><br>",
+            "PBA_ID: ", PBA_ID,
+            "<br>Partido: ", nombre_partido,
+            "<br>Partida: ", PDA,
+            "<br>C/S/MZ/PA: ", C, "-", S, "-", MZ, "-", PA
+          ),
+          popup = ~paste0(
+            "<b>",
+            if_else(
+              !is.na(Descripción) & str_trim(Descripción) != "",
+              str_trim(Descripción),
+              "Parcela"
+            ),
+            "</b><br>",
+            "<b>Partido:</b> ", nombre_partido, " (", partido_pdo, ")<br>",
+            "<b>Manzana:</b> ", MZ, "<br>",
+            "<b>Parcela:</b> ", PA, "<br>",
+            "<b>Circunscripción:</b> ", C, "<br>",
+            "<b>Sección:</b> ", S, "<br>",
+            "<b>Partida:</b> ", PDA, "<br>",
+            "<b>PBA_ID:</b> ", PBA_ID
+          ),
+          highlightOptions = highlightOptions(
+            weight = 4,
+            color  = "#FFFF00",
+            fillOpacity = 1,
+            bringToFront = TRUE
+          ),
+          group = "Parcelas (polígonos)"
         )
+    } else {
+      mapa_uso_base <- .
+      if (n_propiedades_caba_ref > 0 && nrow(caba_polygon) > 0) {
+        mapa_uso_base <- mapa_uso_base %>%
+          addPolygons(
+            data = caba_polygon,
+            fillColor   = "#FFB347",
+            color       = "#666666",
+            weight      = 2,
+            fillOpacity = 0.45,
+            label = paste0(
+              "CABA<br>",
+              "Total CABA (tabla): ", n_propiedades_caba_ref, "<br>",
+              "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
+              "Sin coordenadas: ", n_propiedades_caba_sin_coord
+            ),
+            highlightOptions = highlightOptions(
+              weight = 3,
+              color  = "#000000",
+              bringToFront = TRUE
+            ),
+            options = pathOptions(interactive = FALSE),
+            group = "CABA (contorno)"
+          )
+      }
+      if (n_propiedades_caba_sin_coord > 0 && nrow(caba_polygon) > 0) {
+        centroide_caba_sin_coord_uso <- caba_polygon %>%
+          st_centroid() %>%
+          st_coordinates() %>%
+          as.data.frame() %>%
+          rename(lng = X, lat = Y)
+        if (nrow(centroide_caba_sin_coord_uso) > 0) {
+          lng_gris_u <- centroide_caba_sin_coord_uso$lng[1] + 0.012
+          lat_gris_u <- centroide_caba_sin_coord_uso$lat[1] - 0.012
+          mapa_uso_base <- mapa_uso_base %>%
+            addCircleMarkers(
+              lng = lng_gris_u,
+              lat = lat_gris_u,
+              radius = 14,
+              stroke = TRUE,
+              color = "#FFFFFF",
+              weight = 2,
+              fillOpacity = 0.95,
+              fillColor = "#7A7A7A",
+              label = as.character(n_propiedades_caba_sin_coord),
+              labelOptions = labelOptions(
+                noHide = TRUE,
+                direction = "center",
+                textOnly = TRUE,
+                style = list(
+                  "color" = "white",
+                  "font-weight" = "bold",
+                  "font-size" = "13px",
+                  "text-align" = "center"
+                )
+              ),
+              popup = popup_caba_sin_coord,
+              group = "CABA sin coordenadas",
+              layerId = "caba_sin_coord_contador"
+            )
+        }
+      }
+      mapa_uso_base
     }
-    mapa_temp
   } %>%
   
-  # parcelas del índice en overlay
-  # Esta capa va después para quedar encima y ser clickeable
-  addPolygons(
-    data        = parc_mias_ll,
-    color       = "#000000",  # borde negro para mejor contraste
-    fillColor   = "#FF0000",  # todas las parcelas en rojo
-    weight      = 2.5,  # borde más grueso para mejor visibilidad
-    fillOpacity = 0.9,  # muy opaco para que resalte sobre el partido
-    label = ~paste0(
-      "<b>",
-      if_else(
-        !is.na(Descripción) & str_trim(Descripción) != "",
-        str_trim(Descripción),
-        "Parcela"
-      ),
-      "</b><br>",
-      "PBA_ID: ", PBA_ID,
-      "<br>Partido: ", nombre_partido,
-      "<br>Partida: ", PDA,
-      "<br>C/S/MZ/PA: ", C, "-", S, "-", MZ, "-", PA
-    ),
-    popup = ~paste0(
-      "<b>",
-      if_else(
-        !is.na(Descripción) & str_trim(Descripción) != "",
-        str_trim(Descripción),
-        "Parcela"
-      ),
-      "</b><br>",
-      "<b>Partido:</b> ", nombre_partido, " (", partido_pdo, ")<br>",
-      "<b>Manzana:</b> ", MZ, "<br>",
-      "<b>Parcela:</b> ", PA, "<br>",
-      "<b>Circunscripción:</b> ", C, "<br>",
-      "<b>Sección:</b> ", S, "<br>",
-      "<b>Partida:</b> ", PDA, "<br>",
-      "<b>PBA_ID:</b> ", PBA_ID
-    ),
-    highlightOptions = highlightOptions(
-      weight = 4,
-      color  = "#FFFF00",  # borde amarillo al hacer hover
-      fillOpacity = 1,
-      bringToFront = TRUE
-    ),
-    group = "Parcelas (polígonos)"
-  ) %>%
-  
-  # Círculos de conteo: detalle por partido + CABA, y vista agregada (PBA + CABA) para zoom bajo
-  # JavaScript mostrará/ocultará según zoom (ver onRender más abajo)
+  # Círculos de conteo (solo mapa PBA / fuente). Modo uso: mapa solo CABA, sin clusters.
   {
     mapa_temp <- .
-    
+    if (modo != "fuente") {
+      mapa_temp
+    } else {
     centroides_partidos <- deptos_plot_ll %>%
       filter(n_parcelas > 0) %>%
       st_centroid() %>%
@@ -746,7 +834,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
           label = as.character(total_parcelas_pba),
           labelOptions = labelOptions(noHide = TRUE, direction = "center", textOnly = TRUE,
             style = list("color" = "white", "font-weight" = "bold", "font-size" = "18px",
-              "text-align" = "center", "text-shadow" = "1px 1px 2px rgba(0,0,0,0.8)")),
+              "text-align" = "center")),
           popup = paste0("<b>PBA</b><br>Parcelas en índice: ", total_parcelas_pba),
           group = "Clusters agregados"
         )
@@ -762,7 +850,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
             label = as.character(n_propiedades_caba_ref),
             labelOptions = labelOptions(noHide = TRUE, direction = "center", textOnly = TRUE,
               style = list("color" = "white", "font-weight" = "bold", "font-size" = "18px",
-                "text-align" = "center", "text-shadow" = "1px 1px 2px rgba(0,0,0,0.8)")),
+                "text-align" = "center")),
             popup = paste0(
               "<b>CABA</b><br>",
               "Total CABA (tabla): ", n_propiedades_caba_ref, "<br>",
@@ -781,10 +869,13 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
         rename(lng = X, lat = Y)
 
       if (nrow(centroide_caba_sin_coord) > 0) {
+        # Desplazar respecto al círculo naranja (total CABA) para no superponer dos etiquetas permanentes
+        lng_gris <- centroide_caba_sin_coord$lng[1] + 0.012
+        lat_gris <- centroide_caba_sin_coord$lat[1] - 0.012
         mapa_temp <- mapa_temp %>%
           addCircleMarkers(
-            lng = centroide_caba_sin_coord$lng[1],
-            lat = centroide_caba_sin_coord$lat[1],
+            lng = lng_gris,
+            lat = lat_gris,
             radius = 14,
             stroke = TRUE,
             color = "#FFFFFF",
@@ -800,12 +891,12 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
                 "color" = "white",
                 "font-weight" = "bold",
                 "font-size" = "13px",
-                "text-align" = "center",
-                "text-shadow" = "1px 1px 2px rgba(0,0,0,0.8)"
+                "text-align" = "center"
               )
             ),
             popup = popup_caba_sin_coord,
-            group = "CABA sin coordenadas"
+            group = "CABA sin coordenadas",
+            layerId = "caba_sin_coord_contador"
           )
       }
     }
@@ -837,8 +928,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
               "color" = "white",
               "font-weight" = "bold",
               "font-size" = "16px",
-              "text-align" = "center",
-              "text-shadow" = "1px 1px 2px rgba(0,0,0,0.8)"
+              "text-align" = "center"
             )
           ),
           popup = paste0(
@@ -879,8 +969,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
                 "color" = "white",
                 "font-weight" = "bold",
                 "font-size" = "16px",
-                "text-align" = "center",
-                "text-shadow" = "1px 1px 2px rgba(0,0,0,0.8)"
+                "text-align" = "center"
               )
             ),
             popup = paste0(
@@ -895,6 +984,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
     }
     
     mapa_temp
+    }
   } %>%
   
   # Propiedades CABA: por fuente disponible o por categoría de uso (según modo)
@@ -1001,68 +1091,77 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
     mapa_temp
   } %>%
   
-  addLayersControl(
-    overlayGroups = if (modo == "fuente") {
-      c(
-        "Partidos",
-        "Parcelas (polígonos)",
-        "Clusters por partido",
-        "CABA sin coordenadas",
-        grupos_capas_prop_caba
-      )
-    } else {
-      c(
-        "Partidos",
-        "Parcelas (polígonos)",
-        "Clusters por partido",
-        "Clusters agregados",
-        "CABA sin coordenadas"
-      )
-    },
-    options = layersControlOptions(collapsed = TRUE)
-  ) %>%
-  # Mapa por uso: panel de categorías (título + botones) y control de capas a la izquierda
   {
     mapa_temp <- .
-    if (modo == "uso" && nrow(propiedades_caba) > 0 && length(grupos_capas_prop_caba) > 0) {
-      mapa_temp <- mapa_temp %>%
-        addControl(
-          html = htmltools::div(
-            class = "leaflet-cat-uso-header",
-            style = "background:#fff;padding:8px 10px;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,0.35);font-size:12px;min-width:200px;",
-            htmltools::tags$div(style = "font-weight:bold;font-size:13px;margin-bottom:6px;border-bottom:1px solid #ddd;padding-bottom:4px;", "Categorías de uso"),
-            htmltools::tags$div(
-              style = "margin-bottom:6px;",
-              htmltools::tags$button(
-                id = "btn-uso-todas",
-                type = "button",
-                style = "font-size:11px;margin-right:4px;cursor:pointer;",
-                "Ver todas"
-              ),
-              htmltools::tags$button(
-                id = "btn-uso-ninguna",
-                type = "button",
-                style = "font-size:11px;margin-right:4px;cursor:pointer;",
-                "Ocultar todas"
-              ),
-              htmltools::tags$button(
-                id = "btn-cat-panel-toggle",
-                type = "button",
-                style = "font-size:11px;cursor:pointer;",
-                "Ocultar lista"
-              )
-            )
-          ),
-          position = "topleft",
-          className = "leaflet-uso-acciones"
-        ) %>%
+    if (modo == "fuente") {
+      mapa_temp %>%
         addLayersControl(
-          overlayGroups = grupos_capas_prop_caba,
-          options = layersControlOptions(collapsed = FALSE),
-          position = "topleft"
+          overlayGroups = c(
+            "Partidos",
+            "Parcelas (polígonos)",
+            "Clusters por partido",
+            "CABA sin coordenadas",
+            grupos_capas_prop_caba
+          ),
+          options = layersControlOptions(collapsed = TRUE)
         )
+    } else {
+      og_uso <- c(
+        if (n_propiedades_caba_ref > 0 && nrow(caba_polygon) > 0) "CABA (contorno)",
+        if (n_propiedades_caba_sin_coord > 0 && nrow(caba_polygon) > 0) "CABA sin coordenadas",
+        grupos_capas_prop_caba
+      )
+      if (length(og_uso) == 0) {
+        mapa_temp
+      } else if (length(grupos_capas_prop_caba) > 0) {
+        mapa_temp %>%
+          addControl(
+            html = htmltools::div(
+              class = "leaflet-cat-uso-header",
+              style = "background:#fff;padding:8px 10px;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,0.35);font-size:12px;min-width:200px;",
+              htmltools::tags$div(style = "font-weight:bold;font-size:13px;margin-bottom:6px;border-bottom:1px solid #ddd;padding-bottom:4px;", "Categorías de uso"),
+              htmltools::tags$div(
+                style = "margin-bottom:6px;",
+                htmltools::tags$button(
+                  type = "button",
+                  `data-georef-btn` = "uso-todas",
+                  onclick = htmltools::HTML("if(window._georefUsoBtn)window._georefUsoBtn(\"uso-todas\");return false;"),
+                  style = "font-size:11px;margin-right:4px;cursor:pointer;",
+                  "Ver todas"
+                ),
+                htmltools::tags$button(
+                  type = "button",
+                  `data-georef-btn` = "uso-ninguna",
+                  onclick = htmltools::HTML("if(window._georefUsoBtn)window._georefUsoBtn(\"uso-ninguna\");return false;"),
+                  style = "font-size:11px;margin-right:4px;cursor:pointer;",
+                  "Ocultar todas"
+                ),
+                htmltools::tags$button(
+                  type = "button",
+                  `data-georef-btn` = "uso-toggle-lista",
+                  onclick = htmltools::HTML("if(window._georefUsoBtn)window._georefUsoBtn(\"uso-toggle-lista\");return false;"),
+                  style = "font-size:11px;cursor:pointer;",
+                  "Ocultar lista"
+                )
+              )
+            ),
+            position = "topleft",
+            className = "leaflet-uso-acciones"
+          ) %>%
+          addLayersControl(
+            overlayGroups = og_uso,
+            position = "topleft",
+            options = layersControlOptions(collapsed = FALSE)
+          )
+      } else {
+        mapa_temp %>%
+          addLayersControl(
+            overlayGroups = og_uso,
+            position = "topleft",
+            options = layersControlOptions(collapsed = FALSE)
+          )
+      }
     }
-    mapa_temp
   } %>%
   
   # Leyenda de partidos (solo mapa por fuente; en mapa por uso se omite)
@@ -1111,110 +1210,291 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
     }
     mapa_temp
   } %>%
-  
+  {
+    mapa_temp <- .
+    if (modo == "uso" && nrow(caba_polygon) > 0) {
+      bb_cb <- st_bbox(caba_polygon)
+      mapa_temp %>%
+        fitBounds(
+          lng1 = as.numeric(bb_cb["xmin"]),
+          lat1 = as.numeric(bb_cb["ymin"]),
+          lng2 = as.numeric(bb_cb["xmax"]),
+          lat2 = as.numeric(bb_cb["ymax"])
+        )
+    } else {
+      mapa_temp
+    }
+  } %>%
   # JavaScript: URL + zoom. En mapa por uso (modoUso) NO se tocan los puntos CABA al hacer zoom:
   # si no, addLayer() reactiva todas las capas y rompe el control de capas por categoría.
   htmlwidgets::onRender(
     paste0(
       "
     function(el, x) {
-      var map = this;
+      var widgetInstance = (this && typeof this.getMap === 'function') ? this : null;
+      function getMapSafe() {
+        if (!widgetInstance || typeof widgetInstance.getMap !== 'function') return null;
+        var m = widgetInstance.getMap();
+        if (m && typeof m.eachLayer === 'function') return m;
+        return null;
+      }
       var modoUso = ", if (modo == "uso") "true" else "false", ";
       var categoriasUso = ", categorias_uso_json, ";
-
-      (function() {
-        var params = new URLSearchParams(window.location.search);
-        var lat = params.get('lat'); var lng = params.get('lng'); var zoom = params.get('zoom');
-        if (lat != null && lng != null) {
-          var latNum = parseFloat(lat), lngNum = parseFloat(lng);
-          if (!isNaN(latNum) && !isNaN(lngNum) && latNum >= -90 && latNum <= 90 && lngNum >= -180 && lngNum <= 180) {
-            var z = (zoom != null && !isNaN(parseInt(zoom))) ? parseInt(zoom) : 16;
-            setTimeout(function() { map.setView([latNum, lngNum], z); }, 300);
-          }
+      if (!Array.isArray(categoriasUso)) {
+        if (categoriasUso != null && typeof categoriasUso === 'object') {
+          categoriasUso = Object.keys(categoriasUso).map(function(k) { return categoriasUso[k]; }).filter(function(x) { return x != null && x !== ''; });
+        } else {
+          categoriasUso = [];
         }
-      })();
+      }
+      var conteosSinCoord = ", sin_coord_conteos_json, ";
+      var esperarContadorSinCoord = ", esperar_contador_sin_coord_js, ";
+
+      function categoriasUsoIncludesGroup(g) {
+        if (!g || !categoriasUso || categoriasUso.length === 0) return false;
+        var j;
+        for (j = 0; j < categoriasUso.length; j++) {
+          if (categoriasUso[j] === g) return true;
+        }
+        return false;
+      }
 
       var propiedadesMarkers = [];
       var clustersPartido = [];
       var clustersAgregados = [];
+      var cabaSinCoordMarkers = [];
 
-      map.eachLayer(function(layer) {
-        if (layer instanceof L.CircleMarker && layer.options) {
-          var g = layer.options.group;
-          if (g === 'Propiedades CABA' || (modoUso && g && categoriasUso.indexOf(g) !== -1)) propiedadesMarkers.push(layer);
-          if (g === 'Clusters por partido') clustersPartido.push(layer);
-          if (g === 'Clusters agregados') clustersAgregados.push(layer);
+      function recollectClusterMarkers(m) {
+        propiedadesMarkers.length = 0;
+        clustersPartido.length = 0;
+        clustersAgregados.length = 0;
+        function walk(layer) {
+          if (layer instanceof L.CircleMarker && layer.options) {
+            var g = layer.options.group;
+            if (g === 'Propiedades CABA' || (modoUso && g && categoriasUsoIncludesGroup(g))) propiedadesMarkers.push(layer);
+            if (g === 'Clusters por partido') clustersPartido.push(layer);
+            if (g === 'Clusters agregados') clustersAgregados.push(layer);
+          }
+          if (layer.eachLayer) layer.eachLayer(walk);
         }
-      });
+        m.eachLayer(walk);
+      }
+
+      function recollectCabaSinCoord(m) {
+        cabaSinCoordMarkers.length = 0;
+        var idSinCoord = 'caba_sin_coord_contador';
+        if (m.layerManager && typeof m.layerManager.getLayer === 'function') {
+          var lm = m.layerManager.getLayer('marker', idSinCoord);
+          if (lm) cabaSinCoordMarkers.push(lm);
+        }
+        function walk(layer) {
+          if (layer instanceof L.CircleMarker && layer.options) {
+            var g = layer.options.group;
+            if (g === 'CABA sin coordenadas' && cabaSinCoordMarkers.indexOf(layer) === -1) cabaSinCoordMarkers.push(layer);
+          }
+          if (layer.eachLayer) layer.eachLayer(walk);
+        }
+        m.eachLayer(walk);
+      }
+
+      function normalizeCatStr(s) {
+        if (s == null || s === '') return '';
+        try { return String(s).normalize('NFC').replace(/\\s+/g, ' ').trim(); } catch (e) { return String(s).trim(); }
+      }
+
+      function textoDesdeLabel(lab) {
+        if (!lab) return '';
+        var sp = lab.querySelector('span');
+        if (sp) return normalizeCatStr(sp.textContent || sp.innerText || '');
+        return normalizeCatStr(lab.textContent || '');
+      }
+
+      function matchCategoriaKey(raw) {
+        var t = normalizeCatStr(raw);
+        if (!t) return null;
+        var i;
+        for (i = 0; i < categoriasUso.length; i++) {
+          if (normalizeCatStr(categoriasUso[i]) === t) return categoriasUso[i];
+        }
+        for (i = 0; i < categoriasUso.length; i++) {
+          var c = normalizeCatStr(categoriasUso[i]);
+          if (t.indexOf(c) !== -1 || c.indexOf(t) !== -1) return categoriasUso[i];
+        }
+        return null;
+      }
+
+      function domRootMapa() {
+        var mm = el._georefLeafletMap;
+        if (mm && mm.getContainer) return mm.getContainer();
+        var gm = getMapSafe();
+        if (gm && gm.getContainer) return gm.getContainer();
+        return el;
+      }
+
+      function queryOverlayCheckboxes() {
+        var acc = [];
+        var root = domRootMapa();
+        var overlays = root.querySelectorAll('.leaflet-control-layers-overlays');
+        if (!overlays.length) {
+          overlays = el.querySelectorAll('.leaflet-control-layers-overlays');
+        }
+        if (!overlays.length) {
+          overlays = document.querySelectorAll('.leaflet-control-layers-overlays');
+        }
+        function addFrom(root) {
+          var sel = root.querySelectorAll('input.leaflet-control-layers-selector[type=\"checkbox\"]');
+          var ii;
+          if (sel.length) {
+            for (ii = 0; ii < sel.length; ii++) acc.push(sel[ii]);
+          } else {
+            var sel2 = root.querySelectorAll('input[type=\"checkbox\"]');
+            for (ii = 0; ii < sel2.length; ii++) acc.push(sel2[ii]);
+          }
+        }
+        if (overlays.length) {
+          for (var k = 0; k < overlays.length; k++) addFrom(overlays[k]);
+        } else {
+          var fallback = document.querySelectorAll('.leaflet-control-layers-overlays input[type=\"checkbox\"]');
+          for (var f = 0; f < fallback.length; f++) acc.push(fallback[f]);
+        }
+        return acc;
+      }
+
+      function getCategoriaUsoCheckboxes() {
+        var out = [];
+        queryOverlayCheckboxes().forEach(function(input) {
+          var lab = input.closest('label');
+          var key = matchCategoriaKey(textoDesdeLabel(lab));
+          if (!key) return;
+          var dup = false;
+          var j;
+          for (j = 0; j < out.length; j++) {
+            if (out[j].input === input) { dup = true; break; }
+          }
+          if (!dup) out.push({ input: input, texto: key });
+        });
+        return out;
+      }
+
+      function conteoPorClave(key) {
+        if (!conteosSinCoord || typeof conteosSinCoord !== 'object') return 0;
+        if (typeof conteosSinCoord[key] === 'number') return conteosSinCoord[key];
+        var nk = normalizeCatStr(key);
+        var k;
+        for (k in conteosSinCoord) {
+          if (k === 'sinCoordResto') continue;
+          if (normalizeCatStr(k) === nk) return conteosSinCoord[k];
+        }
+        return 0;
+      }
+
+      function actualizarContadorSinCoord() {
+        if (!modoUso || !categoriasUso || categoriasUso.length === 0 || cabaSinCoordMarkers.length === 0) return;
+        if (!conteosSinCoord || typeof conteosSinCoord !== 'object') return;
+        var cbs = getCategoriaUsoCheckboxes();
+        if (cbs.length === 0) return;
+        var nChecked = 0;
+        var totalSel = 0;
+        var allChecked = true;
+        cbs.forEach(function(item) {
+          if (item.input.checked) {
+            nChecked++;
+            totalSel += conteoPorClave(item.texto);
+          } else {
+            allChecked = false;
+          }
+        });
+        cabaSinCoordMarkers.forEach(function(m) {
+          if (nChecked === 0) {
+            m.setOpacity(0);
+            if (m.closeTooltip) m.closeTooltip();
+            var t = m.getTooltip && m.getTooltip();
+            if (t) {
+              if (t.setContent) t.setContent('');
+              var tipEl = t.getElement && t.getElement();
+              if (tipEl) tipEl.style.display = 'none';
+            }
+            return;
+          }
+          var n = totalSel;
+          if (allChecked && conteosSinCoord.sinCoordResto != null) {
+            n += (conteosSinCoord.sinCoordResto || 0);
+          }
+          m.setOpacity(1);
+          var t2 = m.getTooltip && m.getTooltip();
+          if (t2) {
+            if (t2.setContent) t2.setContent(String(n));
+            var tipEl2 = t2.getElement && t2.getElement();
+            if (tipEl2) tipEl2.style.display = '';
+          }
+          if (m.openTooltip) m.openTooltip();
+        });
+      }
+
+      function marcarUsoTodos(visible) {
+        getCategoriaUsoCheckboxes().forEach(function(item) {
+          if (item.input.checked !== visible) item.input.click();
+        });
+        setTimeout(actualizarContadorSinCoord, 0);
+      }
+
+      function toggleListaUsoCapas() {
+        var root = domRootMapa();
+        var tr = root.querySelector('.leaflet-top.leaflet-left');
+        if (!tr) return;
+        var todasCapas = tr.querySelectorAll('.leaflet-control-layers');
+        var capasCtrl = null;
+        var ci, cj, labs;
+        for (ci = todasCapas.length - 1; ci >= 0; ci--) {
+          labs = todasCapas[ci].querySelectorAll('.leaflet-control-layers-overlays label');
+          for (cj = 0; cj < labs.length; cj++) {
+            if (matchCategoriaKey(textoDesdeLabel(labs[cj]))) {
+              capasCtrl = todasCapas[ci];
+              break;
+            }
+          }
+          if (capasCtrl) break;
+        }
+        if (!capasCtrl && todasCapas.length) capasCtrl = todasCapas[todasCapas.length - 1];
+        if (!capasCtrl) return;
+        el._georefListaUsoVisible = !el._georefListaUsoVisible;
+        var listaVisible = el._georefListaUsoVisible;
+        capasCtrl.style.display = listaVisible ? '' : 'none';
+        var btnToggle = root.querySelector('button[data-georef-btn=\"uso-toggle-lista\"]');
+        if (btnToggle) btnToggle.textContent = listaVisible ? 'Ocultar lista' : 'Mostrar lista';
+      }
+
+      function handleUsoBotonAction(action) {
+        if (!action || action.indexOf('uso-') !== 0) return;
+        if (action === 'uso-todas') marcarUsoTodos(true);
+        else if (action === 'uso-ninguna') marcarUsoTodos(false);
+        else if (action === 'uso-toggle-lista') toggleListaUsoCapas();
+      }
 
       if (modoUso) {
-        function marcarUsoTodos(visible) {
-          var checkboxes = document.querySelectorAll(
-            '.leaflet-control-layers-overlays input.leaflet-control-layers-selector[type=\"checkbox\"]'
-          );
-          checkboxes.forEach(function(input) {
-            var label = input.closest('label');
-            var texto = label ? (label.textContent || '').trim() : '';
-            if (categoriasUso.indexOf(texto) !== -1 && input.checked !== visible) {
-              input.click();
-            }
-          });
-        }
-        setTimeout(function() {
-          var tod = document.getElementById('btn-uso-todas');
-          var ning = document.getElementById('btn-uso-ninguna');
-          var btnPanel = document.getElementById('btn-cat-panel-toggle');
-          if (tod) {
-            L.DomEvent.on(tod, 'click', function(e) {
-              L.DomEvent.stopPropagation(e);
-              L.DomEvent.preventDefault(e);
-              marcarUsoTodos(true);
-            });
-          }
-          if (ning) {
-            L.DomEvent.on(ning, 'click', function(e) {
-              L.DomEvent.stopPropagation(e);
-              L.DomEvent.preventDefault(e);
-              marcarUsoTodos(false);
-            });
-          }
-          if (btnPanel) {
-            var listaVisible = true;
-            L.DomEvent.on(btnPanel, 'click', function(e) {
-              L.DomEvent.stopPropagation(e);
-              L.DomEvent.preventDefault(e);
-              var tr = document.querySelector('.leaflet-top.leaflet-left');
-              if (!tr) return;
-              /* Lista de categorías: el control de capas (no el zoom ni el bloque de botones) */
-              var capasCtrl = tr.querySelector('.leaflet-control-layers');
-              if (!capasCtrl) return;
-              listaVisible = !listaVisible;
-              capasCtrl.style.display = listaVisible ? '' : 'none';
-              btnPanel.textContent = listaVisible ? 'Ocultar lista' : 'Mostrar lista';
-            });
-          }
-          var trTop = document.querySelector('.leaflet-top.leaflet-left');
-          if (trTop) L.DomEvent.disableClickPropagation(trTop);
-        }, 200);
+        window._georefUsoBtn = function(a) { handleUsoBotonAction(a); };
       }
+
 
       var ZOOM_AGREGADO = 8;
       var ZOOM_PUNTOS = 11;
 
       function updateByZoom() {
+        var map = getMapSafe();
+        if (!map) return;
         var zoom = map.getZoom();
 
         if (zoom >= ZOOM_PUNTOS) {
           clustersPartido.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
           clustersAgregados.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
           if (!modoUso) {
-            propiedadesMarkers.forEach(function(m) { if (!map.hasLayer(m)) map.addLayer(m); });
+            propiedadesMarkers.forEach(function(mm) { if (!map.hasLayer(mm)) map.addLayer(mm); });
           }
           return;
         }
 
         if (!modoUso) {
-          propiedadesMarkers.forEach(function(m) { if (map.hasLayer(m)) map.removeLayer(m); });
+          propiedadesMarkers.forEach(function(mm) { if (map.hasLayer(mm)) map.removeLayer(mm); });
         }
 
         if (zoom < ZOOM_AGREGADO) {
@@ -1226,8 +1506,139 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
         }
       }
 
-      map.on('zoomend', updateByZoom);
-      setTimeout(updateByZoom, 100);
+      function installSinCoordDelegation(map) {
+        if (!esperarContadorSinCoord || el._georefSinCoordDelegado) return true;
+        recollectCabaSinCoord(map);
+        var cbs = getCategoriaUsoCheckboxes();
+        if (cabaSinCoordMarkers.length === 0 || cbs.length === 0) return false;
+        el._georefSinCoordDelegado = true;
+        el.addEventListener('change', function(ev) {
+          var t = ev.target;
+          var hostCh = (el.querySelector && el.querySelector('.leaflet')) || el;
+          if (!modoUso || !t || t.type !== 'checkbox' || !hostCh.contains(t)) return;
+          if (!t.closest || !t.closest('.leaflet-control-layers-overlays')) return;
+          var lab = t.closest('label');
+          if (!lab || !matchCategoriaKey(textoDesdeLabel(lab))) return;
+          var mm = getMapSafe();
+          if (mm) recollectCabaSinCoord(mm);
+          actualizarContadorSinCoord();
+        }, true);
+        if (!el._georefSinCoordMapEv) {
+          el._georefSinCoordMapEv = true;
+          map.on('overlayadd', function() {
+            var mm = getMapSafe();
+            if (mm) recollectCabaSinCoord(mm);
+            actualizarContadorSinCoord();
+          });
+          map.on('overlayremove', function() {
+            var mm = getMapSafe();
+            if (mm) recollectCabaSinCoord(mm);
+            actualizarContadorSinCoord();
+          });
+        }
+        return true;
+      }
+
+      function tryInstallSinCoord(map, attempt) {
+        if (!esperarContadorSinCoord) return;
+        if (installSinCoordDelegation(map)) {
+          actualizarContadorSinCoord();
+        } else if (attempt < 60) {
+          setTimeout(function() {
+            var m = getMapSafe();
+            if (m) tryInstallSinCoord(m, attempt + 1);
+          }, 120);
+        }
+      }
+
+      function usoBotonDesdeEvento(ev) {
+        var t = ev.target;
+        var btn = t && t.closest ? t.closest('button[data-georef-btn]') : null;
+        if (!btn) return;
+        if (!btn.closest || !btn.closest('.leaflet-uso-acciones')) return;
+        var action = btn.getAttribute('data-georef-btn');
+        if (!action || action.indexOf('uso-') !== 0) return;
+        ev.preventDefault();
+        ev.stopPropagation();
+        handleUsoBotonAction(action);
+      }
+
+      function wireUsoBotonesEnMapa(map) {
+        if (!modoUso || !map || !map.getContainer) return;
+        el._georefLeafletMap = map;
+        var mc = map.getContainer();
+        if (!mc) return;
+        var panel = mc.querySelector('.leaflet-uso-acciones');
+        var node = panel || mc;
+        if (node._georefUsoClickOk) return;
+        node._georefUsoClickOk = true;
+        node.addEventListener('click', usoBotonDesdeEvento, false);
+      }
+
+      if (modoUso && !el._georefUsoCallbacksReady) {
+        el._georefUsoCallbacksReady = true;
+        el._georefListaUsoVisible = true;
+        el._georefUsoClick = function(action) {
+          handleUsoBotonAction(action);
+        };
+      }
+
+      function runInit(attempt) {
+        var map = getMapSafe();
+        if (!map) {
+          if (attempt < 60) setTimeout(function() { runInit(attempt + 1); }, 100);
+          return;
+        }
+        if (!el._georefClusterInit) {
+          recollectClusterMarkers(map);
+          el._georefClusterInit = true;
+        }
+        if (!el._georefUrlParams) {
+          el._georefUrlParams = true;
+          (function() {
+            var params = new URLSearchParams(window.location.search);
+            var lat = params.get('lat'); var lng = params.get('lng'); var zoom = params.get('zoom');
+            if (lat != null && lng != null) {
+              var latNum = parseFloat(lat), lngNum = parseFloat(lng);
+              if (!isNaN(latNum) && !isNaN(lngNum) && latNum >= -90 && latNum <= 90 && lngNum >= -180 && lngNum <= 180) {
+                var z = (zoom != null && !isNaN(parseInt(zoom))) ? parseInt(zoom) : 16;
+                setTimeout(function() {
+                  var m = getMapSafe();
+                  if (m) m.setView([latNum, lngNum], z);
+                }, 300);
+              }
+            }
+          })();
+        }
+        if (!el._georefZoomWired) {
+          el._georefZoomWired = true;
+          map.on('zoomend', updateByZoom);
+          setTimeout(updateByZoom, 100);
+        }
+        if (!el._georefResizeHook) {
+          el._georefResizeHook = true;
+          map.on('resize', function() {
+            if (!modoUso || !esperarContadorSinCoord) return;
+            var m = getMapSafe();
+            if (!m) return;
+            if (!el._georefSinCoordDelegado) tryInstallSinCoord(m, 0);
+            else {
+              recollectCabaSinCoord(m);
+              actualizarContadorSinCoord();
+            }
+          });
+        }
+        if (modoUso) {
+          wireUsoBotonesEnMapa(map);
+          if (esperarContadorSinCoord) tryInstallSinCoord(map, attempt);
+        }
+      }
+
+      runInit(0);
+      setTimeout(function() { runInit(0); }, 0);
+      setTimeout(function() { runInit(0); }, 300);
+      setTimeout(function() { runInit(0); }, 800);
+      window.addEventListener('load', function() { runInit(0); });
     }
   "
     )
