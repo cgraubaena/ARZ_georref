@@ -584,6 +584,21 @@ if (n_propiedades_caba_ref > 0) {
 # bounding box para centrar el mapa en PBA
 bb <- st_bbox(deptos_plot_ll)
 
+# Panes Leaflet: puntos CABA debajo; contadores por partido; agregado PBA; resumen CABA (naranja/gris) arriba
+PANE_GEOREF_PROP_CABA <- "georefPropCaba"
+PANE_GEOREF_CLUSTER_PARTIDO <- "georefClusterPartido"
+PANE_GEOREF_CLUSTER_AGREGADO <- "georefClusterAgregado"
+PANE_GEOREF_CABA_RESUMEN <- "georefCabaResumen"
+
+# Umbrales zoom (mismo valor en JS vía onRender)
+zoom_puntos_caba <- 11L
+zoom_partido_min <- 10L
+
+opts_pane_prop_caba <- leaflet::markerOptions(pane = PANE_GEOREF_PROP_CABA)
+opts_pane_cluster_partido <- leaflet::markerOptions(pane = PANE_GEOREF_CLUSTER_PARTIDO)
+opts_pane_cluster_agregado <- leaflet::markerOptions(pane = PANE_GEOREF_CLUSTER_AGREGADO)
+opts_pane_caba_resumen <- leaflet::markerOptions(pane = PANE_GEOREF_CABA_RESUMEN)
+
 aplicar_vista <- function(mapa_leaflet) {
   if (length(bb) == 4 && 
       all(!is.na(bb)) && 
@@ -603,7 +618,13 @@ aplicar_vista <- function(mapa_leaflet) {
 }
 
 crear_base <- function() {
-  leaflet() %>% addProviderTiles(providers$CartoDB.Positron) %>% aplicar_vista()
+  leaflet() %>%
+    addProviderTiles(providers$CartoDB.Positron) %>%
+    addMapPane(PANE_GEOREF_PROP_CABA, zIndex = 540L) %>%
+    addMapPane(PANE_GEOREF_CLUSTER_PARTIDO, zIndex = 620L) %>%
+    addMapPane(PANE_GEOREF_CLUSTER_AGREGADO, zIndex = 630L) %>%
+    addMapPane(PANE_GEOREF_CABA_RESUMEN, zIndex = 700L) %>%
+    aplicar_vista()
 }
 
 m <- crear_base()
@@ -784,8 +805,8 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
           as.data.frame() %>%
           rename(lng = X, lat = Y)
         if (nrow(centroide_caba_sin_coord_uso) > 0) {
-          lng_gris_u <- centroide_caba_sin_coord_uso$lng[1] + 0.012
-          lat_gris_u <- centroide_caba_sin_coord_uso$lat[1] - 0.012
+          lng_gris_u <- centroide_caba_sin_coord_uso$lng[1] + 0.028
+          lat_gris_u <- centroide_caba_sin_coord_uso$lat[1] - 0.024
           mapa_uso_base <- leaflet::addCircleMarkers(
               map = mapa_uso_base,
               lng = lng_gris_u,
@@ -809,6 +830,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
                 )
               ),
               popup = popup_caba_sin_coord,
+              options = opts_pane_caba_resumen,
               group = "CABA sin coordenadas",
               layerId = "caba_sin_coord_contador"
             )
@@ -857,6 +879,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
               "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
               "Sin coordenadas: ", n_propiedades_caba_sin_coord
             ),
+            options = opts_pane_caba_resumen,
             group = "Clusters agregados"
           )
         }
@@ -874,8 +897,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
       ) %>%
       rename(lng = X, lat = Y)
     
-    # --- Vista agregada: 2 círculos (solo visibles con zoom bajo, controlado por JS)
-    zoom_limite_agregado <- 8
+    # --- Vista agregada: PBA + CABA (zoom < zoom_partido_min; JS ZOOM_PARTIDO_MIN)
     if (nrow(centroides_partidos) > 0) {
       total_parcelas_pba <- sum(centroides_partidos$n_parcelas)
       # Centro geográfico de la provincia de Buenos Aires (centroide del polígono)
@@ -895,6 +917,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
           style = list("color" = "white", "font-weight" = "bold", "font-size" = "18px",
             "text-align" = "center")),
         popup = paste0("<b>PBA</b><br>Parcelas en índice: ", total_parcelas_pba),
+        options = opts_pane_cluster_agregado,
         group = "Clusters agregados"
       )
     }
@@ -916,6 +939,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
             "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
             "Sin coordenadas: ", n_propiedades_caba_sin_coord
           ),
+          options = opts_pane_caba_resumen,
           group = "Clusters agregados"
         )
       }
@@ -929,8 +953,8 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
 
       if (nrow(centroide_caba_sin_coord) > 0) {
         # Desplazar respecto al círculo naranja (total CABA) para no superponer dos etiquetas permanentes
-        lng_gris <- centroide_caba_sin_coord$lng[1] + 0.012
-        lat_gris <- centroide_caba_sin_coord$lat[1] - 0.012
+        lng_gris <- centroide_caba_sin_coord$lng[1] + 0.028
+        lat_gris <- centroide_caba_sin_coord$lat[1] - 0.024
         mapa_temp <- leaflet::addCircleMarkers(
           map = mapa_temp,
           lng = lng_gris,
@@ -954,6 +978,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
             )
           ),
           popup = popup_caba_sin_coord,
+          options = opts_pane_caba_resumen,
           group = "CABA sin coordenadas",
           layerId = "caba_sin_coord_contador"
         )
@@ -994,6 +1019,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
           "<b>", partido, "</b><br>",
           "Total parcelas: ", total_parcelas
         ),
+        options = opts_pane_cluster_partido,
         group = "Clusters por partido"
       )
     }
@@ -1037,6 +1063,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
             "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
             "Sin coordenadas: ", n_propiedades_caba_sin_coord
           ),
+          options = opts_pane_caba_resumen,
           group = "Clusters por partido"
         )
       }
@@ -1063,6 +1090,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
           weight = 1.5,
           fillOpacity = 0.95,
           fillColor = ~color_fill,
+          options = opts_pane_prop_caba,
           label = ~paste0(
             "<b>", if_else(
               is.na(Descripción) | Descripción == "" | str_detect(Descripción, "(?i)averiguar"),
@@ -1113,6 +1141,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
             weight = 1.5,
             fillOpacity = 0.95,
             fillColor = ~color_fill_uso,
+            options = opts_pane_prop_caba,
             label = ~paste0(
               "<b>", if_else(
                 is.na(Descripción) | Descripción == "" | str_detect(Descripción, "(?i)averiguar"),
@@ -1308,6 +1337,8 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
       }
       var conteosSinCoord = ", sin_coord_conteos_json, ";
       var esperarContadorSinCoord = ", esperar_contador_sin_coord_js, ";
+      var ZOOM_PUNTOS = ", zoom_puntos_caba, ";
+      var ZOOM_PARTIDO_MIN = ", zoom_partido_min, ";
 
       function categoriasUsoIncludesGroup(g) {
         if (!g || !categoriasUso || categoriasUso.length === 0) return false;
@@ -1535,9 +1566,6 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
       }
 
 
-      var ZOOM_AGREGADO = 8;
-      var ZOOM_PUNTOS = 11;
-
       function bringClusterMarkersToFront(map) {
         if (!map) return;
         var i;
@@ -1588,7 +1616,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
 
         propiedadesMarkers.forEach(function(mm) { if (map.hasLayer(mm)) map.removeLayer(mm); });
 
-        if (zoom < ZOOM_AGREGADO) {
+        if (zoom < ZOOM_PARTIDO_MIN) {
           clustersPartido.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
           clustersAgregados.forEach(function(l) { if (!map.hasLayer(l)) map.addLayer(l); });
         } else {
