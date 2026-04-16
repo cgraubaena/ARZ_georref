@@ -922,29 +922,6 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
         group = "Clusters agregados"
       )
     }
-    if (n_propiedades_caba_ref > 0 && nrow(caba_polygon) > 0) {
-      centroide_caba_agg <- caba_polygon %>% st_centroid() %>% st_coordinates() %>% as.data.frame() %>% rename(lng = X, lat = Y)
-      if (nrow(centroide_caba_agg) > 0) {
-        mapa_temp <- leaflet::addCircleMarkers(
-          map = mapa_temp,
-          lng = centroide_caba_agg$lng[1], lat = centroide_caba_agg$lat[1],
-          radius = 28, stroke = TRUE, color = "#FFFFFF", weight = 3,
-          fillOpacity = 0.95, fillColor = "#FFB347",
-          label = as.character(n_propiedades_caba_ref),
-          labelOptions = labelOptions(noHide = TRUE, direction = "center", textOnly = TRUE,
-            style = list("color" = "white", "font-weight" = "bold", "font-size" = "18px",
-              "text-align" = "center")),
-          popup = paste0(
-            "<b>CABA</b><br>",
-            "Total CABA (tabla): ", n_propiedades_caba_ref, "<br>",
-            "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
-            "Sin coordenadas: ", n_propiedades_caba_sin_coord
-          ),
-          options = opts_pane_caba_resumen,
-          group = "Clusters agregados"
-        )
-      }
-    }
     if (n_propiedades_caba_sin_coord > 0 && nrow(caba_polygon) > 0) {
       centroide_caba_sin_coord <- caba_polygon %>%
         st_centroid() %>%
@@ -1025,28 +1002,25 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
       )
     }
     
+    # Un solo círculo total CABA (evita dos tooltips superpuestos en agregado vs por partido → texto borroso)
     if (n_propiedades_caba_ref > 0 && nrow(caba_polygon) > 0) {
-      centroide_caba <- caba_polygon %>%
+      centroide_caba_total <- caba_polygon %>%
         st_centroid() %>%
         st_coordinates() %>%
         as.data.frame() %>%
         rename(lng = X, lat = Y)
-      
-      if (nrow(centroide_caba) > 0) {
-        total_propiedades_caba <- n_propiedades_caba_ref
-        color_caba <- "#FFB347"
-        
+      if (nrow(centroide_caba_total) > 0) {
         mapa_temp <- leaflet::addCircleMarkers(
           map = mapa_temp,
-          lng = centroide_caba$lng[1],
-          lat = centroide_caba$lat[1],
-          radius = 25,
+          lng = centroide_caba_total$lng[1],
+          lat = centroide_caba_total$lat[1],
+          radius = 26,
           stroke = TRUE,
           color = "#FFFFFF",
           weight = 3,
           fillOpacity = 0.95,
-          fillColor = color_caba,
-          label = as.character(total_propiedades_caba),
+          fillColor = "#FFB347",
+          label = as.character(n_propiedades_caba_ref),
           labelOptions = labelOptions(
             noHide = TRUE,
             direction = "center",
@@ -1060,12 +1034,12 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
           ),
           popup = paste0(
             "<b>CABA</b><br>",
-            "Total CABA (tabla): ", total_propiedades_caba, "<br>",
+            "Total CABA (tabla): ", n_propiedades_caba_ref, "<br>",
             "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
             "Sin coordenadas: ", n_propiedades_caba_sin_coord
           ),
           options = opts_pane_caba_resumen,
-          group = "Clusters por partido"
+          group = "CABA contador total"
         )
       }
     }
@@ -1353,18 +1327,21 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
       var propiedadesMarkers = [];
       var clustersPartido = [];
       var clustersAgregados = [];
+      var cabaContadorTotal = [];
       var cabaSinCoordMarkers = [];
 
       function recollectClusterMarkers(m) {
         propiedadesMarkers.length = 0;
         clustersPartido.length = 0;
         clustersAgregados.length = 0;
+        cabaContadorTotal.length = 0;
         function walk(layer) {
           if (layer instanceof L.CircleMarker && layer.options) {
             var g = layer.options.group;
             if (g === 'Propiedades CABA' || (modoUso && g && categoriasUsoIncludesGroup(g))) propiedadesMarkers.push(layer);
             if (g === 'Clusters por partido') clustersPartido.push(layer);
             if (g === 'Clusters agregados') clustersAgregados.push(layer);
+            if (g === 'CABA contador total') cabaContadorTotal.push(layer);
           }
           if (layer.eachLayer) layer.eachLayer(walk);
         }
@@ -1578,6 +1555,10 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
           var a = clustersAgregados[i];
           if (a && map.hasLayer(a) && a.bringToFront) a.bringToFront();
         }
+        for (i = 0; i < cabaContadorTotal.length; i++) {
+          var ct = cabaContadorTotal[i];
+          if (ct && map.hasLayer(ct) && ct.bringToFront) ct.bringToFront();
+        }
         recollectCabaSinCoord(map);
         for (i = 0; i < cabaSinCoordMarkers.length; i++) {
           var g = cabaSinCoordMarkers[i];
@@ -1594,6 +1575,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
           if (zoom >= ZOOM_PUNTOS) {
             clustersPartido.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
             clustersAgregados.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
+            cabaContadorTotal.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
             propiedadesMarkers.forEach(function(mm) { if (!map.hasLayer(mm)) map.addLayer(mm); });
           } else {
             propiedadesMarkers.forEach(function(mm) { if (map.hasLayer(mm)) map.removeLayer(mm); });
@@ -1609,6 +1591,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
         if (zoom >= ZOOM_PUNTOS) {
           clustersPartido.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
           clustersAgregados.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
+          cabaContadorTotal.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
           propiedadesMarkers.forEach(function(mm) { if (!map.hasLayer(mm)) map.addLayer(mm); });
           recollectCabaSinCoord(map);
           bringClusterMarkersToFront(map);
@@ -1624,6 +1607,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
           clustersAgregados.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
           clustersPartido.forEach(function(l) { if (!map.hasLayer(l)) map.addLayer(l); });
         }
+        cabaContadorTotal.forEach(function(l) { if (!map.hasLayer(l)) map.addLayer(l); });
         recollectCabaSinCoord(map);
         bringClusterMarkersToFront(map);
       }
