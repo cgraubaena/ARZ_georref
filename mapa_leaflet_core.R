@@ -584,7 +584,8 @@ if (n_propiedades_caba_ref > 0) {
 # bounding box para centrar el mapa en PBA
 bb <- st_bbox(deptos_plot_ll)
 
-# Panes Leaflet: puntos CABA debajo; contadores por partido; agregado PBA; resumen CABA (naranja/gris) arriba
+# Panes Leaflet: puntos CABA debajo; contadores por partido; agregado PBA; resumen CABA (naranja/gris) arriba.
+# Todos debajo de 650: el pane de tooltips de Leaflet usa z-index 650; si el círculo está en 700+ tapa los números.
 PANE_GEOREF_PROP_CABA <- "georefPropCaba"
 PANE_GEOREF_CLUSTER_PARTIDO <- "georefClusterPartido"
 PANE_GEOREF_CLUSTER_AGREGADO <- "georefClusterAgregado"
@@ -620,10 +621,10 @@ aplicar_vista <- function(mapa_leaflet) {
 crear_base <- function() {
   leaflet() %>%
     addProviderTiles(providers$CartoDB.Positron) %>%
-    addMapPane(PANE_GEOREF_PROP_CABA, zIndex = 540L) %>%
-    addMapPane(PANE_GEOREF_CLUSTER_PARTIDO, zIndex = 620L) %>%
-    addMapPane(PANE_GEOREF_CLUSTER_AGREGADO, zIndex = 630L) %>%
-    addMapPane(PANE_GEOREF_CABA_RESUMEN, zIndex = 700L) %>%
+    addMapPane(PANE_GEOREF_PROP_CABA, zIndex = 550L) %>%
+    addMapPane(PANE_GEOREF_CLUSTER_PARTIDO, zIndex = 610L) %>%
+    addMapPane(PANE_GEOREF_CLUSTER_AGREGADO, zIndex = 620L) %>%
+    addMapPane(PANE_GEOREF_CABA_RESUMEN, zIndex = 640L) %>%
     aplicar_vista()
 }
 
