@@ -818,10 +818,49 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
     }
   } %>%
   
-  # Círculos de conteo (solo mapa PBA / fuente). Modo uso: mapa solo CABA, sin clusters.
+  # Círculos de conteo (mapa PBA / fuente). Modo uso: solo CABA; contador total naranja (Clusters agregados) para zoom out.
   {
     mapa_temp <- .
     if (modo != "fuente") {
+      if (n_propiedades_caba_ref > 0 && nrow(caba_polygon) > 0) {
+        centroide_caba_agg_uso <- caba_polygon %>%
+          st_centroid() %>%
+          st_coordinates() %>%
+          as.data.frame() %>%
+          rename(lng = X, lat = Y)
+        if (nrow(centroide_caba_agg_uso) > 0) {
+          mapa_temp <- leaflet::addCircleMarkers(
+            map = mapa_temp,
+            lng = centroide_caba_agg_uso$lng[1],
+            lat = centroide_caba_agg_uso$lat[1],
+            radius = 28,
+            stroke = TRUE,
+            color = "#FFFFFF",
+            weight = 3,
+            fillOpacity = 0.95,
+            fillColor = "#FFB347",
+            label = as.character(n_propiedades_caba_ref),
+            labelOptions = labelOptions(
+              noHide = TRUE,
+              direction = "center",
+              textOnly = TRUE,
+              style = list(
+                "color" = "white",
+                "font-weight" = "bold",
+                "font-size" = "18px",
+                "text-align" = "center"
+              )
+            ),
+            popup = paste0(
+              "<b>CABA</b><br>",
+              "Total CABA (tabla): ", n_propiedades_caba_ref, "<br>",
+              "Georreferenciadas: ", n_propiedades_caba_geo, "<br>",
+              "Sin coordenadas: ", n_propiedades_caba_sin_coord
+            ),
+            group = "Clusters agregados"
+          )
+        }
+      }
       mapa_temp
     } else {
     centroides_partidos <- deptos_plot_ll %>%
@@ -1128,6 +1167,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
     } else {
       og_uso <- c(
         if (n_propiedades_caba_ref > 0 && nrow(caba_polygon) > 0) "CABA (contorno)",
+        if (n_propiedades_caba_ref > 0 && nrow(caba_polygon) > 0) "Clusters agregados",
         if (n_propiedades_caba_sin_coord > 0 && nrow(caba_polygon) > 0) "CABA sin coordenadas",
         grupos_capas_prop_caba
       )
@@ -1245,8 +1285,7 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
       mapa_temp
     }
   } %>%
-  # JavaScript: URL + zoom. En mapa por uso (modoUso) NO se tocan los puntos CABA al hacer zoom:
-  # si no, addLayer() reactiva todas las capas y rompe el control de capas por categoría.
+  # JavaScript: URL + zoom. Fuente y uso: zoom out oculta puntos CABA y muestra contadores; uso alinea totales con mapa fuente.
   htmlwidgets::onRender(
     paste0(
       "
@@ -1499,23 +1538,55 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
       var ZOOM_AGREGADO = 8;
       var ZOOM_PUNTOS = 11;
 
+      function bringClusterMarkersToFront(map) {
+        if (!map) return;
+        var i;
+        for (i = 0; i < clustersPartido.length; i++) {
+          var p = clustersPartido[i];
+          if (p && map.hasLayer(p) && p.bringToFront) p.bringToFront();
+        }
+        for (i = 0; i < clustersAgregados.length; i++) {
+          var a = clustersAgregados[i];
+          if (a && map.hasLayer(a) && a.bringToFront) a.bringToFront();
+        }
+        recollectCabaSinCoord(map);
+        for (i = 0; i < cabaSinCoordMarkers.length; i++) {
+          var g = cabaSinCoordMarkers[i];
+          if (g && map.hasLayer(g) && g.bringToFront) g.bringToFront();
+        }
+      }
+
       function updateByZoom() {
         var map = getMapSafe();
         if (!map) return;
         var zoom = map.getZoom();
 
-        if (zoom >= ZOOM_PUNTOS) {
-          clustersPartido.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
-          clustersAgregados.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
-          if (!modoUso) {
+        if (modoUso) {
+          if (zoom >= ZOOM_PUNTOS) {
+            clustersPartido.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
+            clustersAgregados.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
             propiedadesMarkers.forEach(function(mm) { if (!map.hasLayer(mm)) map.addLayer(mm); });
+          } else {
+            propiedadesMarkers.forEach(function(mm) { if (map.hasLayer(mm)) map.removeLayer(mm); });
+            clustersPartido.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
+            clustersAgregados.forEach(function(l) { if (!map.hasLayer(l)) map.addLayer(l); });
           }
+          recollectCabaSinCoord(map);
+          bringClusterMarkersToFront(map);
+          if (esperarContadorSinCoord) actualizarContadorSinCoord();
           return;
         }
 
-        if (!modoUso) {
-          propiedadesMarkers.forEach(function(mm) { if (map.hasLayer(mm)) map.removeLayer(mm); });
+        if (zoom >= ZOOM_PUNTOS) {
+          clustersPartido.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
+          clustersAgregados.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
+          propiedadesMarkers.forEach(function(mm) { if (!map.hasLayer(mm)) map.addLayer(mm); });
+          recollectCabaSinCoord(map);
+          bringClusterMarkersToFront(map);
+          return;
         }
+
+        propiedadesMarkers.forEach(function(mm) { if (map.hasLayer(mm)) map.removeLayer(mm); });
 
         if (zoom < ZOOM_AGREGADO) {
           clustersPartido.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
@@ -1524,6 +1595,8 @@ agregar_capas_mapa <- function(mapa_inicial, modo) {
           clustersAgregados.forEach(function(l) { if (map.hasLayer(l)) map.removeLayer(l); });
           clustersPartido.forEach(function(l) { if (!map.hasLayer(l)) map.addLayer(l); });
         }
+        recollectCabaSinCoord(map);
+        bringClusterMarkersToFront(map);
       }
 
       function installSinCoordDelegation(map) {
